@@ -2,20 +2,20 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import ExampleTitle from 'components/UI/ExampleTitle/ExampleTitle';
-import IPAddress from 'components/Examples/IPAddress/IPAddress';
+import Offers from 'components/Examples/Offers/Offers';
 
 class ScreensExamplesFetch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ip: '',
+      offers: [{ date: 'mydate' }],
     };
   }
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_API}/ip`)
+    fetch(`${process.env.REACT_APP_API}/offers`)
       .then(response => response.json())
-      .then(body => this.setState({ ip: body.origin }));
+      .then(body => this.setState({ offers: body }));
   }
 
   render() {
@@ -24,7 +24,7 @@ class ScreensExamplesFetch extends Component {
     return (
       <div>
         <ExampleTitle size="4">{t('screens.examples.fetch.title')}</ExampleTitle>
-        <IPAddress ip={this.state.ip} />
+        <Offers offers={this.state.offers} />
       </div>
     );
   }

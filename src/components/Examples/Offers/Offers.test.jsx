@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ExamplesIPAddress as IPAddress } from './IPAddress';
+import { ExampleOffers as Offers } from './Offers';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<IPAddress />, div);
+  ReactDOM.render(<Offers offers={[]} />, div);
 });
