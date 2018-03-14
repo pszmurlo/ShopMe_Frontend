@@ -8,7 +8,7 @@ class ScreensExamplesFetch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      offers: [{ date: 'mydate' }],
+      offers: [{ date: 'myDate' }],
     };
   }
 
