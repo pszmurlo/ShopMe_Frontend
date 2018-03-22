@@ -7,41 +7,43 @@ class TitleInput extends Component {
   constructor(props) {
     super(props);
 
-    const { t } = this.props;
-
     this.state = {
       value: '',
-      errorMessage: this.props.required ? t('components.UI.TitleInput.errorEmptyField') : '',
+      errorMessage: '',
       isRequired: this.props.required,
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
-  validation(value) {
+  checkValidity(value) {
     const { t } = this.props;
+    const isValid = true;
 
-    if ((value.trim() === '') || (value.length <= 2)) {
+    if (value.trim() === '' && this.state.isRequired) {
       this.setState({ errorMessage: t('components.UI.TitleInput.errorEmptyField') });
+      return false;
+    } else if (value.length <= 2) {
+      this.setState({ errorMessage: t('components.UI.TitleInput.errorMinLength') });
+      return false;
+    } else if (value.length > 30) {
+      this.setState({ errorMessage: t('components.UI.TitleInput.errorMaxLength') });
+      return false;
     }
-    if ((value.length > 2) && (value.length < 25)) {
-      this.setState({ errorMessage: '' });
-    }
-    if (value.length >= 25) {
-      this.setState({ errorMessage: t('components.UI.TitleInput.warningMaxLength') });
-    }
+
+    this.setState({ errorMessage: '' });
+    return isValid;
   }
 
   handleChange(event) {
     const { value } = event.target;
-    if (this.state.isRequired) this.validation(value);
-    if (value.length <= 30) this.setState({ value });
+    this.setState({ value });
   }
 
   render() {
     return (
       <label
-        htmlFor="this.props.name"
+        htmlFor={this.props.name}
       >
         <input
           className="input-title"

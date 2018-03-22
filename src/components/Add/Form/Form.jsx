@@ -21,9 +21,9 @@ class AddForm extends Component {
         <h1 className="add-form__title">{t('Dodaj Ofertę')}</h1>
         <fieldset className="add-form__fieldset add-form__fieldset-basic">
           <div className="add-form__fieldset-basic-item">
-            <label htmlFor="add-form__offer-title" className="add-form__label">{t('Tytuł Oferty *')}</label>
+            <label htmlFor="add-form__title" className="add-form__label">{t('components.UI.TitleInput.name')}</label>
             <div className="add-form__input add-form__input--M">
-              <TitleInput name="add-form__offer-title" required />
+              <TitleInput name="add-form__title" required />
             </div>
           </div>
           <div className="add-form__fieldset-basic-item">

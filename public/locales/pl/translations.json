@@ -33,8 +33,10 @@
           "others": "Inne"
         }
       "TitleInput": {
+        "name": "Tytuł Oferty *",
         "errorEmptyField": "Pole wymagane!",
-        "warningMaxLength": "Tytuł nie powinien być dłuższy niż 30 znaków"
+        "errorMinLength": "Tytuł nie powinien być krótszy niż 2 znaki",
+        "errorMaxLength": "Tytuł nie powinien być dłuższy niż 30 znaków"
       },
       "FirstNameInput": {
         "name": "Imię *",
