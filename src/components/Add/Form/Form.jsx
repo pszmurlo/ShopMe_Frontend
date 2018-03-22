@@ -4,6 +4,7 @@ import ExampleInput from 'components/UI/ExampleInput/ExampleInput';
 import ExampleButton from 'components/UI/ExampleButton/ExampleButton';
 import PriceInput from 'components/UI/PriceInput/PriceInput';
 import OfferInput from 'components/UI/OfferInput/OfferInput';
+import CategorySelect from 'components/UI/CategorySelect/CategorySelect';
 import TitleInput from 'components/UI/TitleInput/TitleInput';
 
 import './Form.css';
@@ -26,9 +27,9 @@ class AddForm extends Component {
             </div>
           </div>
           <div className="add-form__fieldset-basic-item">
-            <label htmlFor="add-form__category" className="add-form__label">{t('Kategoria *')}</label>
+            <label htmlFor="add-form__category" className="add-form__label">{t('components.UI.categorySelect.name')}</label>
             <div className="add-form__input add-form__input--M">
-              <ExampleInput name="add-form__category" required />
+              <CategorySelect name="add-form__category" required />
             </div>
           </div>
         </fieldset>

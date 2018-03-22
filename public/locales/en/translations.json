@@ -10,6 +10,30 @@
       "resultsTitle": "Search results"
     },
     "UI": {
+      "categorySelect": {
+        "name": "Category *",
+        "errorEmptyField": "This field is required!",
+        "categoryOptions": {
+          "architecture": "Architecture",
+          "garden": "Garden",
+          "workshop-services": "Workshop Services",
+          "transport": "Transport",
+          "photography": "Photography",
+          "graphics": "Graphics",
+          "marketing-and-advertising": "Marketing and Advertising",
+          "programming": "Programming",
+          "bookkeeping": "Bookkeeping",
+          "law": "Law",
+          "translations": "Translations",
+          "company-and-office": "Company and Office",
+          "repair-and-service": "Repair and Service",
+          "housework": "Housework",
+          "tutoring": "Tutoring",
+          "bands-and-music": "Bands and Music",
+          "others": "Others"
+        }
+      },
+      "FirstNameInput":{
       "TitleInput": {
         "errorEmptyField": "This field is required!",
         "warningMaxLength": "The title should contains at most 30 characters"
