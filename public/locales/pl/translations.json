@@ -47,6 +47,11 @@
       "add": {
         "addOfferText": "Dodaj ofertę"
       }
+    },
+    "offer": {
+      "add": {
+        "addOfferText": "Dodaj ofertę"
+      }
     }
   }
 }
