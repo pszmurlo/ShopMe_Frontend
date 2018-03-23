@@ -5,9 +5,11 @@
       "input": "Wpisz szukaną usługę",
       "lengthError": "Wpisana fraza jest za krótka"
     },
-    "searchResults": {
-      "header": "Shop me",
+    "foundSearchResults": {
       "resultsTitle": "Wyniki wyszukiwania"
+    },
+    "noSearchResults" : {
+      "noResultsTitle": "Brak wyników wyszukiwania."
     },
     "UI": {
       "categorySelect": {
