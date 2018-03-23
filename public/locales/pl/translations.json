@@ -8,6 +8,20 @@
     "foundSearchResults": {
       "resultsTitle": "Wyniki wyszukiwania"
     },
+    "add": {
+      "form": {
+        "title": "Dodaj Ofertę",
+        "fieldsetTitle": "Zdefiniuj Oferowane Pakiety Usług",
+        "caption": "*Pola wymagane",
+        "currency": "zł",
+        "offerBasicLabel": "Podstawowy *",
+        "offerAdditionalLabel": "Rozszerzony",
+        "offerExtraLabel": "Ekstra",
+        "offerBasicPlaceholder": "Podstawowa Usługa",
+        "offerAdditionalPlaceholder": "Rozszerzona Usługa",
+        "offerExtraPlaceholder": "Ekstra Usługa"
+      }
+    },
     "noSearchResults" : {
       "noResultsTitle": "Brak wyników wyszukiwania."
     },
@@ -49,7 +63,8 @@
         "errorOnlyAlpha": "Imię musi się składać wyłącznie z liter"
       },
       "PriceInput":{
-        "errorMessage": "Pole wymagane!"
+        "errorMessage": "Pole wymagane!",
+        "label": "Cena"
       },
       "EmailInput": {
         "name": "E-mail *",
