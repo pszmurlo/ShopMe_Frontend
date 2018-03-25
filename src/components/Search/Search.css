@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,700');
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 * {
   box-sizing: border-box;
@@ -9,7 +10,7 @@ body {
   width: 1180px;
   margin: 0 auto;
   max-width: 100%;
-}
+  font-family: 'Fira Sans', sans-serif;}
 
 header {
   display: grid;
@@ -45,6 +46,8 @@ header {
   width: calc(100% - 165px);
 }
 .search__message-error {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 15px;
   padding: 15px 0;
 }
 #search__input {
