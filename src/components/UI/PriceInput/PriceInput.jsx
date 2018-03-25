@@ -23,7 +23,7 @@ class PriceInput extends Component {
     const isValid = true;
 
     if (value.trim() === '' && this.state.isRequired) {
-      this.setState({ errorMessage: t('components.UI.PriceInput.errorMessage') });
+      this.setState({ errorMessage: t('components.UI.priceInput.errorMessage') });
       return false;
     }
 
@@ -73,7 +73,10 @@ class PriceInput extends Component {
         <div className="add-form__label--hidden">{t('components.UI.PriceInput.label')}</div>
         <input
           type="text"
-          className="add-form__input add-form__input--XS"
+          className={this.props.disabled
+            ? 'add-form__input add-form__input--XS add-form__input--disabled'
+            : 'add-form__input add-form__input--XS'
+          }
           name={this.props.name}
           value={this.state.value}
           placeholder={this.props.placeholder}
