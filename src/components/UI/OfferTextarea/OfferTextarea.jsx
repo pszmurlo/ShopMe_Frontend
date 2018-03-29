@@ -13,13 +13,14 @@ class OfferTextarea extends Component {
     };
     this.checkValidity = this.checkValidity.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.resetInput = this.resetInput.bind(this);
   }
 
-  checkValidity(value) {
+  checkValidity() {
     const { t } = this.props;
     const isValid = true;
 
-    if (value.trim() === '' && this.state.isRequired) {
+    if (this.state.value.trim() === '' && this.state.isRequired) {
       this.setState({ errorMessage: t('components.UI.offerTextarea.errorMessage') });
       return false;
     }
@@ -45,6 +46,10 @@ class OfferTextarea extends Component {
     }
   }
 
+  resetInput() {
+    this.setState({ value: '' });
+  }
+
   render() {
     return (
       <label htmlFor="this.props.name" className="add-form__label">
@@ -61,7 +66,7 @@ class OfferTextarea extends Component {
           required={this.props.required}
           onChange={this.handleChange}
         />
-        <div className="add-form__error-message">
+        <div className="add-form__error-message--temporary-offerTextArea">
           {this.state.errorMessage}
         </div>
       </label>
@@ -69,4 +74,4 @@ class OfferTextarea extends Component {
   }
 }
 
-export default translate()(OfferTextarea);
+export default translate('translations', { withRef: true })(OfferTextarea);

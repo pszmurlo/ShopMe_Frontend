@@ -8,6 +8,7 @@ class PhoneInput extends Component {
     super(props);
 
     this.checkValidity = this.checkValidity.bind(this);
+    this.resetInput = this.resetInput.bind(this);
 
     this.state = {
       value: '',
@@ -16,20 +17,24 @@ class PhoneInput extends Component {
     };
   }
 
-  checkValidity(event) {
+  checkValidity() {
     const { t } = this.props;
     const isValid = true;
 
-    if (this.state.isRequired && event.target.value.trim() === '') {
+    if (this.state.isRequired && this.state.value.trim() === '') {
       this.setState({ errorMessage: t('components.UI.phoneInput.errorEmptyField') });
       return false;
     }
     const pattern = /^\d{8,9}[0-9]$/;
-    if (this.state.isRequired && !pattern.test(event.target.value)) {
+    if (this.state.isRequired && !pattern.test(this.state.value)) {
       this.setState({ errorMessage: t('components.UI.phoneInput.errorPhoneRegex') });
       return false;
     }
     return isValid;
+  }
+
+  resetInput() {
+    this.setState({ value: '' });
   }
 
   render() {
@@ -58,4 +63,4 @@ class PhoneInput extends Component {
 }
 
 export { PhoneInput };
-export default translate()(PhoneInput);
+export default translate('translations', { withRef: true })(PhoneInput);

@@ -16,13 +16,14 @@ class PriceInput extends Component {
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
+    this.resetInput = this.resetInput.bind(this);
   }
 
-  checkValidity(value) {
+  checkValidity() {
     const { t } = this.props;
     const isValid = true;
 
-    if (value.trim() === '' && this.state.isRequired) {
+    if (this.state.value.trim() === '' && this.state.isRequired) {
       this.setState({ errorMessage: t('components.UI.priceInput.errorMessage') });
       return false;
     }
@@ -61,9 +62,13 @@ class PriceInput extends Component {
     const state = this.state.value;
     const currency = /zł$/;
 
-    if (state) value = parseFloat(value.replace(',', '.')).toFixed(2).replace('.', ',');
+    if (state) value = parseFloat(value.replace(',', '.')).toFixed(2);
     if (state && !currency.test(value)) value += ' zł';
     this.setState({ value });
+  }
+
+  resetInput() {
+    this.setState({ value: '' });
   }
 
   render() {
@@ -87,10 +92,10 @@ class PriceInput extends Component {
           onKeyUp={this.handleKeyUp}
           onBlur={this.handleBlur}
         />
-        <div className="add-form__error-message">{this.state.errorMessage}</div>
+        <div className="add-form__error-message--temporary-priceInput">{this.state.errorMessage}</div>
       </label>
     );
   }
 }
 
-export default translate()(PriceInput);
+export default translate('translations', { withRef: true })(PriceInput);

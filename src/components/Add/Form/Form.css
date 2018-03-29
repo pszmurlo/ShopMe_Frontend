@@ -12,7 +12,7 @@
   background-color: #FFFFFF;
   font-family: 'Fira Sans', sans-serif;
   font-size: 1rem;
-  color: #00000;
+  color: #000000;
   border: 1px solid #A9A9A9;
 }
 
@@ -26,6 +26,9 @@
   font-size: 1.75rem;
   text-align: center;
   padding-top: 30px;
+  /* margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center; */
 }
 
 .add-form__fieldset--basic {
@@ -97,15 +100,18 @@
   padding: 10px 20px;
 }
 
+.add-form__fieldset-item--margin-top {
+  margin-top: 30px;
+}
+
 .add-form__fieldset-item--textarea {
-  flex-grow: 3;
-  padding-top: 20px;
+  align-self: center;
+  flex-grow: 2;
+  margin-top: 60px;
 }
 
 .add-form__fieldset-item--button {
-    align-self: center;
-    flex-grow: 2;
-    margin-top: 60px;
+  padding: 20px 0 20px 20px;
 }
 
 .add-form__caption {
@@ -188,6 +194,20 @@
   right: 0;
   font-size: 1rem;
   color: red;
+}
+
+.add-form__error-message--temporary-priceInput {
+  font-size: 0.75rem;
+  color: red;
+  margin-top: 5px;
+  text-align: right;
+}
+
+.add-form__error-message--temporary-offerTextArea {
+  font-size: 0.75rem;
+  color: red;
+  margin: 10px 70px 0 0;
+  text-align: right;
 }
 
 /* Button Styles */
