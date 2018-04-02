@@ -9,7 +9,6 @@ class OfferTextarea extends Component {
     this.state = {
       value: '',
       errorMessage: '',
-      isRequired: this.props.required,
     };
     this.checkValidity = this.checkValidity.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -20,8 +19,8 @@ class OfferTextarea extends Component {
     const { t } = this.props;
     const isValid = true;
 
-    if (this.state.value.trim() === '' && this.state.isRequired) {
-      this.setState({ errorMessage: t('components.UI.offerTextarea.errorMessage') });
+    if (this.state.value.trim() === '' && this.props.required) {
+      this.setState({ errorMessage: t('components.UI.offerTextarea.errorEmptyField') });
       return false;
     }
 
@@ -33,16 +32,31 @@ class OfferTextarea extends Component {
     const { value } = e.target;
 
     if (value.length <= 500) this.setState({ value });
-
-    this.activateNextField(value);
+    if (value.trim() !== '') this.activateNextField();
+    if (value.trim() === '') this.deactivateNextFields();
   }
 
-  activateNextField(value) {
-    if (this.props.name === 'add-form__offer-basic' && value.trim() !== '') {
-      this.props.onOfferBasicChange();
+  activateNextField() {
+    if (this.props.name === 'offer__base-description') {
+      this.props.onOfferBaseChange();
     }
-    if (this.props.name === 'add-form__offer-additional' && value.trim() !== '') {
-      this.props.onOfferAdditionalChange();
+    if (this.props.name === 'offer__extended-description') {
+      this.props.onOfferExtendedChange();
+    }
+    if (this.props.name === 'offer__extra-description') {
+      this.props.onOfferExtraChange();
+    }
+  }
+
+  deactivateNextFields() {
+    if (this.props.name === 'offer__base-description') {
+      this.props.onOfferBaseReset();
+    }
+    if (this.props.name === 'offer__extended-description') {
+      this.props.onOfferExtendedReset();
+    }
+    if (this.props.name === 'offer__extra-description') {
+      this.props.onOfferExtraReset();
     }
   }
 
