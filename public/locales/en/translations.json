@@ -85,6 +85,9 @@
       },
       "add": {
         "addOfferText": "Add offer"
+      },
+      "loginButton": {
+        "label": "Log In"
       }
     }
   }
