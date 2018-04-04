@@ -1,5 +1,6 @@
 import React from 'react';
 import { translate } from 'react-i18next';
+import 'components/Search/SearchForm/SearchInput.css';
 
 class SearchInput extends React.Component {
   constructor(props) {

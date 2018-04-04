@@ -2,20 +2,17 @@ import React from 'react';
 import { translate } from 'react-i18next';
 import LoginForm from 'components/Login/LoginForm/LoginForm';
 import SignupForm from 'components/Login/SignupForm/SignupForm';
-import Logo from 'components/UI/Logo';
+import Header from 'components/UI/Header/Header';
 
 const SreensLogin = () => (
   <div>
-    <header>
-      <Logo />
-      <nav />
-    </header>
-    <content>
+    <Header />
+    <main>
       <div className="login-form__wrapper">
         <LoginForm />
         <SignupForm />
       </div>
-    </content>
+    </main>
     <footer />
   </div>
 );
