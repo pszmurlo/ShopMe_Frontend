@@ -2,6 +2,7 @@ import React from 'react';
 import { translate } from 'react-i18next';
 import SearchInput from 'components/Search/SearchForm/SearchInput';
 import SubmitButton from 'components/UI/SubmitButton/SubmitButton';
+import './SearchForm.css';
 
 class SearchForm extends React.Component {
   constructor(props) {

@@ -1,17 +1,14 @@
 import React from 'react';
 import { translate } from 'react-i18next';
 import AddForm from 'components/Add/Form/Form';
-import Logo from 'components/UI/Logo';
+import Header from 'components/UI/Header/Header';
 
 const SreensAddForm = () => (
   <div>
-    <header>
-      <Logo />
-      <nav />
-    </header>
-    <content>
+    <Header isInvisible />
+    <main>
       <AddForm />
-    </content>
+    </main>
     <footer />
   </div>
 );

@@ -1,11 +1,14 @@
 import React from 'react';
-import Logo from 'components/UI/Logo';
+import Header from 'components/UI/Header/Header';
 import OfferDetails from 'components/OfferDetails/OfferDetails';
 
 const OfferDetailsScreen = ({ match }) => (
   <div>
-    <Logo />
-    <OfferDetails offerId={match.params.offerId} />
+    <Header />
+    <main>
+      <OfferDetails offerId={match.params.offerId} />
+    </main>
+    <footer />
   </div>
 );
 
