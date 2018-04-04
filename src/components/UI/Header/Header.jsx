@@ -2,7 +2,7 @@ import React from 'react';
 import Logo from 'components/UI/Logo/Logo';
 import OfferAdd from 'components/UI/Add/OfferAdd';
 import LoginButton from 'components/UI/LoginButton/LoginButton';
-import 'components/UI/Header/Header.css';
+import './Header.css';
 
 const Header = props => (
   <header>
