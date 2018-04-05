@@ -14,6 +14,50 @@ import FormButton from 'components/UI/FormButton/FormButton';
 import './Form.css';
 
 class AddForm extends Component {
+  static resetFormInputs(refs) {
+    refs.forEach((ref) => {
+      ref.getWrappedInstance().resetInput();
+    });
+  }
+
+  static sendFormData(data) {
+    const myHeaders = new Headers({
+      'Content-Type': 'application/json',
+    });
+
+    const myInit = {
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify(data),
+    };
+
+    const url = `${process.env.REACT_APP_API}/offers/`;
+
+    fetch(url, myInit)
+      .catch(error => console.error('Error:', error))
+      .then(response => console.log('Success', response.status));
+  }
+
+  static removeEmpty(object) {
+    const clearedFormData = Object.assign({}, object);
+    Object.keys(clearedFormData).forEach((key) => {
+      if (clearedFormData[key] && typeof clearedFormData[key] === 'object') {
+        clearedFormData[key] = AddForm.removeEmpty(clearedFormData[key]);
+      } else if (!clearedFormData[key]) delete clearedFormData[key];
+    });
+
+    return clearedFormData;
+  }
+
+  static getFormattedPrice(price) {
+    let formattedPrice = price;
+    if (formattedPrice !== '') {
+      formattedPrice = formattedPrice.substring(0, formattedPrice.length - 3);
+      formattedPrice = parseFloat(formattedPrice.replace(',', '.'));
+    }
+    return formattedPrice;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -34,6 +78,7 @@ class AddForm extends Component {
 
     this.checkFormValidity = this.checkFormValidity.bind(this);
     this.getInputReferences = this.getInputReferences.bind(this);
+    this.gatherFormData = this.gatherFormData.bind(this);
   }
 
   getInputReferences() {
@@ -51,6 +96,39 @@ class AddForm extends Component {
       this.phoneInput,
       this.aboutMeArea,
     ];
+  }
+
+  gatherFormData() {
+    const allCategories = this.categorySelect.getWrappedInstance().state.categories;
+    const categoryName = this.categorySelect.getWrappedInstance().state.value;
+    const targetCategory = allCategories.find(category => category.name === categoryName);
+
+    const basePrice = AddForm.getFormattedPrice(this.basicPrice.getWrappedInstance().state.value);
+    const extendedPrice =
+      AddForm.getFormattedPrice(this.extendedPrice.getWrappedInstance().state.value);
+    const extraPrice = AddForm.getFormattedPrice(this.extraPrice.getWrappedInstance().state.value);
+
+    const data = {
+      title: this.titleInput.getWrappedInstance().state.value,
+      category: {
+        id: targetCategory.id,
+        name: categoryName,
+      },
+      baseDescription: this.basicArea.getWrappedInstance().state.value,
+      basePrice,
+      extendedDescription: this.extendedArea.getWrappedInstance().state.value,
+      extendedPrice,
+      extraDescription: this.extraArea.getWrappedInstance().state.value,
+      extraPrice,
+      user: {
+        name: this.nameInput.getWrappedInstance().state.value,
+        email: this.emailInput.getWrappedInstance().state.value,
+        phoneNumber: this.phoneInput.getWrappedInstance().state.value,
+        additionalInfo: this.aboutMeArea.getWrappedInstance().state.value,
+      },
+    };
+
+    return AddForm.removeEmpty(data);
   }
 
   activateOfferExtended() {
@@ -112,58 +190,8 @@ class AddForm extends Component {
     const isRefsValid = refs.map(ref => ref.getWrappedInstance().checkValidity());
 
     if (!isRefsValid.includes(false)) {
-      let basePrice = this.basicPrice.getWrappedInstance().state.value;
-      basePrice = basePrice.substring(0, basePrice.length - 3);
-
-      let extendedPrice = this.extendedPrice.getWrappedInstance().state.value;
-      extendedPrice = extendedPrice.substring(0, extendedPrice.length - 3);
-
-      let extraPrice = this.extraPrice.getWrappedInstance().state.value;
-      extraPrice = extraPrice.substring(0, extraPrice.length - 3);
-
-      const allCategories = this.categorySelect.getWrappedInstance().state.categories;
-      const categoryName = this.categorySelect.getWrappedInstance().state.value;
-      const targetCategory = allCategories.find(category => category.name === categoryName);
-
-      const data = {
-        title: this.titleInput.getWrappedInstance().state.value,
-        category: {
-          id: targetCategory.id,
-          name: categoryName,
-        },
-        baseDescription: this.basicArea.getWrappedInstance().state.value,
-        basePrice,
-        extendedDescription: this.extendedArea.getWrappedInstance().state.value,
-        extendedPrice,
-        extraDescription: this.extraArea.getWrappedInstance().state.value,
-        extraPrice,
-        user: {
-          name: this.nameInput.getWrappedInstance().state.value,
-          email: this.emailInput.getWrappedInstance().state.value,
-          phoneNumber: this.phoneInput.getWrappedInstance().state.value,
-          additionalInfo: this.aboutMeArea.getWrappedInstance().state.value,
-        },
-      };
-
-      const myHeaders = new Headers({
-        'Content-Type': 'application/json',
-      });
-
-      const myInit = {
-        method: 'POST',
-        headers: myHeaders,
-        body: JSON.stringify(data),
-      };
-
-      const url = 'https://patronage2018.intive-projects.com/api/offers';
-
-      fetch(url, myInit)
-        .catch(() => {})
-        .then(() => {});
-
-      refs.forEach((ref) => {
-        ref.getWrappedInstance().resetInput();
-      });
+      AddForm.sendFormData(this.gatherFormData());
+      AddForm.resetFormInputs(refs);
     }
   }
 
