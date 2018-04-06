@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import Validator from 'helpers/validator';
-import GenericInput from 'components/UI/GenericInput/GenericInput';
+import TextInput from 'components/UI/GenericInput/GenericInput';
 
 class InvoiceInputGroup extends Component {
   constructor(props) {
@@ -27,75 +27,69 @@ class InvoiceInputGroup extends Component {
       (
         <div>
           <div className="register-form__item">
-            <GenericInput
-              name="register__company-name"
+            <TextInput
+              name="users__invoice-company-name"
               type="text"
               label={t('components.login.register.companyNameInputLabel')}
               color="yellow"
               size="M"
               maxLength="50"
               required
-              validation={this.validator.validateCompanyName}
             />
           </div>
           <div className="register-form__item">
-            <GenericInput
-              name="register__company-nip"
+            <TextInput
+              name="users__invoice-nip"
               type="text"
               label={t('components.login.register.nipInputLabel')}
               color="yellow"
               size="M"
               maxLength="50"
               required
-              validation={this.validator.validateCompanyNip}
             />
           </div>
           <div className="register-form__item">
-            <GenericInput
-              name="register__company-street"
+            <TextInput
+              name="users__invoice-address-street"
               type="text"
               label={t('components.login.register.streetInputLabel')}
               color="yellow"
               size="M"
               maxLength="50"
               required
-              validation={this.validator.validateCompanyStreet}
             />
           </div>
           <div className="register-form__item">
-            <GenericInput
-              name="register__company-house-number"
+            <TextInput
+              name="users__invoice-address-number"
               type="text"
               label={t('components.login.register.houseNumberInputLabel')}
               color="yellow"
               size="M"
               maxLength="50"
               required
-              validation={this.validator.validateCompanyHouseNumber}
             />
           </div>
           <div className="register-form__item">
-            <GenericInput
-              name="register__company-zip-code"
+            <TextInput
+              name="users__invoice-address-zip-code"
               type="text"
               label={t('components.login.register.zipCodeInputLabel')}
               color="yellow"
               size="M"
               maxLength="50"
               required
-              validation={this.validator.validateCompanyZipCode}
             />
           </div>
           <div className="register-form__item">
-            <GenericInput
-              name="register__company-locality"
+            <TextInput
+              name="users__invoice-address-city"
               type="text"
               label={t('components.login.register.localityInputLabel')}
               color="yellow"
               size="M"
               maxLength="50"
               required
-              validation={this.validator.validateCompanyLocality}
             />
           </div>
         </div>)
@@ -107,7 +101,7 @@ class InvoiceInputGroup extends Component {
           htmlFor="invoiceCheckbox"
           style={{ margin: '0 0 0 325px' }}
         >
-          Dane do faktury
+          {t('components.login.register.invoiceDataLabel')}
           <input
             name="invoiceCheckbox"
             type="checkbox"
