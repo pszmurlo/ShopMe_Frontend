@@ -46,20 +46,14 @@ class AddForm extends Component {
     this.state = {
       offerExtendedDisabled: true,
       offerExtraDisabled: true,
+      offerExtendedRequired: false,
+      offerExtraRequired: false,
       priceExtendedRequired: false,
       priceExtraRequired: false,
       fireRedirect: false,
     };
 
-    this.activateOfferExtended = this.activateOfferExtended.bind(this);
-    this.deactivateOfferExtended = this.deactivateOfferExtended.bind(this);
-
-    this.activateOfferExtra = this.activateOfferExtra.bind(this);
-    this.deactivateOfferExtra = this.deactivateOfferExtra.bind(this);
-
-    this.requirePriceExtra = this.requirePriceExtra.bind(this);
-    this.disrequirePriceExtra = this.disrequirePriceExtra.bind(this);
-
+    this.setFieldStateValues = this.setFieldStateValues.bind(this);
     this.checkFormValidity = this.checkFormValidity.bind(this);
     this.getInputReferences = this.getInputReferences.bind(this);
     this.gatherFormData = this.gatherFormData.bind(this);
@@ -81,6 +75,12 @@ class AddForm extends Component {
       this.phoneInput,
       this.aboutMeArea,
     ];
+  }
+
+  setFieldStateValues(field, value) {
+    if (this.state[field] !== value) {
+      this.setState({ [field]: value });
+    }
   }
 
   gatherFormData() {
@@ -136,59 +136,6 @@ class AddForm extends Component {
       });
   }
 
-  activateOfferExtended() {
-    if (this.state.offerExtendedDisabled) {
-      this.setState({ offerExtendedDisabled: false });
-    }
-  }
-
-  deactivateOfferExtended() {
-    if (!this.state.offerExtendedDisabled) {
-      this.setState({ offerExtendedDisabled: true });
-    }
-    if (!this.state.offerExtraDisabled) {
-      this.setState({ offerExtraDisabled: true });
-    }
-  }
-
-  activateOfferExtra() {
-    if (this.state.offerExtraDisabled) {
-      this.setState({ offerExtraDisabled: false });
-      this.requirePriceExtended();
-    }
-  }
-
-  deactivateOfferExtra() {
-    if (!this.state.offerExtraDisabled) {
-      this.setState({ offerExtraDisabled: true });
-    }
-    this.disrequirePriceExtended();
-  }
-
-  requirePriceExtended() {
-    if (!this.state.priceExtendedRequired) {
-      this.setState({ priceExtendedRequired: true });
-    }
-  }
-
-  requirePriceExtra() {
-    if (!this.state.priceExtraRequired) {
-      this.setState({ priceExtraRequired: true });
-    }
-  }
-
-  disrequirePriceExtended() {
-    if (this.state.priceExtendedRequired) {
-      this.setState({ priceExtendedRequired: false });
-    }
-  }
-
-  disrequirePriceExtra() {
-    if (this.state.priceExtraRequired) {
-      this.setState({ priceExtraRequired: false });
-    }
-  }
-
   checkFormValidity(submit) {
     submit.preventDefault();
     const refs = this.getInputReferences();
@@ -242,8 +189,7 @@ class AddForm extends Component {
                   ref={(v) => { this.basicArea = v; }}
                   label={t('components.add.form.offerBaseLabel')}
                   placeholder={t('components.add.form.offerBasePlaceholder')}
-                  onOfferBaseChange={this.activateOfferExtended}
-                  onOfferBaseReset={this.deactivateOfferExtended}
+                  onChange={this.setFieldStateValues}
                   required
                 />
               </div>
@@ -263,9 +209,9 @@ class AddForm extends Component {
                   ref={(v) => { this.extendedArea = v; }}
                   label={t('components.add.form.offerExtendedLabel')}
                   placeholder={t('components.add.form.offerExtendedPlaceholder')}
-                  onOfferExtendedChange={this.activateOfferExtra}
-                  onOfferExtendedReset={this.deactivateOfferExtra}
+                  onChange={this.setFieldStateValues}
                   disabled={this.state.offerExtendedDisabled}
+                  required={this.state.offerExtendedRequired}
                 />
               </div>
               <div className="add-form__fieldset-item">
@@ -273,6 +219,7 @@ class AddForm extends Component {
                   name="offer__extended-price"
                   ref={(v) => { this.extendedPrice = v; }}
                   placeholder={t('components.add.form.currency')}
+                  onChange={this.setFieldStateValues}
                   disabled={this.state.offerExtendedDisabled}
                   required={this.state.priceExtendedRequired}
                 />
@@ -285,9 +232,9 @@ class AddForm extends Component {
                   ref={(v) => { this.extraArea = v; }}
                   label={t('components.add.form.offerExtraLabel')}
                   placeholder={t('components.add.form.offerExtraPlaceholder')}
-                  onOfferExtraChange={this.requirePriceExtra}
-                  onOfferExtraReset={this.disrequirePriceExtra}
+                  onChange={this.setFieldStateValues}
                   disabled={this.state.offerExtraDisabled}
+                  required={this.state.offerExtraRequired}
                 />
               </div>
               <div className="add-form__fieldset-item">
@@ -295,6 +242,7 @@ class AddForm extends Component {
                   name="offer__extra-price"
                   ref={(v) => { this.extraPrice = v; }}
                   placeholder={t('components.add.form.currency')}
+                  onChange={this.setFieldStateValues}
                   disabled={this.state.offerExtraDisabled}
                   required={this.state.priceExtraRequired}
                 />

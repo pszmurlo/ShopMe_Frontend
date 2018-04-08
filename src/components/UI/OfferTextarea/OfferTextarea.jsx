@@ -16,10 +16,10 @@ class OfferTextarea extends Component {
   }
 
   checkValidity() {
-    const { t } = this.props;
+    const { t, required, disabled } = this.props;
     const isValid = true;
 
-    if (this.state.value.trim() === '' && this.props.required) {
+    if (this.state.value.trim() === '' && required && !disabled) {
       this.setState({ errorMessage: t('components.UI.offerTextarea.errorEmptyField') });
       return false;
     }
@@ -38,25 +38,28 @@ class OfferTextarea extends Component {
 
   activateNextField() {
     if (this.props.name === 'offer__base-description') {
-      this.props.onOfferBaseChange();
+      this.props.onChange('offerExtendedDisabled', false);
     }
     if (this.props.name === 'offer__extended-description') {
-      this.props.onOfferExtendedChange();
+      this.props.onChange('offerExtraDisabled', false);
+      this.props.onChange('priceExtendedRequired', true);
     }
     if (this.props.name === 'offer__extra-description') {
-      this.props.onOfferExtraChange();
+      this.props.onChange('priceExtraRequired', true);
     }
   }
 
   deactivateNextFields() {
     if (this.props.name === 'offer__base-description') {
-      this.props.onOfferBaseReset();
+      this.props.onChange('offerExtendedDisabled', true);
+      this.props.onChange('offerExtraDisabled', true);
     }
     if (this.props.name === 'offer__extended-description') {
-      this.props.onOfferExtendedReset();
+      this.props.onChange('offerExtraDisabled', true);
+      this.props.onChange('priceExtendedRequired', false);
     }
     if (this.props.name === 'offer__extra-description') {
-      this.props.onOfferExtraReset();
+      this.props.onChange('priceExtraRequired', false);
     }
   }
 
@@ -80,7 +83,7 @@ class OfferTextarea extends Component {
           required={this.props.required}
           onChange={this.handleChange}
         />
-        <div className="add-form__error-message--temporary-offerTextArea">
+        <div className="add-form__error-message">
           {this.state.errorMessage}
         </div>
       </label>
