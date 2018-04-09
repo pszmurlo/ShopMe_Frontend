@@ -4,9 +4,11 @@ export default class Pagination extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startPage: null,
-      endPage: null,
-      pageCounter: this.props.count,
+      startPage: this.props.page > this.props.margin ? this.props.page - this.props.margin : 1,
+      endPage: (this.props.page + this.props.margin > this.props.totalPages
+        ? this.props.totalPages
+        : this.props.page + this.props.margin),
+      totalPages: this.props.totalPages,
     };
 
     this.onPageChange = this.onPageChange.bind(this);
@@ -18,21 +20,22 @@ export default class Pagination extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps === this.props) return;
-    const { margin, page, pageCounter } = this.props;
+    const { margin, page, totalPages } = this.props;
     const startPage = page > margin ? page - margin : 1;
-    const endPage = page + margin > pageCounter ? pageCounter : page + margin;
-    this.setState({ startPage, endPage, pageCounter });
+    const endPage = page + margin > totalPages ? totalPages : page + margin;
+    this.setState({ startPage, endPage, totalPages });
   }
 
   onPageChange(event) {
-    const index = Array.prototype.indexOf.call(event.target.parentNode.children, event.target);
+    const index = Array.prototype.indexOf
+      .call(event.target.parentNode.parentNode.children, event.target.parentNode);
     this.props.onPageChange(index + this.state.startPage);
   }
   goFirstPage() {
     this.props.onPageChange(1);
   }
   goLastPage() {
-    this.props.onPageChange(this.state.pageCounter);
+    this.props.onPageChange(this.state.totalPages);
   }
   goPrevPage() {
     this.props.onPageChange(this.props.page - 1);
@@ -41,31 +44,32 @@ export default class Pagination extends React.Component {
     this.props.onPageChange(this.props.page + 1);
   }
   render() {
-    const { startPage, endPage, pageCounter } = this.state;
-    const { page, margin } = this.props;
+    const { startPage, endPage, totalPages } = this.state;
+    const { page } = this.props;
     const pages = [];
-    const firstPage = page - margin > 1 ?
-      (
+    const firstPage = totalPages > 1 && page > 3
+      ? (
         <button
           className="pagination__button pagiantion__button--first"
           onClick={this.goFirstPage}
         >1
         </button>
-      ) :
-      null;
+      )
+      : null;
 
-    const lastPage = page + margin < pageCounter ?
-      (
+    const lastPage = totalPages > 1 && page < totalPages - 2
+      ? (
         <button
           className="pagination__button pagiantion__button--last"
           onClick={this.goLastPage}
-        >{pageCounter}
+        >{totalPages}
         </button>
-      ) :
-      null;
+      )
+      : null;
 
-    const prevPage = page === 1 ? null :
-      (
+    const prevPage = page === 1
+      ? null
+      : (
         <button
           className="pagination__button pagiantion__button--previous"
           onClick={this.goPrevPage}
@@ -73,8 +77,9 @@ export default class Pagination extends React.Component {
         </button>
       );
 
-    const nextPage = page === pageCounter ? null :
-      (
+    const nextPage = page === totalPages
+      ? null
+      : (
         <button
           className="pagination__button pagiantion__button--next"
           onClick={this.goNextPage}
@@ -82,22 +87,33 @@ export default class Pagination extends React.Component {
         </button>
       );
 
-    const inactivePage = pageCounter >= 5 ?
-      (
+    const inactivePageBefore = totalPages >= 5 && page > 4
+      ? (
         <button
           className="pagination__button pagination__button--inactive"
         >...
         </button>
-      ) :
-      null;
+      )
+      : null;
+
+    const inactivePageAfter = totalPages >= 5 && page < totalPages - 3
+      ? (
+        <button
+          className="pagination__button pagination__button--inactive"
+        >...
+        </button>
+      )
+      : null;
 
     for (let i = startPage; i <= endPage; i += 1) {
       pages.push((
         <li
           key={i}
-          onClick={this.onPageChange}
           role="presentation"
-        >{i}
+        >
+          <button onClick={this.onPageChange}>
+            {i}
+          </button>
         </li>
       ));
     }
@@ -106,11 +122,11 @@ export default class Pagination extends React.Component {
       <div className="pagination">
         {prevPage}
         {firstPage}
-        {inactivePage}
+        {inactivePageBefore}
         <ul className="pagination__list">
           {pages}
         </ul>
-        {inactivePage}
+        {inactivePageAfter}
         {lastPage}
         {nextPage}
       </div>
