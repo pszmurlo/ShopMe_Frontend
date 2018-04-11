@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { SreensLogin } from './Login';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<SreensLogin t={key => key} />, div);
+  const element = (
+    <MemoryRouter>
+      <SreensLogin />
+    </MemoryRouter>
+  );
+  ReactDOM.render(element, div);
 });

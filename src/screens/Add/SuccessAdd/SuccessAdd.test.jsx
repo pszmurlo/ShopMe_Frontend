@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { SuccessAdd } from './SuccessAdd';
+import { MemoryRouter } from 'react-router-dom';
+import { ScreenSuccessAdd } from './SuccessAdd';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<SuccessAdd t={key => key} />, div);
+  const element = (
+    <MemoryRouter>
+      <ScreenSuccessAdd />
+    </MemoryRouter>
+  );
+
+  ReactDOM.render(element, div);
 });
