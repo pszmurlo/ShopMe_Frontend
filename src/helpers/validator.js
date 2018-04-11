@@ -1,41 +1,38 @@
-export default class Validator {
-  constructor() {
-    this.errorMessage = '';
-    this.validateName = this.validateName.bind(this);
-    this.validateTextInput = this.validateTextInput.bind(this);
-    this.validatePersonalDataConfirmCheckbox = this.validatePersonalDataConfirmCheckbox.bind(this);
-  }
+const validator = {
 
-  validateName(required, value) {
-    if (required && value.trim() === '') {
-      this.errorMessage = 'components.UI.firstNameInput.errorEmptyField';
-      return this.errorMessage;
-    }
-    if (value.length < 3) {
-      this.errorMessage = 'components.UI.firstNameInput.errorMinLength';
-      return this.errorMessage;
-    }
-    const pattern = /^[a-zA-Z]+$/;
-    if (!pattern.test(value)) {
-      this.errorMessage = 'components.UI.firstNameInput.errorOnlyAlpha';
-      return this.errorMessage;
-    }
-    return false;
-  }
+  isRequired(required, value) {
+    return (value.trim() === '' && required) ? 'components.UI.firstNameInput.errorEmptyField' : undefined;
+  },
+
+  hasMinLength(minLength, value) {
+    return value.length < minLength ? 'components.UI.firstNameInput.errorMinLength' : undefined;
+  },
+
+  useOnlyAlpha(value) {
+    const pattern = /^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]*$/;
+    return !pattern.test(value) ? 'components.UI.firstNameInput.errorOnlyAlpha' : undefined;
+  },
+
+  isChecked(checked) {
+    return (!checked) ? 'components.UI.firstNameInput.errorEmptyField' : undefined;
+  },
+
+  validateNameInput(required, value) {
+    return validator.isRequired(required, value) ||
+      validator.hasMinLength(2, value) ||
+      validator.useOnlyAlpha(value) ||
+      undefined;
+  },
 
   validateTextInput(required, value) {
-    if (required && value.trim() === '') {
-      this.errorMessage = 'components.UI.firstNameInput.errorEmptyField';
-      return this.errorMessage;
-    }
-    return false;
-  }
+    return validator.isRequired(required, value) ||
+      undefined;
+  },
 
-  validatePersonalDataConfirmCheckbox(checked) {
-    if (checked === false) {
-      this.errorMessage = 'components.UI.firstNameInput.errorEmptyField';
-      return this.errorMessage;
-    }
-    return false;
-  }
-}
+  validateCheckbox(checked) {
+    return validator.isChecked(checked) ||
+      undefined;
+  },
+};
+
+export default validator;
