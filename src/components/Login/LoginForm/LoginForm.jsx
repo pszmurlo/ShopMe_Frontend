@@ -42,7 +42,7 @@ class LoginForm extends Component {
               color="yellow"
               size="M"
               required
-              validation={validator.validateTextInput}
+              validation={validator.validateEmailInput}
             />
           </div>
           <div className="login-form__item">
