@@ -1,23 +1,13 @@
 import React from 'react';
 import { translate } from 'react-i18next';
 import RegisterForm from 'components/Register/RegisterForm/RegisterForm';
-import Header from 'components/UI/Header/Header';
+import { Layout } from 'core/Layout';
 
-const SreensRegister = (props) => {
-  const { t } = props;
-  return (
-    <div>
-      <Header isInvisible />
-      <main>
-        <h1 className="login-form__title">{t('components.login.register.formTitle')}</h1>
-        <div className="register-form__wrapper">
-          <RegisterForm location={props.location} />
-        </div>
-      </main>
-      <footer />
-    </div>
-  );
-};
+const SreensRegister = props => (
+  <Layout>
+    <RegisterForm location={props.location} />
+  </Layout>
+);
 
 export { SreensRegister };
 export default translate()(SreensRegister);

@@ -1,15 +1,11 @@
 import React from 'react';
 import SearchInput from 'components/Search/SearchInput';
-import Header from 'components/UI/Header/Header';
+import Layout from 'core/Layout';
 
 const Search = () => (
-  <div>
-    <Header />
-    <main>
-      <SearchInput />
-    </main>
-    <footer />
-  </div>
+  <Layout>
+    <SearchInput />
+  </Layout>
 );
 
 export default Search;

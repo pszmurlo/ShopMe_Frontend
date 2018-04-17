@@ -1,16 +1,12 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import Header from 'components/UI/Header/Header';
 import SuccessMessage from 'components/Add/SuccessMessage/SuccessMessage';
+import Layout from 'core/Layout';
 
 const ScreenSuccessAdd = () => (
-  <div>
-    <Header />
-    <main>
-      <SuccessMessage />
-    </main>
-    <footer />
-  </div>
+  <Layout>
+    <SuccessMessage />
+  </Layout>
 );
 
 export { ScreenSuccessAdd };

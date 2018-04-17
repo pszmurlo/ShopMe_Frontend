@@ -1,18 +1,12 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import Logo from 'components/UI/Logo/Logo';
 import SuccessRegisterMessage from 'components/Register/SuccessRegisterMessage/SuccessRegisterMessage';
+import Layout from 'core/Layout';
 
 const ScreenSuccessRegister = () => (
-  <div>
-    <header>
-      <Logo />
-    </header>
-    <main>
-      <SuccessRegisterMessage />
-    </main>
-    <footer />
-  </div>
+  <Layout>
+    <SuccessRegisterMessage />
+  </Layout>
 );
 
 export { ScreenSuccessRegister };
