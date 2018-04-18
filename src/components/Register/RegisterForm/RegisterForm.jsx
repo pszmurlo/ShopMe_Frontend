@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { Redirect } from 'react-router';
 
 import validator from 'helpers/validator';
 import GenericInput from 'components/UI/GenericInput/GenericInput';
@@ -13,9 +12,6 @@ import './Register.css';
 class RegisterForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      fireRedirect: false,
-    };
 
     this.checkFormValidity = this.checkFormValidity.bind(this);
     this.getInputReferences = this.getInputReferences.bind(this);
@@ -93,12 +89,7 @@ class RegisterForm extends Component {
     };
 
     const url = `${process.env.REACT_APP_API}/users`;
-
-    fetch(url, myInit)
-      .catch()
-      .then(() => {
-        this.setState({ fireRedirect: true });
-      });
+    this.props.fetchData(url, myInit);
   }
 
   checkFormValidity(e) {
@@ -120,7 +111,6 @@ class RegisterForm extends Component {
 
   render() {
     const { t } = this.props;
-    const { fireRedirect } = this.state;
     return (
       <React.Fragment>
         <h1 className="login-form__title">{t('components.login.register.formTitle')}</h1>
@@ -298,9 +288,6 @@ class RegisterForm extends Component {
             </fieldset>
           </form>
         </div>
-        {fireRedirect && (
-          <Redirect to="/register/success" />
-        )}
       </React.Fragment>
     );
   }
