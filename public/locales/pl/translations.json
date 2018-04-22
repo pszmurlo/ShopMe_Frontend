@@ -12,6 +12,10 @@
     },
     "add": {
       "form": {
+        "name": "Tytuł Oferty *",
+        "firstName": "Imię *",
+        "phone": "Telefon *",
+        "email": "E-mail *",
         "title": "Dodaj Ofertę",
         "fieldsetTitle": "Zdefiniuj Oferowane Pakiety Usług",
         "caption": "*Pola wymagane",
@@ -22,7 +26,8 @@
         "offerExtendedPlaceholder": "Rozszerzona Usługa",
         "offerExtraPlaceholder": "Ekstra Usługa",
         "submitButton": "Dodaj Ofertę",
-        "errorMessage": "* Proszę wypełnić wszystkie wymagane pola"
+        "errorMessage": "* Proszę wypełnić wszystkie wymagane pola",
+        "city": "Miasto *"
       },
       "successMessage": {
         "text": "Pomyślnie dodano ofertę"
@@ -99,33 +104,30 @@
           "others": "Inne"
         }
       },
-      "titleInput": {
-        "name": "Tytuł Oferty *",
-        "errorEmptyField": "Pole wymagane",
-        "errorMinLength": "Zbyt mała liczba znaków",
-        "errorIllegalCharacters": "Niedozwolone znaki specjalne",
-        "errorOnlyAlpha": "Pole może zawierać tylko litery"
-      },
-      "firstNameInput": {
-        "name": "Imię *",
-        "errorEmptyField": "Pole wymagane",
-        "errorMinLength": "Zbyt mała liczba znaków",
-        "errorOnlyAlpha": "Pole może zawierać tylko litery"
-      },
-      "emailInput": {
-        "name": "E-mail *",
-        "errorEmptyField": "Pole wymagane",
-        "errorEmailRegex": "Podaj poprawny adres e-mail"
+      "voivodeship": {
+        "name": "Województwo *",
+        "list": {
+          "LowerSilesian":"Dolnośląskie",
+          "KuyavianPomeranian":"Kujawsko-pomorskie",
+          "Lublin":"Lubelskie",
+          "Lubusz":"Lubuskie",
+          "Lodz":"Łódzkie",
+          "LesserPoland":"Małopolskie",
+          "Masovian":"Mazowieckie",
+          "Opole":"Opolskie",
+          "Subcarpathian":"Podkarpackie",
+          "Podlasie":"Podlaskie",
+          "Pomeranian":"Pomorskie",
+          "Silesian":"Śląskie",
+          "Swietokrzyskie":"Świętokrzyskie",
+          "WarmianMasurian":"Warmińsko-mazurskie",
+          "GreaterPoland":"Wielkopolskie",
+          "WesternPomeranian":"Zachodniopomorskie"
+        }
       },
       "aboutMeTextarea": {
         "name": "O mnie",
         "errorEmptyField": "Pole wymagane"
-      },
-      "phoneInput": {
-        "name": "Telefon *",
-        "errorEmptyField": "Pole wymagane",
-        "errorPhoneRegex": "Zbyt mała liczba znaków",
-        "errorOnlyNumeric": "Pole powinno zawierać jedynie cyfry"
       },
       "priceInput": {
         "errorEmptyField": "Pole wymagane",

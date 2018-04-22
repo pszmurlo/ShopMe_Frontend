@@ -45,14 +45,14 @@ class GenericInput extends Component {
   render() {
     return (
       <label
-        className="input__wrapper"
+        className={this.props.labelClassName}
         htmlFor={this.props.name}
       >
-        <span className={`input__label input__label--${this.props.size}`}>
+        <span className={this.props.spanClassName}>
           {this.props.label}
         </span>
         <input
-          className={`input  input--${this.props.size} input--${this.props.color}`}
+          className={this.props.inputClassName}
           type={this.props.type}
           name={this.props.name}
           placeholder={this.props.placeholder}
@@ -62,13 +62,20 @@ class GenericInput extends Component {
           value={this.state.value}
           onChange={this.handleChange}
         />
-        <div className="input__error-message">
+        <div className={this.props.errorClassName}>
           {this.state.errorMessage}
         </div>
       </label>
     );
   }
 }
+
+GenericInput.defaultProps = {
+  labelClassName: 'input__wrapper',
+  spanClassName: 'input__label--M',
+  inputClassName: 'input input--M input--yellow',
+  errorClassName: 'input__error-message',
+};
 
 export { GenericInput };
 export default translate('translations', { withRef: true })(GenericInput);

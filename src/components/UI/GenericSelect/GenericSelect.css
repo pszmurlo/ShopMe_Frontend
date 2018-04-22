@@ -1,0 +1,57 @@
+.input-select {
+	border: none;
+	color: inherit;
+	outline: none;
+  padding: 0.5rem;
+  height: 3rem;
+}
+
+.input-select--gray{
+  width: 25rem;
+  margin-left: 1rem;
+  background-color: #E0E0E0;
+}
+
+.input-select--yellow {
+  width: 35rem;
+  background-color: #FEECA5;
+  height: 3.7rem;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+  top: 0.5rem;
+}
+
+.input-select__errorMessage {
+  font-size: 1.2rem;
+  color: red;
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+.input-select__errorMessage2 {
+  position: relative;
+  bottom: -0.5rem;
+
+}
+
+.input-select__item-option {
+	color: #000;
+	background-color: #E0E0E0;
+  font-size: 1.68rem;
+}
+
+.input-select__item-option--yellow {
+	color: #000;
+	background-color: #FEECA5;
+  font-size: 1.6rem;
+}
+
+.select_span--block{
+  display: block;
+}
+
+.select_span--yellow{
+  position: relative;
+  bottom: -0.7rem;
+}

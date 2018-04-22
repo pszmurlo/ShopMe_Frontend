@@ -9,7 +9,7 @@ const validator = {
   },
 
   useOnlyAlpha(value) {
-    const pattern = /^[A-ZĄĆŁŃÓŚŹŻ]*$/i;
+    const pattern = /^[A-ZĄĘĆŁŃÓŚŹŻ]*$/i;
     return !pattern.test(value) ? 'helpers.validator.errorOnlyAlpha' : undefined;
   },
 
@@ -20,6 +20,11 @@ const validator = {
   mustUseAlpha(value) {
     const pattern = /^[^A-ZĄĆŁŃÓŚŹŻ]*$/i;
     return pattern.test(value) ? 'helpers.validator.errorIllegalCharacters' : undefined;
+  },
+
+  useOnlyNumeric(value) {
+    const pattern = /[0-9]+$/i;
+    return !pattern.test(value) ? 'helpers.validator.errorOnlyNumeric' : undefined;
   },
 
   isValidEmail(value) {
@@ -60,6 +65,26 @@ const validator = {
   validateCheckbox(checked) {
     return validator.isChecked(checked) ||
       undefined;
+  },
+
+  validateAddOfferTitle(required, value) {
+    return validator.isRequired(required, value) ||
+    validator.hasMinLength(2, value) ||
+    validator.useOnlyLegalCharacters(/^[a-zA-ZĄĘĆŁŃÓŚŹŻ0-9-\s]*$/i, value) ||
+    undefined;
+  },
+
+  validatePhoneNumber(required, value) {
+    return validator.isRequired(required, value) ||
+    validator.useOnlyNumeric(value) ||
+    validator.hasMinLength(9, value) ||
+    undefined;
+  },
+
+  validateCity(required, value) {
+    return validator.isRequired(required, value) ||
+    validator.useOnlyLegalCharacters(/^[a-zA-ZĄĆŁŃÓŚŹŻ-\s]+$/i, value) ||
+    undefined;
   },
 };
 

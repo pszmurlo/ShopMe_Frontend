@@ -1,36 +1,17 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
+import validator from 'helpers/validator';
 
-import TitleInput from 'components/UI/TitleInput/TitleInput';
-import CategorySelect from 'components/UI/CategorySelect/CategorySelect';
 import OfferTextarea from 'components/UI/OfferTextarea/OfferTextarea';
 import PriceInput from 'components/UI/PriceInput/PriceInput';
-import FirstNameInput from 'components/UI/FirstNameInput/FirstNameInput';
-import EmailInput from 'components/UI/EmailInput/EmailInput';
-import PhoneInput from 'components/UI/PhoneInput/PhoneInput';
 import AboutMeTextarea from 'components/UI/AboutMeTextarea/AboutMeTextarea';
 import FormButton from 'components/UI/FormButton/FormButton';
+import GenericInput from 'components/UI/GenericInput/GenericInput';
+import GenericSelect from 'components/UI/GenericSelect/GenericSelect';
 
 import './Form.css';
 
 class AddForm extends Component {
-  static resetFormInputs(refs) {
-    refs.forEach((ref) => {
-      ref.getWrappedInstance().resetInput();
-    });
-  }
-
-  static removeEmpty(object) {
-    const clearedFormData = Object.assign({}, object);
-    Object.keys(clearedFormData).forEach((key) => {
-      if (clearedFormData[key] && typeof clearedFormData[key] === 'object') {
-        clearedFormData[key] = AddForm.removeEmpty(clearedFormData[key]);
-      } else if (!clearedFormData[key]) delete clearedFormData[key];
-    });
-
-    return clearedFormData;
-  }
-
   static getFormattedPrice(price) {
     let formattedPrice = price;
     if (formattedPrice !== '') {
@@ -72,6 +53,8 @@ class AddForm extends Component {
       this.nameInput,
       this.emailInput,
       this.phoneInput,
+      this.voivodeshipSelect,
+      this.cityInput,
       this.aboutMeArea,
     ];
   }
@@ -83,16 +66,19 @@ class AddForm extends Component {
   }
 
   gatherFormData() {
-    const allCategories = this.categorySelect.getWrappedInstance().state.categories;
+    const allCategories = this.categorySelect.getWrappedInstance().state.selectData;
     const categoryName = this.categorySelect.getWrappedInstance().state.value;
     const targetCategory = allCategories.find(category => category.name === categoryName);
 
-    const basePrice = AddForm.getFormattedPrice(this.basicPrice.getWrappedInstance().state.value);
-    const extendedPrice =
-      AddForm.getFormattedPrice(this.extendedPrice.getWrappedInstance().state.value);
-    const extraPrice = AddForm.getFormattedPrice(this.extraPrice.getWrappedInstance().state.value);
+    const allVoivodeships = this.voivodeshipSelect.getWrappedInstance().state.selectData;
+    const voivodeshipName = this.voivodeshipSelect.getWrappedInstance().state.value;
+    const targetVoivodeship =
+    allVoivodeships.find(voivodeship => voivodeship.name === voivodeshipName);
 
-    const data = {
+    const basePrice = AddForm.getFormattedPrice(this.basicPrice.getWrappedInstance().state.value);
+
+    const data =
+    {
       title: this.titleInput.getWrappedInstance().state.value,
       category: {
         id: targetCategory.id,
@@ -100,19 +86,34 @@ class AddForm extends Component {
       },
       baseDescription: this.basicArea.getWrappedInstance().state.value,
       basePrice,
-      extendedDescription: this.extendedArea.getWrappedInstance().state.value,
-      extendedPrice,
-      extraDescription: this.extraArea.getWrappedInstance().state.value,
-      extraPrice,
       user: {
         name: this.nameInput.getWrappedInstance().state.value,
         email: this.emailInput.getWrappedInstance().state.value,
         phoneNumber: this.phoneInput.getWrappedInstance().state.value,
-        additionalInfo: this.aboutMeArea.getWrappedInstance().state.value,
+        voivodeship: {
+          id: targetVoivodeship.id,
+          name: voivodeshipName,
+        },
+        city: this.cityInput.getWrappedInstance().state.value,
       },
     };
 
-    return AddForm.removeEmpty(data);
+    const offerExtendedDescription = this.extendedArea.getWrappedInstance().state.value;
+    if (offerExtendedDescription) data.extendedDescription = offerExtendedDescription;
+    const offerExtendedPrice =
+      AddForm.getFormattedPrice(this.extendedPrice.getWrappedInstance().state.value);
+    if (offerExtendedPrice) data.extendedPrice = offerExtendedPrice;
+
+    const offerExtraDescription = this.extraArea.getWrappedInstance().state.value;
+    if (offerExtraDescription) data.extraDescription = offerExtraDescription;
+    const offerExtraPrice =
+      AddForm.getFormattedPrice(this.extraPrice.getWrappedInstance().state.value);
+    if (offerExtraPrice) data.extraPrice = offerExtraPrice;
+
+    const offerAdditionalInfo = this.aboutMeArea.getWrappedInstance().state.value;
+    if (offerAdditionalInfo) data.user.additionalInfo = offerAdditionalInfo;
+
+    return data;
   }
 
   sendFormData(data) {
@@ -131,8 +132,8 @@ class AddForm extends Component {
     this.props.fetchData(url, myInit);
   }
 
-  checkFormValidity(submit) {
-    submit.preventDefault();
+  checkFormValidity(e) {
+    e.preventDefault();
     const refs = this.getInputReferences();
     const isRefsValid = refs.map(ref => ref.getWrappedInstance().checkValidity());
     const isFormValid = isRefsValid.includes(false);
@@ -140,8 +141,8 @@ class AddForm extends Component {
     this.setState({ errorMessage: isFormValid });
 
     if (!isRefsValid.includes(false)) {
-      this.sendFormData(this.gatherFormData());
-      AddForm.resetFormInputs(refs);
+      const postData = this.gatherFormData();
+      this.sendFormData(postData);
     }
   }
 
@@ -159,20 +160,33 @@ class AddForm extends Component {
           {errorMessage && <p className="add-form__error">{t('components.add.form.errorMessage')}</p>}
           <div className="add-form__fieldset-wrapper--basic">
             <div className="add-form__fieldset-item add-form__fieldset-item--basic add-form__fieldset-item--margin-top">
-              <TitleInput
+              <GenericInput
+                type="text"
                 name="offer__title"
-                ref={(v) => { this.titleInput = v; }}
-                label={t('components.UI.TitleInput.name')}
+                label={t('components.add.form.name')}
+                labelClassName="add-form_label"
+                spanClassName="add-form_span--inline"
+                inputClassName="input-title"
+                errorClassName="input-title__errorMessage"
+                maxLength="30"
                 required
+                validation={validator.validateAddOfferTitle}
+                ref={(v) => { this.titleInput = v; }}
               />
             </div>
           </div>
           <div className="add-form__fieldset-wrapper--basic">
             <div className="add-form__fieldset-item add-form__fieldset-item--basic">
-              <CategorySelect
+              <GenericSelect
                 name="offer__category"
                 ref={(v) => { this.categorySelect = v; }}
-                label={t('components.UI.TitleInput.name')}
+                endpoint="categories"
+                selectNamePath="components.UI.categorySelect.name"
+                selectErrorPath="components.UI.categorySelect.errorEmptyField"
+                selectOptionsPath="components.UI.categorySelect.categoryOptions"
+                selectClassName="input-select input-select--gray"
+                errorClassName="input-select__errorMessage"
+                labelClassName="input__wrapper--relative"
                 required
               />
             </div>
@@ -248,24 +262,77 @@ class AddForm extends Component {
         <fieldset className="add-form__fieldset add-form__fieldset--about">
           <div className="add-form__fieldset-wrapper">
             <div className="add-form__fieldset-item">
-              <FirstNameInput
+              <GenericInput
+                type="text"
                 name="offer__user-name"
+                label={t('components.add.form.firstName')}
+                labelClassName="add-form__label add-form__label--yellow"
+                spanClassName="add-form_span--block"
+                inputClassName="add-form__input add-form__input--S add-form__input--yellow"
+                maxLength="20"
+                required
+                validation={validator.validateNameInput}
                 ref={(v) => { this.nameInput = v; }}
-                required
               />
             </div>
             <div className="add-form__fieldset-item">
-              <EmailInput
-                name="offer__user-email"
+              <GenericInput
+                type="text"
+                name="offer__email"
+                label={t('components.add.form.email')}
+                labelClassName="add-form__label add-form__label--yellow"
+                spanClassName="add-form_span--block"
+                inputClassName="add-form__input add-form__input--S add-form__input--yellow"
+                required
+                validation={validator.validateEmailInput}
                 ref={(v) => { this.emailInput = v; }}
+              />
+            </div>
+            <div className="add-form__fieldset-item">
+              <GenericInput
+                type="text"
+                name="offer__phone"
+                label={t('components.add.form.phone')}
+                labelClassName="add-form__label add-form__label--yellow"
+                spanClassName="add-form_span--block"
+                inputClassName="add-form__input add-form__input--S add-form__input--yellow"
+                maxLength="10"
+                required
+                validation={validator.validatePhoneNumber}
+                ref={(v) => { this.phoneInput = v; }}
+              />
+            </div>
+          </div>
+          <div className="add-form__fieldset-wrapper">
+            <div className="add-form__fieldset-item">
+              <GenericSelect
+                name="offer__voivodeship"
+                ref={(v) => { this.voivodeshipSelect = v; }}
+                label={t('components.UI.voivodeship.name')}
+                endpoint="voivodeships"
+                selectNamePath="components.UI.voivodeship.name"
+                selectErrorPath="components.UI.categorySelect.errorEmptyField"
+                selectOptionsPath="components.UI.voivodeship.list"
+                spanClassName="select_span--block"
+                labelClassName=".select_span--yellow"
+                selectClassName="input-select input-select--yellow"
+                selectItemClassName="input-select__item-option--yellow"
+                errorClassName="input-select__errorMessage input-select__errorMessage2"
                 required
               />
             </div>
             <div className="add-form__fieldset-item">
-              <PhoneInput
-                name="offer__user-phone-number"
-                ref={(v) => { this.phoneInput = v; }}
+              <GenericInput
+                type="text"
+                name="offer__city"
+                label={t('components.add.form.city')}
+                labelClassName="add-form__label add-form__label--yellow"
+                spanClassName="add-form_span--block"
+                inputClassName="add-form__input add-form__input--S add-form__input--yellow"
+                maxLength="30"
                 required
+                validation={validator.validateCity}
+                ref={(v) => { this.cityInput = v; }}
               />
             </div>
           </div>
@@ -292,4 +359,4 @@ class AddForm extends Component {
 }
 
 export { AddForm };
-export default translate()(AddForm);
+export default translate('translations', { withRef: true })(AddForm);
