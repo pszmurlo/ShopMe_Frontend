@@ -6,6 +6,7 @@ import GenericInput from 'components/UI/GenericInput/GenericInput';
 import FormButton from 'components/UI/FormButton/FormButton';
 import InvoiceInputGroup from 'components/UI/InvoiceInputGroup/InvoiceInputGroup';
 import PersonalDataConfirm from 'components/UI/PersonalDataConfirm/PersonalDataConfirm';
+import TermsAndConditionsCheckbox from 'components/Register/TermsAndConditionsCheckbox/TermsAndConditionsCheckbox';
 
 import './Register.css';
 
@@ -33,6 +34,7 @@ class RegisterForm extends Component {
       this.users__addressCity,
       this.users__addressZipCode,
       this.users__personalDataProcessing,
+      this.users__termsAndConditionsCheckbox,
     ];
   }
 
@@ -278,6 +280,9 @@ class RegisterForm extends Component {
                 />
               </div>
               <div className="register-form__item--checkbox">
+                <TermsAndConditionsCheckbox
+                  ref={(v) => { this.users__termsAndConditionsCheckbox = v; }}
+                />
                 <PersonalDataConfirm
                   validation={validator.validateCheckbox}
                   ref={(v) => { this.users__personalDataProcessing = v; }}

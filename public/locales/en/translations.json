@@ -66,6 +66,8 @@
         "nipInputLabel": "Taxpayer Identification Number:",
         "submitButtonLabel": "Sign Up",
         "formTitle": "Register",
+        "termsAndConditions": "I accept ",
+        "termsAndConditionsLink": "the terms and conditions",
         "personalDataProcessing": "I hereby agree for processing my personal data by ShopMe",
         "invoiceDataLabel": "Invoice data",
         "successRegisterMessage": "Registration has been completed successfully"
@@ -134,6 +136,9 @@
         "currency": "zł"
       },
       "offerTextarea": {
+        "errorEmptyField": "This field is required"
+      },
+      "termsAndConditions": {
         "errorEmptyField": "This field is required"
       },
       "add": {

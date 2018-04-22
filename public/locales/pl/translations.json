@@ -66,6 +66,8 @@
         "nipInputLabel": "NIP:",
         "submitButtonLabel": "Rejestruj",
         "formTitle": "Rejestracja użytkownika",
+        "termsAndConditions": "Akceptuję ",
+        "termsAndConditionsLink": "regulamin",
         "personalDataProcessing": "Wyrażam zgodę na przetwarzanie moich danych osobowych przez ShopMe",
         "invoiceDataLabel": "Dane do faktury",
         "successRegisterMessage": "Rejestracja zakończona pomyślnie"
@@ -134,6 +136,9 @@
         "currency": "zł"
       },
       "offerTextarea": {
+        "errorEmptyField": "Pole wymagane"
+      },
+      "termsAndConditions": {
         "errorEmptyField": "Pole wymagane"
       },
       "add": {
