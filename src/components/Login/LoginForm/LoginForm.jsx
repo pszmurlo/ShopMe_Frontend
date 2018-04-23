@@ -5,7 +5,7 @@ import validator from 'helpers/validator';
 import GenericInput from 'components/UI/GenericInput/GenericInput';
 import FormButton from 'components/UI/FormButton/FormButton';
 
-import '../Login.css';
+import './LoginForm.css';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -39,8 +39,6 @@ class LoginForm extends Component {
               name="login__user-email"
               type="email"
               label={t('components.login.login.emailInputLabel')}
-              color="yellow"
-              size="M"
               required
               validation={validator.validateEmailInput}
             />
@@ -50,15 +48,13 @@ class LoginForm extends Component {
               name="login__user-password"
               type="password"
               label={t('components.login.login.passwordInputLabel')}
-              color="yellow"
-              size="M"
               required
               validation={validator.validateTextInput}
             />
           </div>
           <div className="login-form__item login-form__item--button">
             <FormButton
-              id="login-form__submi-form"
+              id="login-form__submit-form"
               type="submit"
               value={t('components.login.login.submitButtonLabel')}
             />
