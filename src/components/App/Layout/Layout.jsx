@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import Header from 'components/UI/Header/Header';
+import Header from 'components/App/Header/Header';
+import Footer from 'components/App/Footer/Footer';
 
 class Layout extends Component {
   constructor(props) {
@@ -19,12 +20,14 @@ class Layout extends Component {
       return child;
     });
     return (
-      <div>
-        <Header />
-        <main className={this.props.className}>
-          {childrenWithProps}
-        </main>
-        <footer />
+      <div className="wrapper">
+        <div className="content">
+          <Header />
+          <main className={this.props.className}>
+            {childrenWithProps}
+          </main>
+        </div>
+        <Footer />
       </div>
     );
   }
