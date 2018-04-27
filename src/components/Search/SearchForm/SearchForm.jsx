@@ -16,32 +16,33 @@ class SearchForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   handleSearchInputChanged(searchPhrase, validPhrase) {
-    this.setState({ searchPhrase, validPhrase });
+    this.setState({
+      searchPhrase, validPhrase,
+    }, () => {
+      this.props.afterChange(searchPhrase, validPhrase);
+    });
   }
 
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.validPhrase === false) return;
-    this.props.updateSearchPhrase(this.state.searchPhrase);
-    this.props.onSubmit(this.state.searchPhrase)
-      .then(() => {
-        this.props.updatePaginationData({
-          totalPages: this.props.services.totalPages,
-        });
-        this.props.updateFoundServices(this.props.services);
-      });
-    this.props.updateFoundServices([]);
+    this.props.onSubmit(this.state.searchPhrase);
   }
 
   render() {
     const { t } = this.props;
+
     return (
-      <form className="search__form">
-        <SearchInput onSearchInputChanged={this.handleSearchInputChanged} />
-        <SubmitButton value={t('components.searchForm.button')} onClick={this.handleSubmit} searchPhrase={this.state.searchPhrase} />
-      </form>
+      <div>
+        <form className="search__form">
+          <SearchInput
+            onSearchInputChanged={this.handleSearchInputChanged}
+            searchQuery={this.props.searchQuery}
+          />
+          <SubmitButton value={t('components.searchForm.button')} onClick={this.handleSubmit} searchPhrase={this.state.searchPhrase} />
+        </form>
+      </div>
     );
   }
 }
