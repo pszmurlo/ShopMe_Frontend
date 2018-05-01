@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchForm from 'components/Search/SearchForm/SearchForm';
+import CategoryList from 'components/Search/CategoryList/CategoryList';
 import FoundSearchResults from 'components/Search/SearchResults/FoundSearchResults/FoundSearchResults';
 import NoSearchResults from 'components/Search/SearchResults/NoSearchResults/NoSearchResults';
 import { Redirect } from 'react-router';
@@ -102,15 +103,14 @@ export default class Search extends React.Component {
     }
     return (
       <div>
-        <div className="search">
-          <SearchForm
-            services={this.state.services}
-            searchQuery={this.state.searchPhrase}
-            afterChange={this.updateSearchPhrase}
-            onSubmit={this.onSubmit}
-          />
-        </div>
+        <SearchForm
+          services={this.state.services}
+          searchQuery={this.state.searchPhrase}
+          afterChange={this.updateSearchPhrase}
+          onSubmit={this.onSubmit}
+        />
         {results}
+        <CategoryList />
       </div>
     );
   }

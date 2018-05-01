@@ -1,7 +1,6 @@
 import React from 'react';
 import { translate } from 'react-i18next';
 import SearchInput from 'components/Search/SearchForm/SearchInput';
-import SubmitButton from 'components/UI/SubmitButton/SubmitButton';
 import './SearchForm.css';
 
 class SearchForm extends React.Component {
@@ -32,15 +31,15 @@ class SearchForm extends React.Component {
 
   render() {
     return (
-      <div className="search">
+      <div className="search__wrapper">
         <h1 className="search__header">{this.props.t('components.searchForm.header')}</h1>
         <form className="search__form">
           <SearchInput
             onSearchInputChanged={this.handleSearchInputChanged}
             searchQuery={this.props.searchQuery}
+            handleSubmit={this.handleSubmit}
+            searchPhrase={this.state.searchPhrase}
           />
-          <SubmitButton onClick={this.handleSubmit} searchPhrase={this.state.searchPhrase} className="form__button--submit">{this.props.t('components.searchForm.button')}</SubmitButton>
-          <SubmitButton onClick={this.handleSubmit} searchPhrase={this.state.searchPhrase} className="form__button--lens" />
         </form>
       </div>
     );
