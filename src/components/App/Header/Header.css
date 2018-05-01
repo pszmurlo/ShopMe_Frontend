@@ -1,5 +1,6 @@
 header {
   width: 100%;
+  margin-bottom: 3rem;
   max-height: 5.2rem;
   background: #fff;
   font-size: 1.4rem;
@@ -36,25 +37,24 @@ nav a {
 
 .user-name {
   font-weight: bold;
-  padding-right: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .header__arrow {
+  margin-right: 1.5rem;
   border: 0;
   background-color: transparent;
-  margin-left: 0.2rem;
   height: 2.3rem;
-  margin-left: 0.2rem;
 }
 
 .header__links {
   position: absolute;
-  top: 6rem;
+  top: 5.2rem;
   padding-right: 1.5rem;
   background: #fff;
+  box-shadow: 0 0.7rem 1rem 0 rgba(0,0,0,0.2);
 }
 
 .header__link {
@@ -73,12 +73,10 @@ nav a {
     transition: color 0.5s ease;
 }
 
-.fa-angle-down {
-  height: 2.3rem;
-}
-
-.svg-inline--fa.fa-w-10 {
+.fa-angle-down, .fa-angle-up {
   width: 2rem;
+  font-size: 2rem;
+  padding-top: 0.3rem;
 }
 
 .menu-visible {
@@ -94,20 +92,18 @@ nav a {
     position: absolute;
     top: 5rem;
     font-size: 1.5rem;
-    box-shadow: none;
     padding: 0;
-    box-shadow: 0 0.3rem 0.1rem 0px rgba(0,0,0,0.15);
+    box-shadow: 0 0.2rem 1rem 0 rgba(0,0,0,0.4);
   }
   .header__container {
     max-width: 76.8rem;
     margin: 0 auto;
   }
   .header__links {
-    top: 5.6rem;
     padding-right: 2.5rem;
   }
-  .user-name {
-    padding-right: 2.5rem;
+  .header__arrow {
+    margin-right: 2.5rem;
   }
 }
 
@@ -132,7 +128,6 @@ nav a {
     position: static;
     display: flex;
     justify-items: end;
-    padding: 0 0 0 1.5rem;
     box-shadow: none;
     width: auto;
   }
@@ -140,10 +135,13 @@ nav a {
     width: auto;
     padding-right: 1rem;
   }
-  .user-name {
-    padding-right: 0;
-  }
   .header__arrow {
+    margin: 0 1rem 0 0;
+  }
+  .user-name {
+    font-size: 1.6rem;
+  }
+  .header__icons {
     display: none;
   }
 }
