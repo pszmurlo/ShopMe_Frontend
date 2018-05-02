@@ -81,4 +81,3 @@ class SearchInput extends React.Component {
 
 export { SearchInput };
 export default translate()(SearchInput);
-
