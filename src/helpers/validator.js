@@ -17,13 +17,28 @@ const validator = {
     return !pattern.test(value) ? 'helpers.validator.errorIllegalCharacters' : undefined;
   },
 
+  useOnlyLegalCharactersForZipCode(value) {
+    const pattern = /^(?:(?=\S{6}$)\d*[-*]\d*)$/;
+    return !pattern.test(value) ? 'helpers.validator.errorOnlyNumeric' : undefined;
+  },
+
+  checkFormatZipCode(value) {
+    const pattern = /^\S{2}-\S{3}$/;
+    return !pattern.test(value) ? 'helpers.validator.errorFormatZipCode' : undefined;
+  },
+
+  checkHouseNumberFormat(value) {
+    const pattern = /^\d+([a-z]?)?(\/?\d+?)?$/;
+    return !pattern.test(value) ? 'helpers.validator.errorFormatHouseNumber' : undefined;
+  },
+
   mustUseAlpha(value) {
     const pattern = /^[^A-ZĄĘĆŁŃÓŚŹŻ]*$/i;
     return pattern.test(value) ? 'helpers.validator.errorIllegalCharacters' : undefined;
   },
 
   useOnlyNumeric(value) {
-    const pattern = /[0-9]+$/i;
+    const pattern = /^[0-9]+$/i;
     return !pattern.test(value) ? 'helpers.validator.errorOnlyNumeric' : undefined;
   },
 
@@ -120,6 +135,26 @@ const validator = {
       undefined;
   },
 
+  validateNip(required, value) {
+    return validator.isRequired(required, value) ||
+      validator.hasMinLength(10, value) ||
+      validator.useOnlyNumeric(value) ||
+      undefined;
+  },
+
+  validateZipCode(required, value) {
+    return validator.isRequired(required, value) ||
+      validator.hasMinLength(6, value) ||
+      validator.checkFormatZipCode(value) ||
+      validator.useOnlyLegalCharactersForZipCode(value) ||
+      undefined;
+  },
+
+  validateHouseNumber(required, value) {
+    return validator.isRequired(required, value) ||
+      validator.checkHouseNumberFormat(value) ||
+      undefined;
+  },
 };
 
 export default validator;
