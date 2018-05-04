@@ -114,7 +114,7 @@
           "housework": "Housework",
           "tutoring": "Tutoring",
           "bandsAndMusic": "Bands and\u00A0Music",
-          "others": "Others"
+          "inne": "Others"
         }
       },
       "voivodeship": {
@@ -169,25 +169,6 @@
           "categories": "Categories",
           "aboutUs": "About us",
           "exhibitor": "For exhibitors"
-        },
-        "categoryNames": {
-          "construction": "Construction",
-          "office": "Company and office",
-          "photography": "Photography",
-          "graphics": "Graphics",
-          "privateLessons": "Private lessons",
-          "bookkeeping": "Bookkeeping",
-          "marketing": "Marketing and advertising",
-          "repair": "Repair and service",
-          "garden": "Garden",
-          "housework": "Housework",
-          "law": "Law",
-          "programming": "Programming",
-          "translations": "Translations",
-          "transport": "Transport",
-          "workshop": "Workshop services",
-          "music": "Bands and music",
-          "other": "Other"
         },
         "aboutUs": {
           "privacy": "Privacy policy",
