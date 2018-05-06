@@ -1,6 +1,8 @@
 import React from 'react';
 import SearchForm from 'components/Search/SearchForm/SearchForm';
-import CategoryList from 'components/CategoryList/CategoryList';
+import CategoryList from 'components/Homepage/CategoryList/CategoryList';
+import Terms from 'components/Homepage/Terms/Terms';
+
 import { Redirect } from 'react-router';
 
 
@@ -46,6 +48,7 @@ export default class Home extends React.Component {
           onSubmit={this.onSubmit}
         />
         <CategoryList />
+        <Terms />
       </div>
     );
   }
