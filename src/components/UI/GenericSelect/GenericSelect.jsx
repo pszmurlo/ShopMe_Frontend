@@ -16,7 +16,6 @@ class GenericSelect extends Component {
 
     this.checkValidity = this.checkValidity.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.resetInput = this.resetInput.bind(this);
   }
 
   componentDidMount() {
@@ -25,14 +24,23 @@ class GenericSelect extends Component {
       .then(selectData => this.setState({ selectData }));
   }
 
+  componentWillReceiveProps(nextProps) {
+    const isValid = this.checkValidity();
+    if (nextProps.onValidate) {
+      this.props.doValidate(this.props.name, isValid);
+      if (isValid) {
+        const selected = this.state.selectData.find(category => category.name === this.state.value);
+        this.props.getSelectedId(`${this.props.name}Id`, selected.id);
+        this.props.setValue(this.props.name, this.state.value);
+      }
+    }
+  }
+
   checkValidity() {
     const { t } = this.props;
     const isValid = true;
 
-    if (
-      this.state.value === '' &&
-      this.state.isRequired
-    ) {
+    if (this.state.value === '' && this.state.isRequired) {
       this.setState({ errorMessage: t(`${this.props.selectErrorPath}`) });
       return false;
     }
@@ -46,10 +54,6 @@ class GenericSelect extends Component {
       this.props.disableChange();
     }
     this.setState({ value: event.target.value });
-  }
-
-  resetInput() {
-    this.setState({ value: '' });
   }
 
   render() {

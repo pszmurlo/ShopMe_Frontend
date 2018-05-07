@@ -12,7 +12,16 @@ class GenericInput extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.checkValidity = this.checkValidity.bind(this);
-    this.resetInput = this.resetInput.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.onValidate) {
+      const isValid = this.checkValidity();
+      this.props.doValidate(this.props.name, isValid);
+      if (isValid) {
+        this.props.setValue(this.props.name, this.state.value);
+      }
+    }
   }
 
   handleChange(event) {
@@ -38,10 +47,6 @@ class GenericInput extends Component {
     return true;
   }
 
-  resetInput() {
-    this.setState({ value: '' });
-  }
-
   render() {
     return (
       <label
@@ -60,7 +65,6 @@ class GenericInput extends Component {
           name={this.props.name}
           placeholder={this.props.placeholder}
           maxLength={this.props.maxLength}
-          max={this.props.max}
           disabled={this.props.disabled}
           required={this.props.required}
           value={this.state.value}
@@ -75,7 +79,6 @@ class GenericInput extends Component {
 }
 
 GenericInput.defaultProps = {
-  maxLength: 50,
   labelClassName: 'input__wrapper',
   spanClassName: 'input__label--M',
   inputClassName: 'input input--M input--yellow',

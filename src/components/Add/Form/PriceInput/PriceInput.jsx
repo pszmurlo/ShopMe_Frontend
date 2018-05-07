@@ -14,7 +14,16 @@ class PriceInput extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
-    this.resetInput = this.resetInput.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.onValidate) {
+      const isValid = this.checkValidity();
+      this.props.doValidate(this.props.name, isValid);
+      if (isValid) {
+        this.props.setValue(this.props.name, this.state.value);
+      }
+    }
   }
 
   checkValidity() {
@@ -40,19 +49,19 @@ class PriceInput extends Component {
   }
 
   activateNextField() {
-    if (this.props.name === 'offer__extended-price') {
+    if (this.props.name === 'offerExtendedPrice') {
       this.props.onChange('offerExtendedRequired', true);
     }
-    if (this.props.name === 'offer__extra-price') {
+    if (this.props.name === 'offerExtraPrice') {
       this.props.onChange('offerExtraRequired', true);
     }
   }
 
   deactivateNextFields() {
-    if (this.props.name === 'offer__extended-price') {
+    if (this.props.name === 'offerExtendedPrice') {
       this.props.onChange('offerExtendedRequired', false);
     }
-    if (this.props.name === 'offer__extra-price') {
+    if (this.props.name === 'offerExtraPrice') {
       this.props.onChange('offerExtraRequired', false);
     }
   }
@@ -72,10 +81,6 @@ class PriceInput extends Component {
 
     if (state) value = parseFloat(value.replace(',', '.')).toFixed(2).replace('.', ',');
     this.setState({ value });
-  }
-
-  resetInput() {
-    this.setState({ value: '' });
   }
 
   render() {

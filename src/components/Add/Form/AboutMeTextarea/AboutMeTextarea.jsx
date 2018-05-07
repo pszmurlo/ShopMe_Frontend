@@ -9,13 +9,22 @@ class AboutMeTextArea extends Component {
 
     this.checkValidity = this.checkValidity.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.resetInput = this.resetInput.bind(this);
 
     this.state = {
       value: '',
       errorMessage: '',
       isRequired: this.props.required,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.onValidate) {
+      const isValid = this.checkValidity();
+      this.props.doValidate(this.props.name, isValid);
+      if (isValid) {
+        this.props.setValue(this.props.name, this.state.value);
+      }
+    }
   }
 
   handleChange(event) {
@@ -32,10 +41,6 @@ class AboutMeTextArea extends Component {
       return false;
     }
     return isValid;
-  }
-
-  resetInput() {
-    this.setState({ value: '' });
   }
 
   render() {

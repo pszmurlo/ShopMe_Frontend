@@ -12,7 +12,16 @@ class OfferTextarea extends Component {
     };
     this.checkValidity = this.checkValidity.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.resetInput = this.resetInput.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.onValidate) {
+      const isValid = this.checkValidity();
+      this.props.doValidate(this.props.name, isValid);
+      if (isValid) {
+        this.props.setValue(this.props.name, this.state.value);
+      }
+    }
   }
 
   checkValidity() {
@@ -37,39 +46,35 @@ class OfferTextarea extends Component {
   }
 
   activateNextField() {
-    if (this.props.name === 'offer__base-description') {
+    if (this.props.name === 'offerBaseDescription') {
       this.props.onChange('offerExtendedDisabled', false);
       if (this.props.offerExtraFilled) {
         this.props.onChange('offerExtraDisabled', false);
       }
     }
-    if (this.props.name === 'offer__extended-description') {
+    if (this.props.name === 'offerExtendedDescription') {
       this.props.onChange('offerExtraDisabled', false);
       this.props.onChange('priceExtendedRequired', true);
     }
-    if (this.props.name === 'offer__extra-description') {
+    if (this.props.name === 'offerExtraDescription') {
       this.props.onChange('priceExtraRequired', true);
       this.props.onChange('offerExtraFilled', true);
     }
   }
 
   deactivateNextFields() {
-    if (this.props.name === 'offer__base-description') {
+    if (this.props.name === 'offerBaseDescription') {
       this.props.onChange('offerExtendedDisabled', true);
       this.props.onChange('offerExtraDisabled', true);
     }
-    if (this.props.name === 'offer__extended-description') {
+    if (this.props.name === 'offerExtendedDescription') {
       this.props.onChange('offerExtraDisabled', true);
       this.props.onChange('priceExtendedRequired', false);
     }
-    if (this.props.name === 'offer__extra-description') {
+    if (this.props.name === 'offerExtraDescription') {
       this.props.onChange('priceExtraRequired', false);
       this.props.onChange('offerExtraFilled', false);
     }
-  }
-
-  resetInput() {
-    this.setState({ value: '' });
   }
 
   render() {
