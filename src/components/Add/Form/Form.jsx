@@ -139,7 +139,7 @@ class AddForm extends Component {
         name: inputsValue.offerCategory,
       },
       baseDescription: inputsValue.offerBaseDescription,
-      basicPrice: AddForm.getFormattedPrice(inputsValue.offerBasePrice),
+      basePrice: AddForm.getFormattedPrice(inputsValue.offerBasePrice),
       user: {
         name: inputsValue.offerUserName,
         email: inputsValue.offerEmail,
@@ -170,19 +170,7 @@ class AddForm extends Component {
   }
 
   sendFormData(data) {
-    const myHeaders = new Headers({
-      'Content-Type': 'application/json',
-    });
-
-    const myInit = {
-      method: 'POST',
-      headers: myHeaders,
-      body: JSON.stringify(data),
-    };
-
-    const url = `${process.env.REACT_APP_API}/offers`;
-
-    this.props.fetchData(url, myInit);
+    this.props.fetchData(data);
   }
 
   render() {

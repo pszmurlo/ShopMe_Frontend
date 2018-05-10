@@ -41,8 +41,9 @@ export default class Search extends React.Component {
   }
 
   getData() {
-    return fetch(`${process.env.REACT_APP_API}/offers?title=${this.state.searchPhrase}`)
-      .then(response => response.json())
+    const { http } = this.props;
+    const title = this.state.searchPhrase;
+    return http.get('/api/offers', { title })
       .then((services) => {
         if (services.content) {
           this.setState({
