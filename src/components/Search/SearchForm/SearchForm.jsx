@@ -7,26 +7,26 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchPhrase: null,
-      validPhrase: false,
+      phrase: this.props.phrase,
+      isValidPhrase: false,
     };
 
     this.handleSearchInputChanged = this.handleSearchInputChanged.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSearchInputChanged(searchPhrase, validPhrase) {
+  handleSearchInputChanged(phrase, isValidPhrase) {
     this.setState({
-      searchPhrase, validPhrase,
+      phrase, isValidPhrase,
     }, () => {
-      this.props.afterChange(searchPhrase, validPhrase);
+      this.props.afterChange(phrase, isValidPhrase);
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.state.validPhrase === false) return;
-    this.props.onSubmit(this.state.searchPhrase);
+    if (this.state.isValidPhrase === false) return;
+    this.props.onSubmit(this.state.phrase);
   }
 
   render() {
@@ -36,9 +36,8 @@ class SearchForm extends React.Component {
         <form className="search__form">
           <SearchInput
             onSearchInputChanged={this.handleSearchInputChanged}
-            searchQuery={this.props.searchQuery}
             handleSubmit={this.handleSubmit}
-            searchPhrase={this.state.searchPhrase}
+            phrase={this.state.phrase}
           />
         </form>
       </div>
