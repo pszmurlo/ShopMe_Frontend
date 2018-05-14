@@ -1,8 +1,13 @@
-.search__wrapper {
+.search__wrapper-home {
   height: 28rem;
   background: url("/assets/images/search-section/mobile.jpg");
   background-size: cover;
   background-position: 100% 100%;
+}
+
+.search__wrapper {
+  background: #fbdd61;
+  height: 8rem;
 }
 
 .search__header {
@@ -15,24 +20,30 @@
 .search__form {
   width: 95%;
   margin: 0 auto;
+  padding: 1rem 0;
 }
 
 @media (min-width: 768px) {
-  .search__wrapper {
+  .search__wrapper-home {
     height: 50rem;
     margin: 0;
+  }
+
+  .search__wrapper {
+    height: 15rem;
   }
   .search__header {
     padding-top: 16rem;
   }
   .search__form {
-    width: 90%;
-    padding-top: 2rem;
+    width: 55%;
+    padding-top: 6rem;
+    margin: 0 9rem;
   }
 }
 
 @media (min-width: 1025px) {
-  .search__wrapper {
+  .search__wrapper-home {
     margin: 0;
   }
   .search__header {
@@ -41,5 +52,12 @@
   .search__form {
     width: 50%;
     padding-top: 2rem;
+    z-index: 2;
+    position: relative;
+    margin: 0.7em 11em;
+  }
+
+  .search__wrapper {
+    height: 13rem;
   }
 }

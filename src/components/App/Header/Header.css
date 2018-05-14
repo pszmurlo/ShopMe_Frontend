@@ -1,6 +1,5 @@
 header {
   width: 100%;
-  margin-bottom: 3rem;
   max-height: 5.4rem;
   background: #fff;
   font-size: 1.4rem;
@@ -94,6 +93,7 @@ nav a {
     font-size: 1.5rem;
     padding: 0;
     box-shadow: 0 0.2rem 1rem 0 rgba(0,0,0,0.4);
+    margin-bottom: 3rem;
   }
   .header__container {
     max-width: 76.8rem;
@@ -109,6 +109,7 @@ nav a {
   header {
     padding: 0;
     font-size: 1.6rem;
+    margin-bottom: 3rem;
   }
   .header__container {
     max-width: 118rem;

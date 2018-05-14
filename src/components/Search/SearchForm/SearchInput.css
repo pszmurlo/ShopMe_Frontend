@@ -1,8 +1,7 @@
 .search__input-wrapper {
-  margin: 3rem 1rem 0 1rem;
+  margin: 0 1rem;
   display: flex;
   position: relative;
-  box-shadow: 0 0.2rem 1rem 0 rgba(0,0,0,0.4);
 }
 
 .search__form-item {
@@ -19,11 +18,19 @@
 .search__message-error {
   text-align: center;
   font-size: 1.5rem;
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
+  margin: 1.5rem 0;
 }
 
 @media (min-width: 768px) {
   .search__input-wrapper {
-    margin: 3rem 0 0 1rem;
+    border: 0.1rem solid #999;
+    z-index: 3;
+  }
+}
+
+@media (min-width: 1025px) {
+  .search__input-wrapper {
+    margin: 3rem 1rem 0 1rem;
   }
 }
