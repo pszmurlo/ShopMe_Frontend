@@ -1,0 +1,40 @@
+# inspiration: http://datakurre.pandala.org/2016/04/evolution-of-our-makefile-for-docker.html
+
+# prerequisites on host:
+# - docker, make, jq, git, tee
+
+BUILD_IMAGE = node:10
+CACHE_VOLUME = shopme-yarn-cache
+
+DOCKER_RUN_ARGS =
+INIT_CACHE = \
+	docker volume ls | grep $(CACHE_VOLUME) || docker volume create $(CACHE_VOLUME)
+
+# http://cakoose.com/wiki/gnu_make_thunks
+BUILD_GEN = $(shell docker create -v /build $(BUILD_IMAGE))
+BUILD = $(eval BUILD := $(BUILD_GEN))$(BUILD)
+
+make = git archive HEAD | \
+       docker run -i --rm -v $(CACHE_VOLUME):/cache \
+       -v /build -w /build $(DOCKER_RUN_ARGS) $(BUILD_IMAGE) \
+       bash -c "tar x && make \
+       YARN_INSTALL_ARGS='--cache-folder /cache --frozen-lockfile' $1"
+
+all: tag
+
+build:	DOCKER_RUN_ARGS = --volumes-from=$(BUILD)
+build:	/bin/test
+	$(INIT_CACHE)
+	$(call make,build); \
+	status=$$?; \
+	docker cp $(BUILD):/build/build .; \
+	docker rm -f -v $(BUILD); \
+	exit $$status
+
+clean:
+	docker volume ls | grep $(CACHE_VOLUME) && docker volume rm $(CACHE_VOLUME)
+
+tag: build .git
+	cat build/manifest.json | jq --arg commitId $(shell git rev-parse --short HEAD) '. + { commitId: $$commitId }' | tee build/manifest.json > /dev/null
+
+.PHONY: all build clean tag
