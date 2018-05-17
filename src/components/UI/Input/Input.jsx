@@ -11,6 +11,7 @@ class Input extends Component {
       value: this.props.value,
       errorMessage: '',
       type: this.props.type,
+      eyeState: 'show',
     };
     this.handleChange = this.handleChange.bind(this);
     this.checkValidity = this.checkValidity.bind(this);
@@ -57,11 +58,11 @@ class Input extends Component {
   }
 
   handleMouseEnter() {
-    if (this.state.type === 'password') this.setState({ type: 'text' });
+    if (this.state.type === 'password') this.setState({ type: 'text', eyeState: 'hide' });
   }
 
   handleMouseLeave() {
-    if (this.state.type === 'text') this.setState({ type: 'password' });
+    if (this.state.type === 'text') this.setState({ type: 'password', eyeState: 'show' });
   }
 
   render() {
@@ -89,7 +90,7 @@ class Input extends Component {
         </div>
         {this.props.type === 'password' &&
         <div className="input__eye-icon" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-          <i className="fas fa-eye" aria-hidden="true" />
+          <img src={`/assets/images/generic-input/eye_${this.state.eyeState}.png`} alt="" className="eye-img" />
         </div>}
       </div>
     );
