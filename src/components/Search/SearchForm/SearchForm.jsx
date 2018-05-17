@@ -9,11 +9,11 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      phrase: this.props.phrase,
+      phrase: '',
       isValidPhrase: false,
-      fireRedirect: false,
 
     };
+    this.fireRedirect = false;
 
     this.handleSearchInputChanged = this.handleSearchInputChanged.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,8 +21,13 @@ class SearchForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidUpdate() {
+    this.fireRedirect = false;
+  }
+
   onSubmit() {
-    if (this.state.isValidPhrase) this.setState({ fireRedirect: true });
+    if (this.state.isValidPhrase) this.fireRedirect = true;
+    this.setState({});
   }
 
   handleSearchInputChanged(phrase, isValidPhrase) {
@@ -47,21 +52,12 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    if (this.state.fireRedirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: '/search',
-            search: `?title=${this.state.phrase}&page=1`,
-          }}
-        />
-      );
-    }
-    return (
+    const searchForm = (
       <div className={this.props.isHomepage ? 'search__wrapper-home' : 'search__wrapper'}>
         {this.props.isHomepage ? <h1 className="search__header">{this.props.t('components.searchForm.header')}</h1> : null}
-        <form className="search__form">
+        <form className={this.props.isHomepage ? 'search__form-home' : 'search__form'}>
           <SearchInput
+            isHomepage={this.props.isHomepage}
             onSearchInputChanged={this.handleSearchInputChanged}
             handleSubmit={this.handleSubmit}
             phrase={this.state.phrase}
@@ -69,6 +65,20 @@ class SearchForm extends React.Component {
         </form>
       </div>
     );
+    if (this.fireRedirect) {
+      return (
+        <div>
+          <Redirect
+            to={{
+              pathname: '/search',
+              search: `?title=${this.state.phrase}&page=1`,
+            }}
+          />
+          {searchForm}
+        </div>
+      );
+    }
+    return searchForm;
   }
 }
 

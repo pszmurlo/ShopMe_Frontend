@@ -43,7 +43,6 @@
 @media (min-width: 768px) {
   .login-form {
     font-size: 1.5rem;
-    margin-top: 20rem;
   }
   .login-form__item--input {
     width: 40rem;

@@ -17,6 +17,12 @@
   text-align: center;
 }
 
+.search__form-home {
+  width: 95%;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
 .search__form {
   width: 95%;
   margin: 0 auto;
@@ -49,6 +55,13 @@
   .search__header {
     padding-top: 16rem;
   }
+
+  .search__form-home {
+    width: 50%;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
   .search__form {
     width: 50%;
     padding-top: 2rem;

@@ -27,3 +27,9 @@
     margin: 5rem 10% 3.5rem;
   }
 }
+
+@media (min-width: 768px) {
+  .offer-details {
+    margin: 5rem auto 0 auto;
+  }
+}
