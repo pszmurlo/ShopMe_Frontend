@@ -22,9 +22,7 @@ class SignUpScreen extends React.Component {
 
   render() {
     return (
-      <div className="login-form__wrapper">
-        <SignupForm onSubmit={this.checkIsEmailExists} isEmailExists={this.state.isEmailExists} />
-      </div>
+      <SignupForm onSubmit={this.checkIsEmailExists} isEmailExists={this.state.isEmailExists} />
     );
   }
 }

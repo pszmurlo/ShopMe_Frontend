@@ -20,9 +20,7 @@ class ArticleScreen extends React.Component {
   }
 
   render() {
-    return (
-      <MarkdownArticle source={this.state.content} />
-    );
+    return <MarkdownArticle source={this.state.content} />;
   }
 }
 

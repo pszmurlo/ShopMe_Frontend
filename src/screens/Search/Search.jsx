@@ -4,7 +4,6 @@ import FoundSearchResults from 'components/Search/SearchResults/FoundSearchResul
 import NoSearchResults from 'components/Search/SearchResults/NoSearchResults/NoSearchResults';
 import { Redirect } from 'react-router';
 
-
 export default class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -134,7 +133,6 @@ export default class SearchScreen extends React.Component {
         />
       );
     }
-
     let results;
     if (this.state.notFoundServices === false) {
       results = (<FoundSearchResults
