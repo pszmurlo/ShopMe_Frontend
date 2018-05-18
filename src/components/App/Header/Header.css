@@ -7,6 +7,18 @@ header {
   z-index: 2;
 }
 
+.homepage {
+  height: 28rem;
+  background: url("/assets/images/search-section/mobile.jpg");
+  background-size: cover;
+  background-position: 100% 100%;
+}
+
+.homepage-not {
+  background: #fbdd61;
+  height: 12rem;
+}
+
 .header__container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -80,6 +92,7 @@ nav a {
 
 .menu-visible {
   display: block;
+  z-index: 2;
 }
 
 .menu-invisible {
@@ -89,12 +102,17 @@ nav a {
 @media (min-width: 768px) {
   header {
     position: absolute;
-    top: 5rem;
+    top: 3rem;
     font-size: 1.5rem;
     padding: 0;
     box-shadow: 0 0.2rem 1rem 0 rgba(0,0,0,0.4);
     margin-bottom: 3rem;
   }
+
+  .homepage {
+    height: 48rem;
+  }
+
   .header__container {
     max-width: 76.8rem;
     margin: 0 auto;
@@ -108,9 +126,11 @@ nav a {
 @media (min-width: 1025px) {
   header {
     padding: 0;
+    top: 4rem;
     font-size: 1.6rem;
     margin-bottom: 3rem;
   }
+
   .header__container {
     max-width: 118rem;
     padding: 0 2.5rem;

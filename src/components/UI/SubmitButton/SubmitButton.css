@@ -16,6 +16,10 @@
   display: none;
 }
 
+.form__button--submit-home:disabled {
+  background: #999;
+}
+
 .form__button--submit {
   display: none;
 }

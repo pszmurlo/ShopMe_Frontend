@@ -18,7 +18,7 @@
 .search__message-error {
   text-align: center;
   font-size: 1.5rem;
-  padding: 0.5rem 0;
+  padding: 1.5rem 0;
   margin: 0.5rem 0;
 }
 
@@ -26,6 +26,10 @@
   .search__input-wrapper {
     border: 0.1rem solid #999;
     z-index: 3;
+  }
+
+  .search__message-error {
+    margin: 0;
   }
 }
 

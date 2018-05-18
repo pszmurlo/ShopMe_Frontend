@@ -24,8 +24,8 @@ class Header extends React.Component {
     const userName = localStorage.getItem('userName');
     const userSurname = localStorage.getItem('userSurname');
     return (
-      <div>
-        <header className={this.props.isHomepage ? 'homepage' : ''}>
+      <div className={this.props.isHomepage ? 'homepage' : 'homepage-not'}>
+        <header>
           <div className="header__container">
             <div className="logo__link"><Link href="/" to="/"><img src="/assets/images/logo.png" alt="logo" className="logo" /></Link></div>
             <nav>
