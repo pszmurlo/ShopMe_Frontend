@@ -16,6 +16,7 @@ class RegisterForm extends Component {
     this.state = {
       doValidate: undefined,
       isFormValid: undefined,
+      isInvoiceInputsGroupChecked: false,
       inputsValue: {
         userName: undefined,
         userSurname: undefined,
@@ -28,8 +29,6 @@ class RegisterForm extends Component {
         userAddressZipCode: undefined,
         userAddressCity: undefined,
         userVoivodeship: undefined,
-        userPersonalDataProcessing: undefined,
-        userTermsAndConditionsCheckbox: undefined,
         userInvoiceInputGroup: undefined,
       },
       inputsValidationResult: {
@@ -57,6 +56,7 @@ class RegisterForm extends Component {
     this.checkIsFormValid = this.checkIsFormValid.bind(this);
     this.gatherFormData = this.gatherFormData.bind(this);
     this.sendFormData = this.sendFormData.bind(this);
+    this.setIsChecked = this.setIsChecked.bind(this);
   }
 
   componentDidUpdate() {
@@ -89,16 +89,19 @@ class RegisterForm extends Component {
     this.setFormState('inputsValue', name, val);
   }
 
+  setIsChecked(isInvoiceInputsGroupChecked) {
+    this.setState({ isInvoiceInputsGroupChecked });
+  }
+
   checkIsFormValid() {
     const inputsValidationResult = Object.assign({}, this.state.inputsValidationResult);
     const isFormIncludesErrors = Object.values(inputsValidationResult).includes(false);
-
-    // console.log(Object.values(inputsValidationResult));
 
     this.setState({ isFormValid: !isFormIncludesErrors });
   }
 
   gatherFormData() {
+    console.log('from register', this.state);
     this.setState({ isFormValid: undefined });
 
     const inputsValue = Object.assign({}, this.state.inputsValue);
@@ -122,23 +125,23 @@ class RegisterForm extends Component {
         invoiceRequest: false,
       };
 
-    if (this.state.inputsValidationResult.userInvoiceInputGroup) {
+    if (this.state.isInvoiceInputsGroupChecked) {
       formData.invoiceRequest = true;
-      const invoceData = this.users__invoiceInputGroup.getWrappedInstance().getFormInvoiceData();
-      const invoicePostData =
+      const userInvoiceInputGroup = Object.assign({}, this.state.inputsValue.userInvoiceInputGroup);
+      const invoiceInputGroupData =
         {
           invoice: {
-            companyName: invoceData.companyName,
-            nip: invoceData.nip,
+            companyName: userInvoiceInputGroup.userInvoiceCompanyName,
+            nip: userInvoiceInputGroup.userInvoiceNip,
             invoiceAddress: {
-              street: invoceData.invoiceAddress.street,
-              number: invoceData.invoiceAddress.number,
-              city: invoceData.invoiceAddress.city,
-              zipCode: invoceData.invoiceAddress.zipCode,
+              street: userInvoiceInputGroup.userInvoiceAddressStreet,
+              number: userInvoiceInputGroup.userInvoiceAddressNumber,
+              city: userInvoiceInputGroup.userInvoiceAddressCity,
+              zipCode: userInvoiceInputGroup.userInvoiceAddressZipCode,
             },
           },
         };
-      formData = Object.assign({}, formData, invoicePostData);
+      formData = Object.assign({}, formData, invoiceInputGroupData);
     }
 
 
@@ -318,6 +321,7 @@ class RegisterForm extends Component {
           onValidate={this.state.doValidate}
           doValidate={this.setIsValid}
           setValue={this.setValue}
+          setIsChecked={this.setIsChecked}
         />
         <TermsAndConditionsCheckbox
           name="userTermsAndConditionsCheckbox"

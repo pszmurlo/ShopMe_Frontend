@@ -33,7 +33,6 @@ class InvoiceInputGroup extends Component {
     this.setIsValid = this.setIsValid.bind(this);
     this.setValue = this.setValue.bind(this);
     this.checkIsFormValid = this.checkIsFormValid.bind(this);
-    this.gatherInvoiceData = this.gatherInvoiceData.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,7 +43,8 @@ class InvoiceInputGroup extends Component {
 
   componentDidUpdate() {
     if (this.state.isFormValid) {
-      this.props.setValue(this.props.name, this.state.inputsValue);
+      // this.props.setValue(this.props.name, this.state.inputsValue);
+      // this.props.doValidate(this.props.name, this.state.isFormValid);
     }
   }
 
@@ -52,6 +52,7 @@ class InvoiceInputGroup extends Component {
     this.setState(prevState => ({
       ...prevState,
       doValidate: undefined,
+      isFormValid: undefined,
       [obj]: {
         ...prevState[obj],
         [key]: val,
@@ -69,28 +70,9 @@ class InvoiceInputGroup extends Component {
 
   checkIsFormValid() {
     const inputsValidationResult = Object.assign({}, this.state.inputsValidationResult);
-    // const isFormIncludesErrors = Object.values(inputsValidationResult).includes(false);
+    const isFormIncludesErrors = Object.values(inputsValidationResult).includes(false);
 
-    console.log(Object.values(inputsValidationResult));
-
-    // this.setState({ isFormValid: !isFormIncludesErrors });
-  }
-
-  gatherInvoiceData() {
-    this.setState({ isFormValid: undefined });
-
-    const invoice = {
-      companyName: this.state.users_invoiceCompanyName,
-      nip: this.state.users_invoiceNip,
-      invoiceAddress: {
-        street: this.state.users_invoiceAddressStreet,
-        number: this.state.users_invoiceAddressNumber,
-        city: this.state.users_invoiceAddressCity,
-        zipCode: this.state.users_invoiceAddressZipCode,
-      },
-    };
-
-    return invoice;
+    this.setState({ isFormValid: !isFormIncludesErrors });
   }
 
   handleCheckboxChange() {
