@@ -30,6 +30,7 @@ class RegisterForm extends Component {
         userVoivodeship: undefined,
         userPersonalDataProcessing: undefined,
         userTermsAndConditionsCheckbox: undefined,
+        userInvoiceInputGroup: undefined,
       },
       inputsValidationResult: {
         userName: undefined,
@@ -45,6 +46,7 @@ class RegisterForm extends Component {
         userVoivodeship: undefined,
         userPersonalDataProcessing: undefined,
         userTermsAndConditionsCheckbox: undefined,
+        userInvoiceInputGroup: undefined,
       },
     };
 
@@ -66,16 +68,6 @@ class RegisterForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     this.setState({ doValidate: true });
-  }
-
-  setFieldStateValue(field, value) {
-    if (this.state[field] !== value) {
-      this.setState({ [field]: value });
-    }
-  }
-
-  setCityEnable() {
-    this.setState({ isCityDisabled: false });
   }
 
   setFormState(obj, key, val, callback) {
@@ -103,12 +95,13 @@ class RegisterForm extends Component {
 
     // console.log(Object.values(inputsValidationResult));
 
-    this.setState({ errorMessage: isFormIncludesErrors, isFormValid: !isFormIncludesErrors });
+    this.setState({ isFormValid: !isFormIncludesErrors });
   }
 
   gatherFormData() {
-    const inputsValue = Object.assign({}, this.state.inputsValue);
+    this.setState({ isFormValid: undefined });
 
+    const inputsValue = Object.assign({}, this.state.inputsValue);
     let formData =
       {
         name: inputsValue.userName,
@@ -129,7 +122,7 @@ class RegisterForm extends Component {
         invoiceRequest: false,
       };
 
-    if (true) {
+    if (this.state.inputsValidationResult.userInvoiceInputGroup) {
       formData.invoiceRequest = true;
       const invoceData = this.users__invoiceInputGroup.getWrappedInstance().getFormInvoiceData();
       const invoicePostData =
@@ -321,6 +314,10 @@ class RegisterForm extends Component {
         </div>
         <InvoiceInputGroup
           ref={(v) => { this.users__invoiceInputGroup = v; }}
+          name="userInvoiceInputGroup"
+          onValidate={this.state.doValidate}
+          doValidate={this.setIsValid}
+          setValue={this.setValue}
         />
         <TermsAndConditionsCheckbox
           name="userTermsAndConditionsCheckbox"
