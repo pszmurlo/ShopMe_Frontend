@@ -43,6 +43,7 @@ class InvoiceInputGroup extends Component {
 
   componentDidUpdate() {
     if (this.state.isFormValid) {
+      console.log(this.state.inputsValue);
       // this.props.setValue(this.props.name, this.state.inputsValue);
       // this.props.doValidate(this.props.name, this.state.isFormValid);
     }
@@ -79,6 +80,7 @@ class InvoiceInputGroup extends Component {
     this.setState({
       checked: !this.state.checked,
     });
+    this.props.setIsChecked(!this.state.checked);
   }
 
   render() {

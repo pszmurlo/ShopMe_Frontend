@@ -16,7 +16,7 @@ class RegisterForm extends Component {
     this.state = {
       doValidate: undefined,
       isFormValid: undefined,
-      isInvoiceInputsGroupChecked: false,
+      isInvoiceInputsGroupChecked: undefined,
       inputsValue: {
         userName: undefined,
         userSurname: undefined,
@@ -29,7 +29,6 @@ class RegisterForm extends Component {
         userAddressZipCode: undefined,
         userAddressCity: undefined,
         userVoivodeship: undefined,
-        userInvoiceInputGroup: undefined,
       },
       inputsValidationResult: {
         userName: undefined,
@@ -45,7 +44,6 @@ class RegisterForm extends Component {
         userVoivodeship: undefined,
         userPersonalDataProcessing: undefined,
         userTermsAndConditionsCheckbox: undefined,
-        userInvoiceInputGroup: undefined,
       },
     };
 
@@ -125,7 +123,7 @@ class RegisterForm extends Component {
         invoiceRequest: false,
       };
 
-    if (this.state.isInvoiceInputsGroupChecked) {
+    if (this.state.isInvoiceInputsGroupChecked && this.state.isInvoiceInputsGroupValid) {
       formData.invoiceRequest = true;
       const userInvoiceInputGroup = Object.assign({}, this.state.inputsValue.userInvoiceInputGroup);
       const invoiceInputGroupData =
