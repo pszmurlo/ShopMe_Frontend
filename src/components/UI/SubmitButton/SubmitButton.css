@@ -1,6 +1,6 @@
 .form__button--lens {
   position: absolute;
-  top: 0.8rem;
+  top: 1.5rem;
   left: 1rem;
   padding: 1.1rem;
   border: none;
@@ -49,6 +49,10 @@
   .form__button--submit:disabled {
     background: #999;
     cursor: auto;
+  }
+
+  .form__button--lens {
+    top: 0.8rem;
   }
 }
 

@@ -21,7 +21,8 @@ header {
 
 .header__container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .logo {
@@ -31,12 +32,12 @@ header {
 }
 
 .logo__link {
-  padding-left: 2.5rem;
+  padding-left: 0.5rem;
 }
 
 nav {
   position: relative;
-  grid-column: 4 / span 1;
+  grid-column: 4 / span 11;
   display: grid;
   justify-items: end;
   align-items: center;
@@ -101,8 +102,6 @@ nav a {
 
 @media (min-width: 768px) {
   header {
-    position: absolute;
-    top: 3rem;
     font-size: 1.5rem;
     padding: 0;
     box-shadow: 0 0.2rem 1rem 0 rgba(0,0,0,0.4);
@@ -111,37 +110,58 @@ nav a {
 
   .homepage {
     height: 48rem;
+    padding-top: 3rem;
+  }
+
+  .homepage-not {
+    padding-top: 3rem;
   }
 
   .header__container {
     max-width: 76.8rem;
     margin: 0 auto;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 1fr);
   }
 
   .header__arrow {
     margin-right: 2.5rem;
+  }
+
+  nav {
+    grid-column: 5 / span 6;
+  }
+
+  .user-name {
+    font-size: 1.6rem;
+  }
+
+  .logo__link {
+    padding-left: 2.5rem;
   }
 }
 
 @media (min-width: 1025px) {
   header {
     padding: 0;
-    top: 4rem;
     font-size: 1.6rem;
     margin-bottom: 3rem;
   }
 
   .header__container {
+    min-height: 8rem;
     max-width: 118rem;
     padding: 0 2.5rem;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
   .logo__link {
     margin-right: auto;
   }
   nav {
     display: flex;
+    width: 45rem;
+    margin: -2rem 0 0 8rem;
   }
   .header__links {
     position: static;
@@ -156,9 +176,6 @@ nav a {
   }
   .header__arrow {
     margin: 0 1rem 0 0;
-  }
-  .user-name {
-    font-size: 1.6rem;
   }
   .header__icons {
     display: none;

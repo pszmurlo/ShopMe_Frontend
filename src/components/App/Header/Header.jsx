@@ -23,11 +23,16 @@ class Header extends React.Component {
     const className = this.state.displayMenu ? 'menu-visible' : 'menu-invisible';
     const userName = localStorage.getItem('userName');
     const userSurname = localStorage.getItem('userSurname');
+    const searchFormInHeader = !this.props.isHomepage ?
+      <SearchForm isHomepage={this.props.isHomepage} /> : null;
+    const searchFormOutsideHeader = this.props.isHomepage ?
+      <SearchForm isHomepage={this.props.isHomepage} /> : null;
     return (
       <div className={this.props.isHomepage ? 'homepage' : 'homepage-not'}>
         <header>
           <div className="header__container">
             <div className="logo__link"><Link href="/" to="/"><img src="/assets/images/logo.png" alt="logo" className="logo" /></Link></div>
+            {searchFormInHeader}
             <nav>
               {userName ?
                 <div>
@@ -47,7 +52,7 @@ class Header extends React.Component {
             </nav>
           </div>
         </header>
-        <SearchForm isHomepage={this.props.isHomepage} />
+        {searchFormOutsideHeader}
       </div>
     );
   }

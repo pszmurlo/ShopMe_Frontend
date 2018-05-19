@@ -1,5 +1,6 @@
 .search__input-wrapper {
-  margin: 0 1rem;
+  margin: 0;
+  padding: 1rem 0 0 0;
   display: flex;
   position: relative;
 }
@@ -17,24 +18,23 @@
 
 .search__message-error {
   text-align: center;
-  font-size: 1.5rem;
-  padding: 1.5rem 0;
-  margin: 0.5rem 0;
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
 }
 
 @media (min-width: 768px) {
   .search__input-wrapper {
+    margin: 0 1rem;
+    padding: 0;
     border: 0.1rem solid #999;
     z-index: 3;
   }
 
   .search__message-error {
-    margin: 0;
+    font-size: 1.5rem;
   }
 }
 
 @media (min-width: 1025px) {
-  .search__input-wrapper {
-    margin: 3rem 1rem 0 1rem;
-  }
 }
