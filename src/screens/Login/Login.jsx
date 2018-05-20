@@ -6,27 +6,38 @@ import LoginForm from 'components/Login/LoginForm/LoginForm';
 class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       loginFireRedirect: false,
     };
-    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.logUser = this.logUser.bind(this);
   }
 
-  handleLoginSubmit(e) {
-    e.preventDefault();
-    localStorage.setItem('userToken', 'test');
-    const user = localStorage.getItem('userToken');
-    const isUserLogged = !!localStorage.getItem('userToken');
-    this.props.setUserToken(user);
+  setUser(response) {
+    if (response.jwt) localStorage.setItem('userToken', response.jwt);
+    if (response.name) localStorage.setItem('userName', response.name);
+    if (response.surname) localStorage.setItem('userSurname', response.surname);
+    const isUserLogged = !!localStorage.getItem('userName');
+    this.props.setUser(
+      response.jwt,
+      response.name,
+      response.surname
+    );
     if (isUserLogged) this.setState({ loginFireRedirect: true });
+  }
+
+  logUser(data) {
+    const { http } = this.props;
+    return http.post('/api/users/login', data)
+      .then(response => this.setUser(response));
   }
 
   render() {
     return (
       <div className="login-form__wrapper">
         {this.state.loginFireRedirect && <Redirect to="/" />}
-        <LoginForm handleSubmit={this.handleLoginSubmit} />
+        <LoginForm
+          logUser={this.logUser}
+        />
       </div>
     );
   }

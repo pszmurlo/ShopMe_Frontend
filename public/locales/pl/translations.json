@@ -52,16 +52,15 @@
       "noResultsTitle": "Niestety nie znaleziono ofert spełniających Twoje kryteria"
     },
     "login": {
-      "login": {
-        "emailInputLabel": "E-mail",
-        "passwordInputLabel": "Hasło",
-        "submitButtonLabel": "Zaloguj się",
-        "formTitle": "Logowanie",
-        "registerMessage": "Nie masz jeszcze konta?",
-        "registerLink": "Zarejestruj się"
-      }
+      "emailInputLabel": "E-mail",
+      "passwordInputLabel": "Hasło",
+      "submitButtonLabel": "Zaloguj się",
+      "formTitle": "Logowanie",
+      "registerMessage": "Nie masz jeszcze konta?",
+      "registerLink": "Zarejestruj się",
+      "errorMessage": "* Proszę uzupełnić wszystkie pola"
     },
-  "register": {
+    "register": {
       "firstNameInputLabel": "Imię",
       "lastNameInputLabel": "Nazwisko",
       "emailInputLabel": "E-mail",
