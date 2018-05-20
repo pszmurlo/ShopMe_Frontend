@@ -37,7 +37,6 @@ class AddForm extends Component {
       inputsValue: {
         offerTitle: undefined,
         offerCategory: undefined,
-        offerCategoryId: undefined,
         offerBaseDescription: undefined,
         offerBasePrice: undefined,
         offerExtendedDescription: undefined,
@@ -48,7 +47,6 @@ class AddForm extends Component {
         offerEmail: undefined,
         offerPhone: undefined,
         offerVoivodeship: undefined,
-        offerVoivodeshipId: undefined,
         offerCity: undefined,
         offerUserAdditionalInfo: undefined,
       },
@@ -135,7 +133,6 @@ class AddForm extends Component {
     const formData = {
       title: inputsValue.offerTitle,
       category: {
-        id: inputsValue.offerCategoryId,
         name: inputsValue.offerCategory,
       },
       baseDescription: inputsValue.offerBaseDescription,
@@ -145,7 +142,6 @@ class AddForm extends Component {
         email: inputsValue.offerEmail,
         phoneNumber: inputsValue.offerPhone,
         voivodeship: {
-          id: inputsValue.offerVoivodeshipId,
           name: inputsValue.offerVoivodeship,
         },
         city: inputsValue.offerCity,
