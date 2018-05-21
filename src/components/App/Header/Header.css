@@ -8,21 +8,21 @@ header {
 }
 
 .homepage {
-  height: 28rem;
+  height: 38rem;
   background: url("/assets/images/search-section/mobile.jpg");
   background-size: cover;
   background-position: 100% 100%;
 }
 
-.homepage-not {
+.homepage-not, .homepage-not-results {
   background: #fbdd61;
-  height: 12rem;
+  height: 15rem;
 }
 
 .header__container {
   display: grid;
   grid-template-columns: repeat(11, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: 7rem 8rem;
 }
 
 .logo {
@@ -46,6 +46,10 @@ nav {
 nav a {
   color: #000;
   text-decoration: none;
+}
+
+.homepage-not-results nav {
+  margin: -1rem 0 0 0;
 }
 
 .user-name {
@@ -121,7 +125,7 @@ nav a {
     max-width: 76.8rem;
     margin: 0 auto;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 1fr);
+    grid-template-rows: 6rem 8rem;
   }
 
   .header__arrow {
@@ -130,6 +134,7 @@ nav a {
 
   nav {
     grid-column: 5 / span 6;
+    margin-top: -0.5rem
   }
 
   .user-name {
@@ -138,6 +143,15 @@ nav a {
 
   .logo__link {
     padding-left: 2.5rem;
+  }
+
+  .homepage-not-results {
+    padding-top: 3rem;
+    height: 18rem;
+  }
+
+  .homepage-not-results .menu-visible {
+    z-index: 3;
   }
 }
 
@@ -158,11 +172,28 @@ nav a {
   .logo__link {
     margin-right: auto;
   }
+
+  .homepage-not-results .logo__link {
+    margin-right: auto;
+  }
+
   nav {
     display: flex;
     width: 45rem;
     margin: -2rem 0 0 8rem;
   }
+
+  .homepage-not-results nav {
+    display: flex;
+    width: 45rem;
+    margin: -2rem 0 0 8rem;
+  }
+
+  .homepage-not-results {
+    height: 12rem;
+    padding-top: 3rem;
+  }
+
   .header__links {
     position: static;
     display: flex;

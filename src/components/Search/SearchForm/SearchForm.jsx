@@ -52,10 +52,26 @@ class SearchForm extends React.Component {
   }
 
   render() {
+    let myClassWrapper;
+    if (this.props.isHomepage) {
+      myClassWrapper = 'search__wrapper-home';
+    } else if (this.props.isResults) {
+      myClassWrapper = 'search__wrapper-results';
+    } else {
+      myClassWrapper = 'search__wrapper';
+    }
+    let myClassForm;
+    if (this.props.isHomepage) {
+      myClassForm = 'search__form-home';
+    } else if (this.props.isResults) {
+      myClassForm = 'search__form-results';
+    } else {
+      myClassForm = 'search__form';
+    }
     const searchForm = (
-      <div className={this.props.isHomepage ? 'search__wrapper-home' : 'search__wrapper'}>
+      <div className={myClassWrapper}>
         {this.props.isHomepage ? <h1 className="search__header">{this.props.t('components.searchForm.header')}</h1> : null}
-        <form className={this.props.isHomepage ? 'search__form-home' : 'search__form'}>
+        <form className={myClassForm}>
           <SearchInput
             isHomepage={this.props.isHomepage}
             onSearchInputChanged={this.handleSearchInputChanged}

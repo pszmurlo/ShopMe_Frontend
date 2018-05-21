@@ -23,12 +23,27 @@ class Header extends React.Component {
     const className = this.state.displayMenu ? 'menu-visible' : 'menu-invisible';
     const userName = localStorage.getItem('userName');
     const userSurname = localStorage.getItem('userSurname');
-    const searchFormInHeader = !this.props.isHomepage ?
-      <SearchForm isHomepage={this.props.isHomepage} /> : null;
+    let searchFormInHeader;
+    if (!this.props.isHomepage) {
+      searchFormInHeader = (<SearchForm
+        isHomepage={this.props.isHomepage}
+        isResults={this.props.isResults}
+      />);
+    } else {
+      searchFormInHeader = null;
+    }
     const searchFormOutsideHeader = this.props.isHomepage ?
       <SearchForm isHomepage={this.props.isHomepage} /> : null;
+    let myClassHomepage;
+    if (!this.props.isHomepage && this.props.isResults) {
+      myClassHomepage = 'homepage-not-results';
+    } else if (!this.props.isHomepage) {
+      myClassHomepage = 'homepage-not';
+    } else {
+      myClassHomepage = 'homepage';
+    }
     return (
-      <div className={this.props.isHomepage ? 'homepage' : 'homepage-not'}>
+      <div className={myClassHomepage}>
         <header>
           <div className="header__container">
             <div className="logo__link"><Link href="/" to="/"><img src="/assets/images/logo.png" alt="logo" className="logo" /></Link></div>
