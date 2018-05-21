@@ -16,10 +16,6 @@
   font-size: 1.44rem;
 }
 
-.add-form__input--XS {
-  width: 15rem;
-}
-
 .add-form__input--disabled {
   background-color: #FFFFFF;
   border: 0.1rem solid #D0D0D0;

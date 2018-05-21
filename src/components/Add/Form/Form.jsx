@@ -6,7 +6,7 @@ import OfferTextarea from 'components/Add/Form/OfferTextarea/OfferTextarea';
 import PriceInput from 'components/Add/Form/PriceInput/PriceInput';
 import AboutMeTextarea from 'components/Add/Form/AboutMeTextarea/AboutMeTextarea';
 import FormButton from 'components/UI/FormButton/FormButton';
-import GenericInput from 'components/UI/GenericInput/GenericInput';
+import Input from 'components/UI/Input/Input';
 import GenericSelect from 'components/UI/GenericSelect/GenericSelect';
 
 import './Form.css';
@@ -178,51 +178,43 @@ class AddForm extends Component {
         onSubmit={this.onSubmit}
         noValidate
       >
-        <fieldset className="add-form__fieldset add-form__fieldset--basic">
+        <fieldset className="add-form__fieldset">
           <h1 className="add-form__title">{t('components.add.form.title')}</h1>
           {errorMessage && <p className="add-form__error">{t('components.add.form.errorMessage')}</p>}
-          <div className="add-form__fieldset-wrapper--basic">
-            <div className="add-form__fieldset-item add-form__fieldset-item--basic add-form__fieldset-item--margin-top">
-              <GenericInput
-                type="text"
-                name="offerTitle"
-                label={t('components.add.form.name')}
-                labelClassName="add-form_label"
-                spanClassName="add-form_span--inline"
-                inputClassName="input-title"
-                errorClassName="input-title__errorMessage"
-                maxLength={30}
-                required
-                validation={validator.validateAddOfferTitle}
-                onValidate={this.state.doValidate}
-                doValidate={this.setIsValid}
-                setValue={this.setValue}
-              />
-            </div>
+          <div className="add-form__item add-form__item--input">
+            <Input
+              type="text"
+              name="offerTitle"
+              label={t('components.add.form.name')}
+              maxLength={30}
+              required
+              validation={validator.validateAddOfferTitle}
+              onValidate={this.state.doValidate}
+              doValidate={this.setIsValid}
+              setValue={this.setValue}
+            />
           </div>
-          <div className="add-form__fieldset-wrapper--basic">
-            <div className="add-form__item add-form__item--input">
-              <GenericSelect
-                name="offerCategory"
-                selectData={this.props.categories}
-                selectNamePath="components.UI.categorySelect.name"
-                selectErrorPath="components.UI.categorySelect.errorEmptyField"
-                selectOptionsPath="components.UI.categorySelect.categoryOptions"
-                selectClassName="input-select input-select--gray"
-                errorClassName="input-select__errorMessage"
-                labelClassName="input__wrapper--relative"
-                required
-                onValidate={this.state.doValidate}
-                doValidate={this.setIsValid}
-                setValue={this.setValue}
-              />
-            </div>
+          <div className="add-form__item add-form__item--input">
+            <GenericSelect
+              name="offerCategory"
+              selectData={this.props.categories}
+              selectNamePath="components.UI.categorySelect.name"
+              selectErrorPath="components.UI.categorySelect.errorEmptyField"
+              selectOptionsPath="components.UI.categorySelect.categoryOptions"
+              selectClassName="input-select input-select--gray"
+              errorClassName="input-select__errorMessage"
+              labelClassName="input__wrapper--relative"
+              required
+              onValidate={this.state.doValidate}
+              doValidate={this.setIsValid}
+              setValue={this.setValue}
+            />
           </div>
         </fieldset>
-        <fieldset className="add-form__fieldset add-form__fieldset--offers">
-          <h3 className="add-form__fieldset-title">{t('components.add.form.fieldsetTitle')}</h3>
+        <fieldset className="add-form__fieldset">
+          <h2 className="add-form__fieldset-title">{t('components.add.form.fieldsetTitle')}</h2>
           <div className="add-form__fieldset-wrapper">
-            <div className="add-form__fieldset-item add-form__fieldset-item--textarea">
+            <div className="add-form__fieldset-item--offer-textarea">
               <OfferTextarea
                 name="offerBaseDescription"
                 label={t('components.add.form.offerBaseLabel')}
@@ -235,7 +227,7 @@ class AddForm extends Component {
                 setValue={this.setValue}
               />
             </div>
-            <div className="add-form__fieldset-item">
+            <div className="add-form__fieldset-item--price-input">
               <PriceInput
                 name="offerBasePrice"
                 required
@@ -246,7 +238,7 @@ class AddForm extends Component {
             </div>
           </div>
           <div className="add-form__fieldset-wrapper">
-            <div className="add-form__fieldset-item add-form__fieldset-item--textarea">
+            <div className="add-form__fieldset-item--offer-textarea">
               <OfferTextarea
                 name="offerExtendedDescription"
                 label={t('components.add.form.offerExtendedLabel')}
@@ -259,7 +251,7 @@ class AddForm extends Component {
                 setValue={this.setValue}
               />
             </div>
-            <div className="add-form__fieldset-item">
+            <div className="add-form__fieldset-item--price-input">
               <PriceInput
                 name="offerExtendedPrice"
                 onChange={this.setFieldStateValue}
@@ -298,10 +290,10 @@ class AddForm extends Component {
             </div>
           </div>
         </fieldset>
-        <fieldset className="add-form__fieldset add-form__fieldset--about">
+        <fieldset className="add-form__fieldset">
           <div className="add-form__fieldset-wrapper">
             <div className="add-form__fieldset-item">
-              <GenericInput
+              <Input
                 type="text"
                 name="offerUserName"
                 label={t('components.add.form.firstName')}
@@ -318,7 +310,7 @@ class AddForm extends Component {
               />
             </div>
             <div className="add-form__fieldset-item">
-              <GenericInput
+              <Input
                 type="text"
                 name="offerEmail"
                 label={t('components.add.form.email')}
@@ -334,7 +326,7 @@ class AddForm extends Component {
               />
             </div>
             <div className="add-form__fieldset-item">
-              <GenericInput
+              <Input
                 type="text"
                 name="offerPhone"
                 label={t('components.add.form.phone')}
@@ -373,7 +365,7 @@ class AddForm extends Component {
               />
             </div>
             <div className="add-form__fieldset-item">
-              <GenericInput
+              <Input
                 type="text"
                 name="offerCity"
                 label={t('components.add.form.city')}

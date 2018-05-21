@@ -2,27 +2,24 @@
   position: relative;
 }
 
-.add-form__input {
+.add-form__textarea {
   color: inherit;
   padding: 1rem;
   margin-top: 1rem;
-  background-color: #E0E0E0;
+  background-color: #FFFFFF;
   border: none;
-}
-
-.add-form__input--XL {
   height: 15rem;
-  width: 90%;
+  width: 100%;
   margin-bottom: -1rem;
 }
 
-.add-form__input--XL::placeholder {
+.add-form__textarea::placeholder {
   text-align: center;
   padding: 5rem 0;
 }
 
 .add-form__input--disabled {
-  background-color: #FFFFFF;
+  background-color: #E0E0E0;
   border: 0.1rem solid #D0D0D0;
   color: #D0D0D0;
 }
