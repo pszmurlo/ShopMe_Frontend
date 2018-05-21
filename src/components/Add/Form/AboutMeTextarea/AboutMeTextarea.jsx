@@ -45,10 +45,7 @@ class AboutMeTextArea extends Component {
 
   render() {
     return (
-      <label
-        className="add-form__label"
-        htmlFor={this.props.name}
-      >
+      <label htmlFor={this.props.name}>
         <textarea
           className="add-form__about-me-textarea"
           name={this.props.name}

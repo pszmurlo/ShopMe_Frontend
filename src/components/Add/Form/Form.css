@@ -1,5 +1,5 @@
 .add-form {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin: 3rem 2rem 0 2rem;
 }
 
@@ -14,14 +14,6 @@
 
 .add-form__item--button {
   width: 19.5rem;
-}
-
-.add-form_span--block {
-  display: block;
-}
-
-.add-form_span--inline {
-  display: inline;
 }
 
 .add-form__title {
@@ -75,8 +67,6 @@
   color: #24313c;
 }
 
-/* Inputs Styles */
-
 .add-form__input--disabled {
   background-color: #FFFFFF;
   border: 0.1rem solid #D0D0D0;
@@ -93,6 +83,7 @@
   }
   .add-form {
     margin: 3rem 4rem 0 4rem;
+    font-size: 1.4rem;
   }
 }
 

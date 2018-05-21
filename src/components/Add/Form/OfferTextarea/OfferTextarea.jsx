@@ -80,7 +80,9 @@ class OfferTextarea extends Component {
   render() {
     return (
       <label htmlFor={this.props.name} className="add-form__label">
-        <div>{this.props.label}</div>
+        <div className={`add-form__background-label add-form__background-label--${this.props.name}`}>
+          <span className="add-form__background-label--span">{this.props.label}</span>
+        </div>
         <textarea
           className={this.props.disabled
             ? 'add-form__offer-textarea add-form__input--disabled'
