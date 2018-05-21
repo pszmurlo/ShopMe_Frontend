@@ -8,7 +8,7 @@
 }
 
 .add-form__offer-price__inline {
-  width: 35%;
+  width: 50%;
   height: 100%;
   border: 0.1rem solid #999;
   border-radius: 0.5rem;
@@ -41,10 +41,9 @@
   border-color: #D0D0D0;
 }
 
-.add-form__error-message {
-  position: absolute;
-  bottom: -3.5rem;
-  right: 0;
+.add-form__offer-price--error-message {
+  position: relative;
+  top: 0.3rem;
   font-size: 1.2rem;
   color: #F92828;
 }
@@ -57,4 +56,16 @@
 
 .add-form__input-currency--disabled {
   color: #D0D0D0;
+}
+
+@media screen and (min-width: 500px) {
+  .add-form__offer-price__inline {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .add-form__offer-price__inline {
+    width: 35%;
+  }
 }

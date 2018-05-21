@@ -180,7 +180,9 @@ class AddForm extends Component {
       >
         <fieldset className="add-form__fieldset">
           <h1 className="add-form__title">{t('components.add.form.title')}</h1>
-          {errorMessage && <p className="add-form__error">{t('components.add.form.errorMessage')}</p>}
+          <div className="add-form__error-message--wrapper">
+            {errorMessage && <p className="add-form__error-message--paragraph">{t('components.add.form.errorMessage')}</p>}
+          </div>
           <div className="add-form__item add-form__item--input">
             <Input
               type="text"
@@ -188,6 +190,7 @@ class AddForm extends Component {
               label={t('components.add.form.name')}
               maxLength={30}
               required
+              errorClassName="generic-input__error-message generic-input__error-message--add-offer"
               validation={validator.validateAddOfferTitle}
               onValidate={this.state.doValidate}
               doValidate={this.setIsValid}
@@ -202,9 +205,10 @@ class AddForm extends Component {
               selectErrorPath="components.UI.categorySelect.errorEmptyField"
               selectOptionsPath="components.UI.categorySelect.categoryOptions"
               selectClassName="input-select input-select--gray"
-              errorClassName="input-select__errorMessage"
+              errorClassName="input-select__errorMessage input-select__errorMessage--add-offer"
               labelClassName="input__wrapper--relative"
               required
+              selectStyle="add-form-category"
               onValidate={this.state.doValidate}
               doValidate={this.setIsValid}
               setValue={this.setValue}
@@ -303,6 +307,7 @@ class AddForm extends Component {
                 label={t('components.add.form.firstName')}
                 maxLength={20}
                 required
+                errorClassName="generic-input__error-message generic-input__error-message--add-offer"
                 validation={validator.validateNameInput}
                 onValidate={this.state.doValidate}
                 doValidate={this.setIsValid}
@@ -315,6 +320,7 @@ class AddForm extends Component {
                 name="offerEmail"
                 label={t('components.add.form.email')}
                 required
+                errorClassName="generic-input__error-message generic-input__error-message--add-offer"
                 validation={validator.validateEmailInput}
                 onValidate={this.state.doValidate}
                 doValidate={this.setIsValid}
@@ -328,6 +334,7 @@ class AddForm extends Component {
                 label={t('components.add.form.phone')}
                 maxLength={10}
                 required
+                errorClassName="generic-input__error-message generic-input__error-message--add-offer"
                 validation={validator.validatePhoneNumber}
                 onValidate={this.state.doValidate}
                 doValidate={this.setIsValid}
@@ -346,9 +353,10 @@ class AddForm extends Component {
                 labelClassName=".select_span--yellow"
                 selectClassName="input-select input-select--yellow"
                 selectItemClassName="input-select__item-option--yellow"
-                errorClassName="input-select__errorMessage input-select__errorMessage2"
+                errorClassName="input-select__errorMessage input-select__errorMessage--add-offer"
                 disableChange={this.setCityEnable}
                 required
+                selectStyle="add-form-voivodeship"
                 onValidate={this.state.doValidate}
                 doValidate={this.setIsValid}
                 setValue={this.setValue}
@@ -362,6 +370,7 @@ class AddForm extends Component {
                 disabled={this.state.isCityDisabled}
                 maxLength={50}
                 required
+                errorClassName="generic-input__error-message generic-input__error-message--add-offer"
                 validation={validator.validateCity}
                 onValidate={this.state.doValidate}
                 doValidate={this.setIsValid}

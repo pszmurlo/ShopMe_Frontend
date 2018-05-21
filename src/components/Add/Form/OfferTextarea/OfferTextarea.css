@@ -28,9 +28,9 @@
   color: #D0D0D0;
 }
 
-.add-form__error-message {
+.add-form__offer-textarea--error-message {
   position: absolute;
-  bottom: -3rem;
+  bottom: -0.4rem;
   right: 0;
   font-size: 1.2rem;
   color: #F92828;

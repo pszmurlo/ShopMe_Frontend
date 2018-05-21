@@ -93,7 +93,7 @@ class OfferTextarea extends Component {
           required={this.props.required}
           onChange={this.handleChange}
         />
-        <div className="add-form__error-message">
+        <div className="add-form__offer-textarea--error-message">
           {this.state.errorMessage}
         </div>
       </label>
