@@ -255,6 +255,7 @@ class AddForm extends Component {
             <div className="add-form__fieldset-item--price-input">
               <PriceInput
                 name="offerExtendedPrice"
+                label={t('components.UI.priceInput.label')}
                 onChange={this.setFieldStateValue}
                 disabled={this.state.offerExtendedDisabled}
                 required={this.state.priceExtendedRequired}
@@ -281,6 +282,7 @@ class AddForm extends Component {
             <div className="add-form__fieldset-item">
               <PriceInput
                 name="offerExtraPrice"
+                label={t('components.UI.priceInput.label')}
                 onChange={this.setFieldStateValue}
                 disabled={this.state.offerExtraDisabled}
                 required={this.state.priceExtraRequired}
@@ -366,24 +368,24 @@ class AddForm extends Component {
                 setValue={this.setValue}
               />
             </div>
-            <div className="add-form__fieldset-wrapper">
-              <div className="add-form__fieldset-item add-form__fieldset-item--textarea">
-                <AboutMeTextarea
-                  name="offerUserAdditionalInfo"
-                  placeholder={t('components.UI.aboutMeTextarea.name')}
-                  onValidate={this.state.doValidate}
-                  doValidate={this.setIsValid}
-                  setValue={this.setValue}
-                />
-              </div>
-              <p className="add-form__caption">{t('components.add.form.caption')}</p>
-              <div className="add-form__item add-form__item--button">
-                <FormButton
-                  id="add-form__submit"
-                  type="submit"
-                  value={t('components.add.form.submitButton')}
-                />
-              </div>
+            <div className="add-form__fieldset-item add-form__fieldset-item--textarea">
+              <AboutMeTextarea
+                name="offerUserAdditionalInfo"
+                placeholder={t('components.UI.aboutMeTextarea.name')}
+                onValidate={this.state.doValidate}
+                doValidate={this.setIsValid}
+                setValue={this.setValue}
+              />
+            </div>
+            <div className="add-form__caption">
+              <p className="add-form__caption--paragraph">{t('components.add.form.caption')}</p>
+            </div>
+            <div className="add-form__item add-form__item--button">
+              <FormButton
+                id="add-form__submit"
+                type="submit"
+                value={t('components.add.form.submitButton')}
+              />
             </div>
           </div>
         </fieldset>
