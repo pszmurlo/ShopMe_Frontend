@@ -87,12 +87,12 @@ class PriceInput extends Component {
     const { t } = this.props;
     return (
       <label htmlFor={this.props.name} className="add-form__label">
-        <div className="add-form__label--hidden">{t('components.UI.PriceInput.label')}</div>
+        <div className="">{t('components.UI.priceInput.label')}</div>
         <input
           type="text"
           className={this.props.disabled
-            ? 'add-form__input add-form__input--XS add-form__input--disabled'
-            : 'add-form__input add-form__input--XS'
+            ? 'add-form__offer-price add-form__input--disabled'
+            : 'add-form__offer-price'
           }
           name={this.props.name}
           value={this.state.value}

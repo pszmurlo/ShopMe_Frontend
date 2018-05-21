@@ -83,8 +83,8 @@ class OfferTextarea extends Component {
         <div>{this.props.label}</div>
         <textarea
           className={this.props.disabled
-            ? 'add-form__input add-form__textarea add-form__input--disabled'
-            : 'add-form__input add-form__textarea'
+            ? 'add-form__offer-textarea add-form__input--disabled'
+            : 'add-form__offer-textarea'
           }
           name={this.props.name}
           value={this.state.value}

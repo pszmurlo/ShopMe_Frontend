@@ -2,18 +2,18 @@
   position: relative;
 }
 
-.add-form__textarea {
+.add-form__offer-textarea {
   color: inherit;
-  padding: 1rem;
-  margin-top: 1rem;
+  padding: 1.5rem;
+  margin: 1rem 0;
   background-color: #FFFFFF;
-  border: none;
   height: 15rem;
   width: 100%;
-  margin-bottom: -1rem;
+  border: 0.1rem solid #999;
+  border-radius: 0.5rem;
 }
 
-.add-form__textarea::placeholder {
+.add-form__offer-textarea::placeholder {
   text-align: center;
   padding: 5rem 0;
 }

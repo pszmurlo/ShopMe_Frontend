@@ -7,17 +7,18 @@
   left: -9999px;
 }
 
-.add-form__input {
+.add-form__offer-price {
   color: inherit;
   padding: 1rem;
   margin-top: 1rem;
-  background-color: #E0E0E0;
-  border: none;
+  background-color: #FFFFFF;
+  border: 0.1rem solid #999;
+  border-radius: 0.5rem;
   font-size: 1.44rem;
 }
 
-.add-form__input--disabled {
-  background-color: #FFFFFF;
+.add-form__offer-price--disabled {
+  background-color: #E0E0E0;
   border: 0.1rem solid #D0D0D0;
   color: #D0D0D0;
 }
