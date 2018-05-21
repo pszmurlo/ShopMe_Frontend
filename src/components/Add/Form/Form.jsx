@@ -332,8 +332,6 @@ class AddForm extends Component {
                 setValue={this.setValue}
               />
             </div>
-            {/* </div> */}
-            {/* <div className="add-form__fieldset-wrapper"> */}
             <div className="add-form__item add-form__item--input">
               <GenericSelect
                 name="offerVoivodeship"
@@ -368,16 +366,17 @@ class AddForm extends Component {
                 setValue={this.setValue}
               />
             </div>
-            {/* </div> */}
             <div className="add-form__fieldset-wrapper">
               <div className="add-form__fieldset-item add-form__fieldset-item--textarea">
                 <AboutMeTextarea
                   name="offerUserAdditionalInfo"
+                  placeholder={t('components.UI.aboutMeTextarea.name')}
                   onValidate={this.state.doValidate}
                   doValidate={this.setIsValid}
                   setValue={this.setValue}
                 />
               </div>
+              <p className="add-form__caption">{t('components.add.form.caption')}</p>
               <div className="add-form__item add-form__item--button">
                 <FormButton
                   id="add-form__submit"
@@ -386,7 +385,6 @@ class AddForm extends Component {
                 />
               </div>
             </div>
-            <p className="add-form__caption">{t('components.add.form.caption')}</p>
           </div>
         </fieldset>
       </form>
