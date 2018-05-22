@@ -19,7 +19,7 @@ const validator = {
 
   useOnlyLegalCharactersForZipCode(value) {
     const pattern = /^(?:(?=\S{6}$)\d*[-*]\d*)$/;
-    return !pattern.test(value) ? 'helpers.validator.errorOnlyNumeric' : undefined;
+    return !pattern.test(value) ? 'helpers.validator.errorIllegalCharacters' : undefined;
   },
 
   checkFormatZipCode(value) {
@@ -28,7 +28,7 @@ const validator = {
   },
 
   checkHouseNumberFormat(value) {
-    const pattern = /^\d+([a-z]?)?(\/?\d+([a-z]?)?)?$/;
+    const pattern = /^\d+([a-zA-z]?)?(\/?\d+([a-zA-z]?)?)?$/;
     return !pattern.test(value) ? 'helpers.validator.errorFormatHouseNumber' : undefined;
   },
 
