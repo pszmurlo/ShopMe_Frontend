@@ -1,8 +1,29 @@
-.offer-details {
-  width: 70%;
-  margin: 15rem auto 0 auto;
-  padding: 1rem;
-  border: 0.1rem solid #A9A9A9;
-  font-size: 1.6rem;
-  word-break: break-all;
+.details__section--top{
+  margin-top: 4rem;
+}
+.details__border{
+  margin: 5rem 3rem 3.5rem;
+  border-bottom: 0.1rem solid #000000;
+}
+.details__header{
+  text-align: center;
+  margin-bottom: 4rem;
+  font-size: 2.8rem;
+  padding: 0 1rem;
+}
+.details__section--packets{
+  text-align: center;
+  margin-top: 4rem;
+}
+
+@media (min-width: 768px){
+  .details__section--top{
+    margin-top: 14rem;
+  }
+}
+
+@media (min-width: 1025px){
+  .details__border{
+    margin: 5rem 10% 3.5rem;
+  }
 }

@@ -97,12 +97,13 @@
       },
     "offerDetails": {
         "contact": "Kontakt",
-        "show": "Pokaż",
+        "showContactData": "Pokaż dane kontaktowe",
         "aboutMe": "O mnie",
         "baseOffer": "Oferta podstawowa",
         "extendedOffer": "Oferta rozszerzona",
         "extraOffer": "Oferta ekstra",
-        "price": "cena"
+        "price": "cena",
+        "packages": "Pakiety usług"
       },
     "UI": {
       "categorySelect": {

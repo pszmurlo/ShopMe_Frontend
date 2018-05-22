@@ -97,12 +97,13 @@
     },
     "offerDetails": {
         "contact": "Contact",
-        "show": "Show",
+        "showContactData": "Show contact data",
         "aboutMe": "About me",
         "baseOffer": "Base offer",
         "extendedOffer": "Extended offer",
         "extraOffer": "Extra offer",
-        "price": "price"
+        "price": "price",
+        "packages": "Offer packages"
       },
     "UI": {
       "categorySelect": {
