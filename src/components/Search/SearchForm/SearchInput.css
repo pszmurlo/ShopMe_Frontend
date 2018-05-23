@@ -1,8 +1,9 @@
 .search__input-wrapper {
-  margin: 0;
-  padding: 1rem 0 0 0;
+  margin: 0.5rem 0 0 0;
+  padding: 0;
   display: flex;
   position: relative;
+  box-shadow: 0 .2rem 1rem 0 rgba(0,0,0,.4);
 }
 
 .homepage-not-results .search__input-wrapper {
@@ -37,6 +38,7 @@
 
   .homepage-not .search__input-wrapper {
     margin: 0;
+    box-shadow: none;
   }
 
   .homepage-not-results .search__input-wrapper {
