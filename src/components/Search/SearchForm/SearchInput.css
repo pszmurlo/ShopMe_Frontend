@@ -5,6 +5,10 @@
   position: relative;
 }
 
+.homepage-not-results .search__input-wrapper {
+  margin-right: 1.1rem;
+}
+
 .search__form-item {
   display: block;
   width: 100%;
@@ -36,7 +40,7 @@
   }
 
   .homepage-not-results .search__input-wrapper {
-    margin: 0 7rem;
+    margin: 0 3rem;
   }
 
   .search__message-error {
@@ -46,7 +50,7 @@
 
 @media (min-width: 1025px) {
   .homepage-not-results .search__input-wrapper {
-    margin: 0 1rem;
+    margin: 0 9rem;
     padding: 0;
     border: 0.1rem solid #999;
     z-index: 3;

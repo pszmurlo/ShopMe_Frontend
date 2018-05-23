@@ -29,6 +29,7 @@
 .search__wrapper-results {
   grid-column: 2 / span 9;
   grid-row: 2 / 2;
+  margin-top: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -44,33 +45,36 @@
   }
 
   .search__wrapper-results {
-    grid-column: 1 / span 9;
+    grid-column: 4 / span 6;
     grid-row: 2 / 2;
   }
 
   .search__header {
     padding-top: 5rem;
   }
-  .search__form {
-    width: 100%;
-    padding-top: 1rem;
-    margin: 0;
+
+  .homepage .search__form-home {
+    width: 75%;
   }
 
-  .search__form-results {
+  .search__form, .search__form-results {
     width: 100%;
-    padding-top: 2rem;
+    padding-top: 1rem;
     margin: 0;
   }
 }
 
 @media (min-width: 1025px) {
+  .homepage-not .search__wrapper {
+    grid-column: 3 / span 7;
+  }
+
   .search__wrapper-home {
     margin: 0;
   }
 
-  .homepage-not-results .search__wrapper-results {
-    grid-column: 2 / span 8;
+  .search__wrapper-results {
+    grid-column: 3 / span 6;
     grid-row: 2 / 2;
   }
 
