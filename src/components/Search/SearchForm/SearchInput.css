@@ -25,10 +25,14 @@
 
 @media (min-width: 768px) {
   .search__input-wrapper {
-    margin: 0 1rem;
+    margin: 0 5rem;
     padding: 0;
     border: 0.1rem solid #999;
     z-index: 3;
+  }
+
+  .homepage-not .search__input-wrapper {
+    margin: 0;
   }
 
   .homepage-not-results .search__input-wrapper {

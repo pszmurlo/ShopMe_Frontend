@@ -22,6 +22,10 @@
   grid-row: 2 / 2;
 }
 
+.homepage-not .search__wrapper {
+  margin-top: 1rem;
+}
+
 .search__wrapper-results {
   grid-column: 2 / span 9;
   grid-row: 2 / 2;
@@ -33,9 +37,10 @@
     margin: 0;
   }
 
-  .search__wrapper {
-    grid-column: 2 / 5;
+  .homepage-not .search__wrapper {
+    grid-column: 3 / span 5;
     grid-row: 1 / 1;
+    margin: 0;
   }
 
   .search__wrapper-results {
@@ -64,14 +69,18 @@
     margin: 0;
   }
 
+  .homepage-not-results .search__wrapper-results {
+    grid-column: 2 / span 8;
+    grid-row: 2 / 2;
+  }
+
   .search__form-home {
-    width: 50%;
+    width: 75%;
     margin: 0 auto;
     padding: 2rem 0;
   }
 
   .search__form, .search__form-results{
-    width: 45rem;
     margin: 0;
     padding-top: 1rem;
     z-index: 2;

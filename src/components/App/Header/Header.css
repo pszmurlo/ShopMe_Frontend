@@ -14,7 +14,12 @@ header {
   background-position: 100% 100%;
 }
 
-.homepage-not, .homepage-not-results {
+.homepage-not {
+  background: #fbdd61;
+  height: 12rem;
+}
+
+.homepage-not-results {
   background: #fbdd61;
   height: 15rem;
 }
@@ -22,7 +27,17 @@ header {
 .header__container {
   display: grid;
   grid-template-columns: repeat(11, 1fr);
-  grid-template-rows: 7rem 8rem;
+  grid-template-rows: 5.4rem 8rem;
+}
+
+.homepage .header__container {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: 5.4rem;
+}
+
+.homepage-not .header__container {
+  grid-template-rows: 5.4rem 9rem;
 }
 
 .logo {
@@ -87,12 +102,12 @@ nav a {
 }
 
 .header__link:hover {
-    color:#FFFFFF;
-    background-color: #fade42;
-    border-radius: 0.1rem;
-    cursor: pointer;
-    transition: background-color 0.5s ease;
-    transition: color 0.5s ease;
+  color:#FFFFFF;
+  background-color: #fade42;
+  border-radius: 0.1rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  transition: color 0.5s ease;
 }
 
 .menu-visible {
@@ -121,11 +136,16 @@ nav a {
     padding-top: 3rem;
   }
 
-  .header__container {
-    max-width: 76.8rem;
-    margin: 0 auto;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 6rem 8rem;
+  .homepage .header__container {
+    grid-template-columns: repeat(10, 7.5rem);
+    grid-template-rows: 5.4rem;
+    justify-content: center
+  }
+
+  .homepage-not .header__container {
+    grid-template-columns: repeat(12, 6rem);
+    grid-template-rows: 5.4rem;
+    justify-content: center
   }
 
   .header__arrow {
@@ -134,7 +154,17 @@ nav a {
 
   nav {
     grid-column: 5 / span 6;
-    margin-top: -0.5rem
+    margin: auto 4rem auto 0;
+    position: relative;
+    display: grid;
+    justify-items: end;
+    align-items: center;
+  }
+
+  .homepage-not nav {
+    grid-column: 8 / span 5;
+    margin: auto 3rem auto 0;
+
   }
 
   .user-name {
@@ -142,7 +172,12 @@ nav a {
   }
 
   .logo__link {
-    padding-left: 2.5rem;
+    grid-column: 1 / span 2;
+    margin-left: 4rem;
+  }
+
+  .homepage-not .logo__link {
+    margin-left: 2.5rem
   }
 
   .homepage-not-results {
@@ -162,35 +197,53 @@ nav a {
     margin-bottom: 3rem;
   }
 
-  .header__container {
-    min-height: 8rem;
-    max-width: 118rem;
-    padding: 0 2.5rem;
-    display: flex;
-    justify-content: space-between;
+  .homepage .header__container {
+    display: grid;
+    grid-template-columns: repeat(10, 10rem);
+    grid-template-rows: 5.4rem;
   }
+
+  .homepage-not .header__container {
+    display: grid;
+    grid-template-columns: repeat(17, 1fr);
+    grid-template-rows: 5.4rem;
+  }
+
+  .homepage-not-results .header__container {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: 6rem 8rem;
+  }
+
   .logo__link {
-    margin-right: auto;
+    margin: 0 auto 0 0;
+  }
+
+  .homepage-not .logo__link {
+    margin-left: 1.3rem;
   }
 
   .homepage-not-results .logo__link {
     margin-right: auto;
   }
-
   nav {
-    display: flex;
-    width: 45rem;
-    margin: -2rem 0 0 8rem;
+    margin: auto 0;
+  }
+
+  .homepage-not nav {
+    grid-column: 10 / span 8;
+    margin: auto 1.2rem auto 0;
   }
 
   .homepage-not-results nav {
     display: flex;
     width: 45rem;
-    margin: -2rem 0 0 8rem;
+    margin: -1rem 0 0 8rem;
+    grid-column: 6 / span 11;
   }
 
   .homepage-not-results {
-    height: 12rem;
+    height: 18rem;
     padding-top: 3rem;
   }
 

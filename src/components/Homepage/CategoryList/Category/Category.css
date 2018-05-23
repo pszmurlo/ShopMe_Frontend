@@ -3,6 +3,7 @@
   height: 14.5rem;
   width: 14.5rem;
   padding: 4rem 1rem;
+  margin: 0 auto;
   background-color: #FADE42;
   box-shadow: 0.4rem 0.4rem 0.8rem -0.2rem rgba(153,153,153,1);
   transition: all 0.3s ease-in-out;
