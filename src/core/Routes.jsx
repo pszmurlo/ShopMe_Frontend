@@ -18,8 +18,8 @@ const wrapInLayout = Screen => props => <Layout><Screen {...props} /></Layout>;
 
 export default() => (
   <BrowserRouter>
-    <Switch>
-      <ScrollToTop>
+    <ScrollToTop>
+      <Switch>
         <Route exact path="/" render={wrapInLayout(HomeScreen)} />
         <Route exact path="/search/" render={wrapInLayout(SearchScreen)} />
         <Route exact path="/add/form/success" render={wrapInLayout(SuccessAddScreen)} />
@@ -31,7 +31,7 @@ export default() => (
         <Route exact path="/register" render={wrapInLayout(RegisterScreen)} />
         <Route exact path="/articles/terms-and-conditions" render={wrapInLayout(TermsAndConditionsScreen)} />
         <Route exact path="/articles/:article" render={wrapInLayout(ArticleScreen)} />
-      </ScrollToTop>
-    </Switch>
+      </Switch>
+    </ScrollToTop>
   </BrowserRouter>
 );
