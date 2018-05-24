@@ -93,6 +93,7 @@ nav a {
 .header__links {
   position: absolute;
   top: 5.2rem;
+  margin: 0.1rem 0.8rem 0 0;
   background: #fff;
   box-shadow: 0 0.7rem 1rem 0 rgba(0,0,0,0.2);
 }
@@ -175,11 +176,6 @@ nav a {
     grid-column: 8 / span 5;
     margin: auto 3rem auto 0;
   }
-/*
-  .homepage-not-results nav {
-    grid-column: 8 / span 5;
-    margin: auto 3rem auto 0;
-  }*/
 
   .user-name {
     font-size: 1.6rem;
@@ -205,6 +201,10 @@ nav a {
 
   .homepage-not-results .menu-visible {
     z-index: 3;
+  }
+
+  .header__links{
+    margin: -1.4rem 0.8rem 0 0;
   }
 }
 
@@ -247,6 +247,9 @@ nav a {
 
   nav {
     margin: auto 0;
+    grid-auto-flow: row;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
   }
 
   .homepage-not nav {
@@ -272,6 +275,8 @@ nav a {
     justify-items: end;
     box-shadow: none;
     width: auto;
+    top: auto;
+    margin: 0;
   }
   .header__link {
     width: auto;
