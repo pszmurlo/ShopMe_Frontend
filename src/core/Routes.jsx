@@ -22,6 +22,7 @@ const wrapInLayout = (Screen, options) => props =>
     />
     </Layout>
   );
+
 export default() => (
   <BrowserRouter>
     <ScrollToTop>
