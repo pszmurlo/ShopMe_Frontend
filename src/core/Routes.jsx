@@ -27,17 +27,17 @@ export default() => (
   <BrowserRouter>
     <ScrollToTop>
       <Switch>
-        <Route exact path="/" render={wrapInLayout(HomeScreen)} />
-        <Route exact path="/search/" render={wrapInLayout(SearchScreen)} />
-        <Route exact path="/add/form/success" render={wrapInLayout(SuccessAddScreen)} />
-        <Route exact path="/register/success" render={wrapInLayout(SuccessRegisterScreen)} />
-        <Route exact path="/add/form" render={wrapInLayout(AddFormScreen)} />
-        <Route exact path="/offer/:offerId" render={wrapInLayout(OfferDetailsScreen)} />
-        <Route exact path="/login" render={wrapInLayout(LoginScreen)} />
-        <Route exact path="/signup" render={wrapInLayout(SignUpScreen)} />
-        <Route exact path="/register" render={wrapInLayout(RegisterScreen)} />
-        <Route exact path="/articles/terms-and-conditions" render={wrapInLayout(TermsAndConditionsScreen)} />
-        <Route exact path="/articles/:article" render={wrapInLayout(ArticleScreen)} />
+        <Route exact path="/" render={wrapInLayout(HomeScreen, { requiresAuthorization: false })} />
+        <Route exact path="/search/" render={wrapInLayout(SearchScreen, { requiresAuthorization: false })} />
+        <Route exact path="/add/form/success" render={wrapInLayout(SuccessAddScreen, { requiresAuthorization: true })} />
+        <Route exact path="/register/success" render={wrapInLayout(SuccessRegisterScreen, { requiresAuthorization: false })} />
+        <Route exact path="/add/form" render={wrapInLayout(AddFormScreen, { requiresAuthorization: true })} />
+        <Route exact path="/offer/:offerId" render={wrapInLayout(OfferDetailsScreen, { requiresAuthorization: false })} />
+        <Route exact path="/login" render={wrapInLayout(LoginScreen, { requiresAuthorization: false })} />
+        <Route exact path="/signup" render={wrapInLayout(SignUpScreen, { requiresAuthorization: false })} />
+        <Route exact path="/register" render={wrapInLayout(RegisterScreen, { requiresAuthorization: false })} />
+        <Route exact path="/articles/terms-and-conditions" render={wrapInLayout(TermsAndConditionsScreen, { requiresAuthorization: false })} />
+        <Route exact path="/articles/:article" render={wrapInLayout(ArticleScreen, { requiresAuthorization: false })} />
       </Switch>
     </ScrollToTop>
   </BrowserRouter>
