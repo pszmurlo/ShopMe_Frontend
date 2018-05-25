@@ -48,6 +48,10 @@
     "errorMessage": {
       "text": "Something went wrong"
     },
+    "forbidden": {
+      "text": "You do not have permission to view this page.",
+      "link": "Sign In"
+    },
     "noSearchResults": {
       "noResultsTitle": "No results have been found match your criteria."
     },
