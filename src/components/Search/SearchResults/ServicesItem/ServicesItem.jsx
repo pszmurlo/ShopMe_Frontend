@@ -14,7 +14,7 @@ const ServicesItem = (props) => {
       >
         {((props.page - 1) * 10) + props.index + 1}. {props.value.title}
       </Link>
-      <span className="services-item__span">{props.t(`components.UI.categorySelect.categoryOptions.${props.value.category.name}`)}</span>
+      <span className="services-item__span">{props.t(`components.UI.categorySelect.categoryOptions.${props.value.category}`)}</span>
       <span className="services-item__span">{props.value.basePrice} {props.t('components.foundSearchResults.currency')}</span>
       <span className="services-item__span">{date}</span>
     </li>
