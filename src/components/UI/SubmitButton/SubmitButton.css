@@ -39,6 +39,10 @@
   .form__button--submit {
     display: none;
   }
+
+  .withYellowBackground .form__button--submit-home:disabled {
+    display: none;
+  }
   .form__button--submit:disabled {
     background: #999;
     cursor: auto;
@@ -59,5 +63,9 @@
     background: #000;
     color: #fff;
     cursor: pointer;
+  }
+
+  .withYellowBackground .form__button--submit-home:disabled {
+    display: none;
   }
 }

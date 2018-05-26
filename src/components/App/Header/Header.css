@@ -7,38 +7,38 @@ header {
   z-index: 2;
 }
 
-.homepage {
+.withLargePhoto {
   height: 38rem;
   background: url("/assets/images/search-section/mobile.jpg");
   background-size: cover;
   background-position: 100% 100%;
 }
 
-.homepage-not {
+.withYellowBackground {
   background: #fbdd61;
   height: 12rem;
 }
 
-.homepage-not-results {
+.withSearchBar {
   background: #fbdd61;
   height: 15rem;
 }
 
 .header__container {
   display: grid;
-  grid-template-columns: repeat(5, 6.3rem);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 5.4rem 8rem;
   justify-content: center;
 }
 
-.homepage .header__container {
+.withLargePhoto .header__container {
   display: grid;
-  grid-template-columns: repeat(5, 6.3rem);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 5.4rem;
   justify-content: center;
 }
 
-.homepage-not .header__container {
+.withYellowBackground .header__container {
   grid-template-rows: 5.4rem 9rem;
 }
 
@@ -66,7 +66,7 @@ nav a {
   text-decoration: none;
 }
 
-.homepage-not-results nav {
+.withSearchBar nav {
   margin: 0;
 }
 
@@ -131,28 +131,28 @@ nav a {
     margin-bottom: 3rem;
   }
 
-  .homepage {
+  .withLargePhoto {
     height: 48rem;
     padding-top: 3rem;
   }
 
-  .homepage-not {
+  .withYellowBackground {
     padding-top: 3rem;
   }
 
-  .homepage .header__container {
+  .withLargePhoto .header__container {
     grid-template-columns: repeat(10, 7.5rem);
     grid-template-rows: 5.4rem;
     justify-content: center
   }
 
-  .homepage-not .header__container {
+  .withYellowBackground .header__container {
     grid-template-columns: repeat(12, 6rem);
     grid-template-rows: 5.4rem;
     justify-content: center
   }
 
-  .homepage-not-results .header__container {
+  .withSearchBar .header__container {
     display: grid;
     grid-template-columns: repeat(12, 6rem);
     grid-template-rows: 5.4rem 8rem;
@@ -172,7 +172,7 @@ nav a {
     align-items: center;
   }
 
-  .homepage-not nav, .homepage-not-results nav {
+  .withYellowBackground nav, .withSearchBar nav {
     grid-column: 8 / span 5;
     margin: auto 3rem auto 0;
   }
@@ -186,20 +186,20 @@ nav a {
     margin-left: 4rem;
   }
 
-  .homepage-not .logo__link {
+  .withYellowBackground .logo__link {
     margin-left: 2.5rem
   }
 
-  .homepage-not-results .logo__link {
+  .withSearchBar .logo__link {
     margin-left: 2.5rem
   }
 
-  .homepage-not-results {
+  .withSearchBar {
     padding-top: 3rem;
     height: 18rem;
   }
 
-  .homepage-not-results .menu-visible {
+  .withSearchBar .menu-visible {
     z-index: 3;
   }
 
@@ -215,19 +215,19 @@ nav a {
     margin-bottom: 3rem;
   }
 
-  .homepage .header__container {
-    display: grid;
-    grid-template-columns: repeat(10, 10rem);
-    grid-template-rows: 5.4rem;
-  }
-
-  .homepage-not .header__container {
+  .withLargePhoto .header__container {
     display: grid;
     grid-template-columns: repeat(17, 1fr);
     grid-template-rows: 5.4rem;
   }
 
-  .homepage-not-results .header__container {
+  .withYellowBackground .header__container {
+    display: grid;
+    grid-template-columns: repeat(17, 1fr);
+    grid-template-rows: 5.4rem;
+  }
+
+  .withSearchBar .header__container {
     display: grid;
     grid-template-columns: repeat(10, 10rem);
     grid-template-rows: 5.4rem 8rem;
@@ -237,34 +237,34 @@ nav a {
     margin: 0 auto 0 0;
   }
 
-  .homepage-not .logo__link {
+  .withYellowBackground .logo__link, .withLargePhoto .logo__link {
     margin-left: 1.3rem;
   }
 
-  .homepage-not-results .logo__link {
+  .withSearchBar .logo__link {
     margin-left: 0;
   }
 
-  nav {
+  nav.logged-in {
     margin: auto 0;
     grid-auto-flow: row;
     display: grid;
     grid-template-columns: 2fr 1fr;
   }
 
-  .homepage-not nav {
+  .withYellowBackground nav, .withLargePhoto nav {
     grid-column: 10 / span 8;
     margin: auto 1.2rem auto 0;
   }
 
-  .homepage-not-results nav {
+  .withSearchBar nav {
     display: grid;
     margin: auto 0;
     grid-column: 6 / span 5;
     grid-row: 1 / 2;
   }
 
-  .homepage-not-results {
+  .withSearchBar {
     height: 18rem;
     padding-top: 3rem;
   }

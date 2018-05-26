@@ -18,7 +18,7 @@ class SearchInput extends React.Component {
   }
 
   componentWillMount() {
-    if (this.state.phrase) {
+    if (this.state.phrase && this.props.enableValidation) {
       this.validatePhrase(this.state.phrase);
     }
   }
@@ -26,7 +26,11 @@ class SearchInput extends React.Component {
   handleInputChange(input) {
     const phrase = input.target.value;
     this.setState({ phrase });
-    this.validatePhrase(phrase.trim());
+    if (this.props.enableValidation) {
+      this.validatePhrase(phrase.trim());
+    } else {
+      this.props.onSearchInputChanged(phrase.trim(), true);
+    }
   }
 
   validatePhrase(phrase) {
@@ -75,7 +79,7 @@ class SearchInput extends React.Component {
             aria-label={t('components.searchForm.label')}
             value={this.state.phrase || ''}
           />
-          <SubmitButton onClick={this.props.handleSubmit} phrase={this.props.phrase} className={this.props.isHomepage ? 'form__button--submit-home' : 'form__button--submit'}>
+          <SubmitButton onClick={this.props.handleSubmit} enableValidation={this.props.enableValidation} phrase={this.props.phrase} className={this.props.isHomepage ? 'form__button--submit-home' : 'form__button--submit'}>
             {this.props.t('components.searchForm.button')}
           </SubmitButton>
           <SubmitButton onClick={this.props.handleSubmit} phrase={this.props.phrase} className="form__button--lens" />

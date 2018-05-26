@@ -4,7 +4,6 @@ import { translate } from 'react-i18next';
 import SearchInput from 'components/Search/SearchForm/SearchInput';
 import './SearchForm.css';
 
-
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
@@ -18,16 +17,10 @@ class SearchForm extends React.Component {
     this.handleSearchInputChanged = this.handleSearchInputChanged.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateSearchPhrase = this.updateSearchPhrase.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidUpdate() {
     this.fireRedirect = false;
-  }
-
-  onSubmit() {
-    if (this.state.isValidPhrase) this.fireRedirect = true;
-    this.setState({});
   }
 
   handleSearchInputChanged(phrase, isValidPhrase) {
@@ -40,8 +33,11 @@ class SearchForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.state.isValidPhrase === false) return;
-    this.onSubmit(this.state.phrase);
+    if (this.state.isValidPhrase === false && (this.props.isHomepage || this.props.isResults)) {
+      return;
+    }
+    if (this.state.isValidPhrase) this.fireRedirect = true;
+    this.setState({});
   }
 
   updateSearchPhrase(phrase, isValidPhrase) {
@@ -53,31 +49,31 @@ class SearchForm extends React.Component {
 
   render() {
     let myClassWrapper;
-    if (this.props.isHomepage) {
-      myClassWrapper = 'search__wrapper-home';
-    } else if (this.props.isResults) {
-      myClassWrapper = 'search__wrapper-results';
-    } else {
-      myClassWrapper = 'search__wrapper';
-    }
     let myClassForm;
     if (this.props.isHomepage) {
+      myClassWrapper = 'search__wrapper-home';
       myClassForm = 'search__form-home';
     } else if (this.props.isResults) {
+      myClassWrapper = 'search__wrapper-results';
       myClassForm = 'search__form-results';
     } else {
+      myClassWrapper = 'search__wrapper';
       myClassForm = 'search__form';
     }
+
+    const searchInput = (
+      <SearchInput
+        isHomepage={this.props.isHomepage}
+        onSearchInputChanged={this.handleSearchInputChanged}
+        handleSubmit={this.handleSubmit}
+        phrase={this.state.phrase}
+        enableValidation={this.props.isHomepage || this.props.isResults}
+      />);
     const searchForm = (
       <div className={myClassWrapper}>
         {this.props.isHomepage ? <h1 className="search__header">{this.props.t('components.searchForm.header')}</h1> : null}
         <form className={myClassForm}>
-          <SearchInput
-            isHomepage={this.props.isHomepage}
-            onSearchInputChanged={this.handleSearchInputChanged}
-            handleSubmit={this.handleSubmit}
-            phrase={this.state.phrase}
-          />
+          {searchInput}
         </form>
       </div>
     );

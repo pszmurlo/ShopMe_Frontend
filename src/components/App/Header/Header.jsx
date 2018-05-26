@@ -36,11 +36,11 @@ class Header extends React.Component {
       <SearchForm isHomepage={this.props.isHomepage} /> : null;
     let myClassHomepage;
     if (!this.props.isHomepage && this.props.isResults) {
-      myClassHomepage = 'homepage-not-results';
+      myClassHomepage = 'withSearchBar';
     } else if (!this.props.isHomepage) {
-      myClassHomepage = 'homepage-not';
+      myClassHomepage = 'withYellowBackground';
     } else {
-      myClassHomepage = 'homepage';
+      myClassHomepage = 'withLargePhoto';
     }
     return (
       <div className={myClassHomepage}>
@@ -48,7 +48,7 @@ class Header extends React.Component {
           <div className="header__container">
             <div className="logo__link"><Link href="/" to="/"><img src="/assets/images/logo.png" alt="logo" className="logo" /></Link></div>
             {searchFormInHeader}
-            <nav>
+            <nav className={userName ? 'logged-in' : null}>
               {userName ?
                 <div>
                   <span>{this.props.t('components.UI.header.loggedAs')} </span>

@@ -34,14 +34,17 @@ export default class SearchScreen extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.location.category !== nextProps.location.category) {
+    if (this.props.location.category !== nextProps.location.category ||
+      this.props.location.search !== nextProps.location.search) {
       const getDataWithReceivedProps = this.getData.bind(this);
-      const category = new URLSearchParams(nextProps.location.search).get('category');
+      const searchQueryValue = new URLSearchParams(nextProps.location.search);
+      const category = searchQueryValue.get('category');
 
       this.setState({
         category,
         paginationData: { pageNumber: 1 },
         page: 1,
+        phrase: searchQueryValue.get('title'),
       }, getDataWithReceivedProps);
     }
   }
