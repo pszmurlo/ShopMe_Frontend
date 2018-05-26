@@ -14,14 +14,9 @@ import TermsAndConditionsScreen from 'screens/Register/TermsAndConditions/TermsA
 import ArticleScreen from 'screens/Article/Article';
 import Layout from 'components/App/Layout/Layout';
 
-const wrapInLayout = (Screen, options) => props =>
-  (
-    <Layout><Screen
-      requiresAuthorization={options && options.requiresAuthorization}
-      {...props}
-    />
-    </Layout>
-  );
+const wrapInLayout = (Screen, options) => props => (
+  <Layout requiresAuthorization={options && options.requiresAuthorization}><Screen {...props} />
+  </Layout>);
 
 export default() => (
   <BrowserRouter>

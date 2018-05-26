@@ -11,14 +11,21 @@ class AddFormScreen extends React.Component {
       responseId: '',
       categories: [],
       voivodeships: [],
+      mounted: undefined,
     };
     this.sendData = this.sendData.bind(this);
   }
 
   componentDidMount() {
     const { http } = this.props;
-    Promise.all([http.get('/api/categories'), http.get('/api/voivodeships')])
-      .then(res => this.setState({ categories: res[0], voivodeships: res[1] }));
+    if (this.state.mounted) {
+      Promise.all([http.get('/api/categories'), http.get('/api/voivodeships')])
+        .then(res => this.setState({ categories: res[0], voivodeships: res[1] }));
+    }
+  }
+
+  componentWillUnmout() {
+    this.setState({ mounted: false });
   }
 
   sendData(data) {

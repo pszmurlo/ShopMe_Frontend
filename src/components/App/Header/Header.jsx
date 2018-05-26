@@ -19,16 +19,18 @@ class Header extends React.Component {
 
   render() {
     const className = this.state.displayMenu ? 'menu-visible' : 'menu-invisible';
+    const userName = localStorage.getItem('userName');
+    const userSurname = localStorage.getItem('userSurname');
     return (
       <header>
         <div className="header__container">
           <div className="logo__link"><Link href="/" to="/"><img src="/assets/images/logo.png" alt="logo" className="logo" /></Link></div>
           <nav>
-            {this.props.userName ?
+            {userName ?
               <div>
                 <span>{this.props.t('components.UI.header.loggedAs')} </span>
                 <button onClick={this.toggleClass} className="header__arrow">
-                  <span className="user-name">{this.props.userName} {this.props.userSurname}
+                  <span className="user-name">{userName} {userSurname}
                     <div className="header__icons">
                       {this.state.displayMenu ? <img src="/assets/images/header/header-arrow-up.png" alt="" className="header__arrow-img" /> : <img src="/assets/images/header/header-arrow-down.png" alt="" className="header__arrow-img" />}
                     </div>
@@ -36,8 +38,8 @@ class Header extends React.Component {
                 </button>
               </div> : <LoginButton />}
             <div className={`${className} header__links`}>
-              {this.props.userName && <Link href="/add/form" to="/add/form" className="header__link">{this.props.t('components.UI.header.add')}</Link>}
-              {this.props.userName && <Link href="/" to="/" className="header__link" onClick={this.props.onClick}>{this.props.t('components.UI.header.logout')}</Link>}
+              {userName && <Link href="/add/form" to="/add/form" className="header__link">{this.props.t('components.UI.header.add')}</Link>}
+              {userName && <Link href="/" to="/" className="header__link" onClick={this.props.onClick}>{this.props.t('components.UI.header.logout')}</Link>}
             </div>
           </nav>
         </div>

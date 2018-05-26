@@ -11,11 +11,6 @@ class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {
-        token: localStorage.getItem('userToken'),
-        name: localStorage.getItem('userName'),
-        surname: localStorage.getItem('userSurname'),
-      },
       hasError: false,
       fireRedirect: false,
       forbidden: false,
@@ -24,7 +19,6 @@ class Layout extends Component {
       get: (...rest) => httpHelper.get(...rest).catch(this.displayError),
       post: (...rest) => httpHelper.post(...rest).catch(this.displayError),
     };
-    this.setUser = this.setUser.bind(this);
     this.displayError = this.displayError.bind(this);
     this.logout = this.logout.bind(this);
   }
@@ -38,10 +32,6 @@ class Layout extends Component {
     this.resetRequirements();
   }
 
-  setUser(token, name, surname) {
-    this.setState({ user: { token, name, surname } });
-  }
-
   displayError(hasError) {
     this.setState({ hasError });
   }
@@ -50,16 +40,14 @@ class Layout extends Component {
     localStorage.removeItem('userToken');
     localStorage.removeItem('userName');
     localStorage.removeItem('userSurname');
-    this.setUser({ fireRedirect: true });
+    this.setState({ fireRedirect: true });
   }
 
   isRequireAuthorization() {
-    const { children } = this.props;
-    if (children.props.requiresAuthorization &&
-      this.state.user.token === null) {
+    const token = localStorage.getItem('userToken');
+    if (this.props.requiresAuthorization &&
+      !token) {
       this.setState({ forbidden: true });
-    } else {
-      this.setState({ forbidden: false });
     }
   }
 
@@ -70,7 +58,6 @@ class Layout extends Component {
   render() {
     const { children } = this.props;
     const childProps = {
-      setUser: this.setUser,
       displayError: this.displayError,
       http: this.http,
     };
@@ -93,8 +80,6 @@ class Layout extends Component {
         {this.state.fireRedirect && <Redirect to="/" />}
         <div className="content">
           <Header
-            userName={this.state.user.name}
-            userSurname={this.state.user.surname}
             onClick={this.logout}
           />
           <main className={this.props.className}>
