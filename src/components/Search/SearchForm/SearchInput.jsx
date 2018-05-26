@@ -10,6 +10,7 @@ class SearchInput extends React.Component {
       isValidPhrase: false,
       errorMessage: null,
       phrase: props.phrase,
+      matchRegex: undefined,
     };
     this.validatePhrase = this.validatePhrase.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
@@ -29,31 +30,26 @@ class SearchInput extends React.Component {
   }
 
   validatePhrase(phrase) {
-    const isValid = /^[A-ZĄĘĆŁŃÓŚŹŻ0-9\s]*$/i.test(phrase);
-    let isValidPhrase;
-    const cleanedSearchPhrase = isValid ? phrase : undefined;
-    console.log(cleanedSearchPhrase);
-    // const cleanedSearchPhrase = phrase.replace(/[\u{1f300}-\u{1f5ff}\u{1f900}-\u{1f9ff}\u{1f600}-\u{1f64f}\u{1f680}-\u{1f6ff}\u{2600}-\u{26ff}\u{2700}-\u{27bf}\u{1f1e6}-\u{1f1ff}\u{1f191}-\u{1f251}\u{1f004}\u{1f0cf}\u{1f170}-\u{1f171}\u{1f17e}-\u{1f17f}\u{1f18e}\u{3030}\u{2b50}\u{2b55}\u{2934}-\u{2935}\u{2b05}-\u{2b07}\u{2b1b}-\u{2b1c}\u{3297}\u{3299}\u{303d}\u{00a9}\u{00ae}\u{2122}\u{23f3}\u{24c2}\u{23e9}-\u{23ef}\u{25b6}\u{23f8}-\u{23fa}!@#$%^&*()=+\-_;:'"<>,.?/{}|`~[\]\\]/ug, '');
-    if (cleanedSearchPhrase) {
-      isValidPhrase = cleanedSearchPhrase.length > 1
-      && Number.isNaN(Number(cleanedSearchPhrase));
-    }
+    const matchRegex = /^[A-ZĄĘĆŁŃÓŚŹŻ0-9\s]*$/i.test(phrase);
+    this.setState({ matchRegex });
+    if (matchRegex) {
+      const isValidPhrase = phrase.length > 1
+      && Number.isNaN(Number(phrase));
 
-    if (!isValid) {
-      this.props.onSearchInputChanged(null, isValidPhrase);
-      this.setState({ errorMessage: 'Zawiera niedozwolone znaki' });
-    }
-
-    this.setState({ isValidPhrase });
-    if (isValidPhrase && Number.isNaN(Number(cleanedSearchPhrase)) && cleanedSearchPhrase !== '') {
-      this.props.onSearchInputChanged(cleanedSearchPhrase, isValidPhrase);
-      this.setState({ errorMessage: null });
-    } else if (!Number.isNaN(Number(cleanedSearchPhrase)) && cleanedSearchPhrase !== '') {
-      this.props.onSearchInputChanged(null, isValidPhrase);
-      this.setState({ errorMessage: 'components.searchForm.numberError' });
+      this.setState({ isValidPhrase });
+      if (isValidPhrase && Number.isNaN(Number(phrase)) && phrase !== '') {
+        this.props.onSearchInputChanged(phrase, isValidPhrase);
+        this.setState({ errorMessage: null });
+      } else if (!Number.isNaN(Number(phrase)) && phrase !== '') {
+        this.props.onSearchInputChanged(null, isValidPhrase);
+        this.setState({ errorMessage: 'components.searchForm.numberError' });
+      } else {
+        this.props.onSearchInputChanged(null, isValidPhrase);
+        this.setState({ errorMessage: 'components.searchForm.lengthError' });
+      }
     } else {
-      this.props.onSearchInputChanged(null, isValidPhrase);
-      this.setState({ errorMessage: 'components.searchForm.lengthError' });
+      this.props.onSearchInputChanged(null, matchRegex);
+      this.setState({ errorMessage: 'components.searchForm.illegalError' });
     }
   }
 
@@ -85,7 +81,7 @@ class SearchInput extends React.Component {
           </SubmitButton>
           <SubmitButton onClick={this.props.handleSubmit} phrase={this.props.phrase} className="form__button--lens" />
         </div>
-        {!this.state.isValidPhrase && (<p className="search__message-error">{t(this.state.errorMessage)}</p>)}
+        {(!this.state.isValidPhrase || !this.state.matchRegex) && (<p className="search__message-error">{t(this.state.errorMessage)}</p>)}
       </div>
     );
   }
