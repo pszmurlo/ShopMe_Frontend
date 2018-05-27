@@ -43,6 +43,22 @@
   .withYellowBackground .form__button--submit-home:disabled {
     display: none;
   }
+
+  .withSearchBar .form__button--submit:disabled {
+    background: #999;
+    cursor: auto;
+  }
+
+.withSearchBar .form__button--submit {
+    display: block;
+    max-height: 3.5rem;
+    padding: 1rem 3rem;
+    align-self: center;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+  }
   .form__button--submit:disabled {
     background: #999;
     cursor: auto;

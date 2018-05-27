@@ -13,7 +13,7 @@
 
 .search__form, .search__form-results {
   width: 95%;
-  margin: 0 auto;
+  margin: auto;
   padding-top: 0;
 }
 
@@ -36,7 +36,7 @@
   }
 
   .search__wrapper-results {
-    grid-column: 4 / span 6;
+    grid-column: 1 / span 12;
     grid-row: 2 / 2;
   }
 
@@ -44,11 +44,11 @@
     padding-top: 5rem;
   }
 
-  .search__form-home {
-    width: 75%;
+  .search__form-home, .search__form-results{
+    width: 75rem;
   }
 
-  .search__form, .search__form-results {
+  .search__form {
     width: 100%;
     padding-top: 1rem;
     margin: 0;
@@ -65,7 +65,7 @@
   }
 
   .search__wrapper-results {
-    grid-column: 6 / span 7;
+    grid-column: 4 / span 11;
     grid-row: 2 / 2;
   }
 

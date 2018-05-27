@@ -1,5 +1,5 @@
 .search__input-wrapper {
-  margin: 0.5rem 0 0 0;
+  margin: 1rem 0 0 0;
   padding: 0;
   display: flex;
   position: relative;
@@ -20,8 +20,8 @@
 .search__message-error {
   text-align: center;
   font-size: 1.4rem;
-  padding: 0.5rem 0 0 0 ;
-  margin: 1rem 0 0 0;
+  padding: 1rem 0 ;
+  margin: 1rem 0;
 }
 
 @media (min-width: 768px) {
@@ -38,7 +38,7 @@
   }
 
   .withSearchBar .search__input-wrapper {
-    margin: 0 3rem;
+    margin: 1rem 6.7rem 0 3.7rem;
   }
 
   .search__message-error {
@@ -48,20 +48,9 @@
 
 @media (min-width: 1025px) {
   .withSearchBar .search__input-wrapper {
-    margin: 0;
+    margin: 1rem 2.3rem 0 3.3rem;
     padding: 0;
     border: 0.1rem solid #999;
     z-index: 3;
-  }
-
-  .withSearchBar .search__form-item {
-    display: block;
-    width: 100%;
-    margin: 0 auto;
-    max-height: 3.5rem;
-    border: none;
-    outline: none;
-    text-align: center;
-    padding: 1rem 0;
   }
 }

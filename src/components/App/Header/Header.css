@@ -16,18 +16,18 @@ header {
 
 .withYellowBackground {
   background: #fbdd61;
-  height: 12rem;
+  height: 12.9rem;
 }
 
 .withSearchBar {
   background: #fbdd61;
-  height: 15rem;
+  height: 16.4rem;
 }
 
 .header__container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 5.4rem 8rem;
+  grid-template-rows: 5.4rem 11rem;
   justify-content: center;
 }
 
@@ -131,13 +131,19 @@ nav a {
     margin-bottom: 3rem;
   }
 
+  .withSearchBar {
+    padding-top: 2rem;
+    height: 18.8rem;
+  }
+
   .withLargePhoto {
     height: 48rem;
-    padding-top: 3rem;
+    padding-top: 2rem;
   }
 
   .withYellowBackground {
-    padding-top: 3rem;
+    padding-top: 2rem;
+    height: 9.4rem;
   }
 
   .withLargePhoto .header__container {
@@ -155,7 +161,7 @@ nav a {
   .withSearchBar .header__container {
     display: grid;
     grid-template-columns: repeat(12, 6rem);
-    grid-template-rows: 5.4rem 8rem;
+    grid-template-rows: 5.4rem 11.5rem;
     justify-content: center
   }
 
@@ -194,11 +200,6 @@ nav a {
     margin-left: 2.5rem
   }
 
-  .withSearchBar {
-    padding-top: 3rem;
-    height: 18rem;
-  }
-
   .withSearchBar .menu-visible {
     z-index: 3;
   }
@@ -213,6 +214,15 @@ nav a {
     padding: 0;
     font-size: 1.6rem;
     margin-bottom: 3rem;
+  }
+
+  .header__container {
+    max-width: 118rem;
+    margin: 0 auto;
+  }
+
+  .withSearchBar {
+    height: 19.8rem;
   }
 
   .withLargePhoto .header__container {
@@ -230,7 +240,7 @@ nav a {
   .withSearchBar .header__container {
     display: grid;
     grid-template-columns: repeat(17, 1fr);
-    grid-template-rows: 5.4rem 8rem;
+    grid-template-rows: 5.4rem 12.4rem;
   }
 
   .logo__link {
@@ -262,11 +272,6 @@ nav a {
     margin: auto 1.2rem auto 0;
     grid-column: 10 / span 8;
     grid-row: 1 / 2;
-  }
-
-  .withSearchBar {
-    height: 18rem;
-    padding-top: 3rem;
   }
 
   .header__links {
