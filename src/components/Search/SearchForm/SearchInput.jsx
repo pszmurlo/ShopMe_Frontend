@@ -33,11 +33,10 @@ class SearchInput extends React.Component {
     const matchRegex = /^[A-ZĄĘĆŁŃÓŚŹŻ0-9\s]*$/i.test(phrase);
     this.setState({ matchRegex });
     if (matchRegex) {
-      const isValidPhrase = phrase.length > 1
-      && Number.isNaN(Number(phrase));
+      const isValidPhrase = phrase.length > 1 && Number.isNaN(Number(phrase));
 
       this.setState({ isValidPhrase });
-      if (isValidPhrase && Number.isNaN(Number(phrase)) && phrase !== '') {
+      if (isValidPhrase && phrase !== '') {
         this.props.onSearchInputChanged(phrase, isValidPhrase);
         this.setState({ errorMessage: null });
       } else if (!Number.isNaN(Number(phrase)) && phrase !== '') {
