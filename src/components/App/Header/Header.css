@@ -229,7 +229,7 @@ nav a {
 
   .withSearchBar .header__container {
     display: grid;
-    grid-template-columns: repeat(10, 10rem);
+    grid-template-columns: repeat(17, 1fr);
     grid-template-rows: 5.4rem 8rem;
   }
 
@@ -242,7 +242,7 @@ nav a {
   }
 
   .withSearchBar .logo__link {
-    margin-left: 0;
+    margin-left: 1.3rem;
   }
 
   nav.logged-in {
@@ -259,8 +259,8 @@ nav a {
 
   .withSearchBar nav {
     display: grid;
-    margin: auto 0;
-    grid-column: 6 / span 5;
+    margin: auto 1.2rem auto 0;
+    grid-column: 10 / span 8;
     grid-row: 1 / 2;
   }
 

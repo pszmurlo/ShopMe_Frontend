@@ -48,7 +48,7 @@
 
 @media (min-width: 1025px) {
   .withSearchBar .search__input-wrapper {
-    margin: 0 9rem;
+    margin: 0;
     padding: 0;
     border: 0.1rem solid #999;
     z-index: 3;

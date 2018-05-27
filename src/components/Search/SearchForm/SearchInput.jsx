@@ -64,6 +64,14 @@ class SearchInput extends React.Component {
 
   render() {
     const { t } = this.props;
+    let paragraphError;
+    if (this.props.isHomepage || this.props.isResults) {
+      paragraphError = (
+        (!this.state.isValidPhrase || !this.state.matchRegex) && (<p className="search__message-error">{t(this.state.errorMessage)}</p>)
+      );
+    } else {
+      paragraphError = null;
+    }
     return (
       <div>
         <div className="search__input-wrapper">
@@ -84,7 +92,7 @@ class SearchInput extends React.Component {
           </SubmitButton>
           <SubmitButton onClick={this.props.handleSubmit} phrase={this.props.phrase} className="form__button--lens" />
         </div>
-        {(!this.state.isValidPhrase || !this.state.matchRegex) && (<p className="search__message-error">{t(this.state.errorMessage)}</p>)}
+        { paragraphError }
       </div>
     );
   }

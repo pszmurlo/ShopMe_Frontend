@@ -64,6 +64,7 @@ class SearchForm extends React.Component {
     const searchInput = (
       <SearchInput
         isHomepage={this.props.isHomepage}
+        isResults={this.props.isResults}
         onSearchInputChanged={this.handleSearchInputChanged}
         handleSubmit={this.handleSubmit}
         phrase={this.state.phrase}

@@ -65,7 +65,7 @@
   }
 
   .search__wrapper-results {
-    grid-column: 3 / span 6;
+    grid-column: 6 / span 7;
     grid-row: 2 / 2;
   }
 
