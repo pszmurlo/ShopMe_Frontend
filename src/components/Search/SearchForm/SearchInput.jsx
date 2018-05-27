@@ -10,6 +10,7 @@ class SearchInput extends React.Component {
       isValidPhrase: false,
       errorMessage: null,
       phrase: props.phrase,
+      matchRegex: undefined,
     };
     this.validatePhrase = this.validatePhrase.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
@@ -29,20 +30,25 @@ class SearchInput extends React.Component {
   }
 
   validatePhrase(phrase) {
-    const cleanedSearchPhrase = phrase.replace(/[!@#$%^&*()=+\-_;:'"<>,.?/{}|`~[\]\\]/g, '');
-    const isValidPhrase = cleanedSearchPhrase.length > 1
-      && Number.isNaN(Number(cleanedSearchPhrase));
+    const matchRegex = /^[A-ZĄĘĆŁŃÓŚŹŻ0-9\s]*$/i.test(phrase);
+    this.setState({ matchRegex });
+    if (matchRegex) {
+      const isValidPhrase = phrase.length > 1 && Number.isNaN(Number(phrase));
 
-    this.setState({ isValidPhrase });
-    if (isValidPhrase && Number.isNaN(Number(cleanedSearchPhrase)) && cleanedSearchPhrase !== '') {
-      this.props.onSearchInputChanged(cleanedSearchPhrase, isValidPhrase);
-      this.setState({ errorMessage: null });
-    } else if (!Number.isNaN(Number(cleanedSearchPhrase)) && cleanedSearchPhrase !== '') {
-      this.props.onSearchInputChanged(null, isValidPhrase);
-      this.setState({ errorMessage: 'components.searchForm.numberError' });
+      this.setState({ isValidPhrase });
+      if (isValidPhrase && phrase !== '') {
+        this.props.onSearchInputChanged(phrase, isValidPhrase);
+        this.setState({ errorMessage: null });
+      } else if (!Number.isNaN(Number(phrase)) && phrase !== '') {
+        this.props.onSearchInputChanged(null, isValidPhrase);
+        this.setState({ errorMessage: 'components.searchForm.numberError' });
+      } else {
+        this.props.onSearchInputChanged(null, isValidPhrase);
+        this.setState({ errorMessage: 'components.searchForm.lengthError' });
+      }
     } else {
-      this.props.onSearchInputChanged(null, isValidPhrase);
-      this.setState({ errorMessage: 'components.searchForm.lengthError' });
+      this.props.onSearchInputChanged(null, matchRegex);
+      this.setState({ errorMessage: 'components.searchForm.illegalError' });
     }
   }
 
@@ -74,7 +80,7 @@ class SearchInput extends React.Component {
           </SubmitButton>
           <SubmitButton onClick={this.props.handleSubmit} phrase={this.props.phrase} className="form__button--lens" />
         </div>
-        {!this.state.isValidPhrase && (<p className="search__message-error">{t(this.state.errorMessage)}</p>)}
+        {(!this.state.isValidPhrase || !this.state.matchRegex) && (<p className="search__message-error">{t(this.state.errorMessage)}</p>)}
       </div>
     );
   }

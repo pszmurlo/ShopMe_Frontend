@@ -6,7 +6,8 @@
       "input": "Enter the service",
       "label": "Service search engine",
       "lengthError": "Enter longer phrase",
-      "numberError": "Phrase can't contain only digits"
+      "numberError": "Phrase can't contain only digits",
+      "illegalError": "Illegal special characters"
     },
     "foundSearchResults": {
       "resultsTitle": "Search results",

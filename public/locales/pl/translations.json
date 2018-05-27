@@ -6,7 +6,8 @@
       "input": "Wpisz szukaną usługę",
       "label": "Wyszukiwarka usług",
       "lengthError": "Podaj frazę składającą się z większej liczby liter",
-      "numberError": "Podaj frazę nieskładającą się z samych liczb"
+      "numberError": "Podaj frazę nieskładającą się z samych liczb",
+      "illegalError": "Niedozwolone znaki specjalne"
     },
     "foundSearchResults": {
       "resultsTitle": "Wyniki wyszukiwania",
