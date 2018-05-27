@@ -86,10 +86,8 @@ class RegisterForm extends Component {
         };
       formData = Object.assign({}, formData, invoicePostData);
     }
-    if (this.users__additionalInfo.getWrappedInstance().state.value !== null) {
-      const additionalInfo = this.users__additionalInfo.getWrappedInstance().state.value;
-      if (additionalInfo) formData.additionalInfo = additionalInfo;
-    }
+    const additionalInfo = this.users__additionalInfo.getWrappedInstance().state.value;
+    if (additionalInfo) formData.additionalInfo = additionalInfo;
 
     return formData;
   }

@@ -45,7 +45,7 @@ class OfferContact extends React.Component {
           <p className="contact__p--big">
             tel. {this.state.isPhoneMasked ? phone : this.props.service.phoneNumber}
           </p>
-          <p className="contact__p--big">{this.props.service.voivodeship}</p>
+          <p className="contact__p--big">{t(`components.UI.voivodeship.list.${this.props.service.voivodeship}`)}</p>
           <p className="contact__p--big">{this.props.service.city}</p>
           <p className="contact__p--big">
             {!this.state.wasButtonClicked &&

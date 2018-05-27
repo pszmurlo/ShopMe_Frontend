@@ -21,6 +21,7 @@ section {
 
 .success-register-message__text {
   font-size: 2.24rem;
+  margin-bottom: 1.2rem;
 }
 
 .success-register-message__text--green {
