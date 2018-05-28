@@ -15,7 +15,9 @@
       "category": "Category",
       "price": "Price",
       "date": "Date",
-      "currency": "zł"
+      "currency": "zł",
+      "prefix": "from",
+      "moreOptions": "more packages available"
     },
     "categoryList":{
       "title": "Discover offers. ",
