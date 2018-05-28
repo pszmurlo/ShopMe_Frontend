@@ -15,7 +15,8 @@ import ArticleScreen from 'screens/Article/Article';
 import Layout from 'components/App/Layout/Layout';
 
 const wrapInLayout = (Screen, options) => props => (
-  <Layout requiresAuthorization={options && options.requiresAuthorization}><Screen {...props} />
+  <Layout requiresAuthorization={options && options.requiresAuthorization}>
+    <Screen {...props} />
   </Layout>);
 
 export default() => (

@@ -75,9 +75,10 @@ class Layout extends Component {
       content = childrenWithProps;
     }
 
+    if (this.state.fireRedirect) return <Redirect to="/" />;
+
     return (
       <div className="wrapper">
-        {this.state.fireRedirect && <Redirect to="/" />}
         <div className="content">
           <Header
             onClick={this.logout}
