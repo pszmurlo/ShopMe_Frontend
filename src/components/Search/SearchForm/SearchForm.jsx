@@ -7,10 +7,10 @@ import './SearchForm.css';
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
+    const searchQueryValue = new URLSearchParams(window.location.search);
     this.state = {
-      phrase: '',
+      phrase: searchQueryValue.get('title'),
       isValidPhrase: false,
-
     };
     this.fireRedirect = false;
 
@@ -33,9 +33,7 @@ class SearchForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.state.isValidPhrase === false && (this.props.isHomepage || this.props.isResults)) {
-      return;
-    }
+    if (!this.state.isValidPhrase && (this.props.isHomepage || this.props.isResults)) return;
     if (this.state.isValidPhrase) this.fireRedirect = true;
     this.setState({});
   }
@@ -48,17 +46,14 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    let myClassWrapper;
-    let myClassForm;
+    let myClassWrapper = 'search__wrapper';
+    let myClassForm = 'search__form';
     if (this.props.isHomepage) {
       myClassWrapper = 'search__wrapper-home';
       myClassForm = 'search__form-home';
     } else if (this.props.isResults) {
       myClassWrapper = 'search__wrapper-results';
       myClassForm = 'search__form-results';
-    } else {
-      myClassWrapper = 'search__wrapper';
-      myClassForm = 'search__form';
     }
 
     const searchInput = (

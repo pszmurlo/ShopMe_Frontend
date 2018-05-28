@@ -64,14 +64,13 @@ class SearchInput extends React.Component {
 
   render() {
     const { t } = this.props;
-    let paragraphError;
+    let paragraphError = null;
     if (this.props.isHomepage || this.props.isResults) {
       paragraphError = (
         (!this.state.isValidPhrase || !this.state.matchRegex) && (<p className="search__message-error">{t(this.state.errorMessage)}</p>)
       );
-    } else {
-      paragraphError = null;
     }
+
     return (
       <div>
         <div className="search__input-wrapper">
@@ -87,12 +86,17 @@ class SearchInput extends React.Component {
             aria-label={t('components.searchForm.label')}
             value={this.state.phrase || ''}
           />
-          <SubmitButton onClick={this.props.handleSubmit} enableValidation={this.props.enableValidation} phrase={this.props.phrase} className={this.props.isHomepage ? 'form__button--submit-home' : 'form__button--submit'}>
+          <SubmitButton
+            onClick={this.props.handleSubmit}
+            enableValidation={this.props.enableValidation}
+            phrase={this.props.phrase}
+            className={this.props.isHomepage ? 'form__button--submit-home' : 'form__button--submit'}
+          >
             {this.props.t('components.searchForm.button')}
           </SubmitButton>
           <SubmitButton onClick={this.props.handleSubmit} phrase={this.props.phrase} className="form__button--lens" />
         </div>
-        { paragraphError }
+        {paragraphError}
       </div>
     );
   }

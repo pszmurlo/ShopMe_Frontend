@@ -23,30 +23,31 @@ class Header extends React.Component {
     const className = this.state.displayMenu ? 'menu-visible' : 'menu-invisible';
     const userName = localStorage.getItem('userName');
     const userSurname = localStorage.getItem('userSurname');
-    let searchFormInHeader;
-    if (!this.props.isHomepage) {
-      searchFormInHeader = (<SearchForm
+    const searchFormInHeader = !this.props.isHomepage ?
+      (<SearchForm
         isHomepage={this.props.isHomepage}
         isResults={this.props.isResults}
-      />);
-    } else {
-      searchFormInHeader = null;
-    }
-    const searchFormOutsideHeader = this.props.isHomepage ?
-      <SearchForm isHomepage={this.props.isHomepage} /> : null;
-    let myClassHomepage;
-    if (!this.props.isHomepage && this.props.isResults) {
-      myClassHomepage = 'withSearchBar';
-    } else if (!this.props.isHomepage) {
-      myClassHomepage = 'withYellowBackground';
-    } else {
-      myClassHomepage = 'withLargePhoto';
-    }
+      />)
+      : null;
+
+    const searchFormOutsideHeader =
+      this.props.isHomepage
+        ? <SearchForm isHomepage={this.props.isHomepage} />
+        : null;
+
+    let myClassHomepage = 'withLargePhoto';
+    if (!this.props.isHomepage && this.props.isResults) myClassHomepage = 'withSearchBar';
+    else if (!this.props.isHomepage) myClassHomepage = 'withYellowBackground';
+
     return (
       <div className={myClassHomepage}>
         <header>
           <div className="header__container">
-            <div className="logo__link"><Link href="/" to="/"><img src="/assets/images/logo.png" alt="logo" className="logo" /></Link></div>
+            <div className="logo__link">
+              <Link href="/" to="/">
+                <img src="/assets/images/logo.png" alt="logo" className="logo" />
+              </Link>
+            </div>
             {searchFormInHeader}
             <nav className={userName ? 'logged-in' : null}>
               {userName ?

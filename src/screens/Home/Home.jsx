@@ -3,7 +3,6 @@ import CategoryList from 'components/Homepage/CategoryList/CategoryList';
 import Terms from 'components/Homepage/Terms/Terms';
 
 const Home = () => (
-
   <div className="search">
     <CategoryList />
     <Terms />
