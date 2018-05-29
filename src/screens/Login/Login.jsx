@@ -17,11 +17,6 @@ class LoginScreen extends React.Component {
     if (response.name) localStorage.setItem('userName', response.name);
     if (response.surname) localStorage.setItem('userSurname', response.surname);
     const isUserLogged = !!localStorage.getItem('userName');
-    this.props.setUser(
-      response.jwt,
-      response.name,
-      response.surname
-    );
     if (isUserLogged) this.setState({ loginFireRedirect: true });
   }
 

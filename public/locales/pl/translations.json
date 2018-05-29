@@ -51,6 +51,10 @@
     "errorMessage": {
       "text": "Coś poszło nie tak"
     },
+    "forbidden": {
+      "text": "Nie masz uprawnień do przeglądania tej strony.",
+      "link": "Zaloguj się"
+    },
     "noSearchResults" : {
       "noResultsTitle": "Niestety nie znaleziono ofert spełniających Twoje kryteria"
     },
