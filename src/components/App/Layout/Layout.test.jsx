@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
+import HomeScreen from 'screens/Home/Home';
 import { Layout } from './Layout';
 
 class LocalStorageMock {
@@ -31,10 +32,17 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   const props = {
     location: {},
+    children: {
+      type: {
+        name: 'dummy',
+      },
+    },
   };
   const element = (
     <MemoryRouter>
-      <Layout location={props.location} />
+      <Layout location={props.location}>
+        <HomeScreen />
+      </Layout>
     </MemoryRouter>
   );
   ReactDOM.render(element, div);
