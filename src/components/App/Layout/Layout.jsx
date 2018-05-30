@@ -38,10 +38,10 @@ class Layout extends Component {
 
   logout() {
     this.http.post('/api/users/logout')
-      .then(() => localStorage.removeItem('userToken'))
-      .then(() => localStorage.removeItem('userName'))
-      .then(() => localStorage.removeItem('userSurname'))
       .then(() => this.setState({ fireRedirect: true }));
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userSurname');
   }
 
   isRequireAuthorization() {
