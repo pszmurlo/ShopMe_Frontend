@@ -1,13 +1,16 @@
 .services-item {
   font-size: 1.8rem;
-  display: grid;
-  grid-template-columns: auto;
   box-shadow: 0.1rem 0.2rem 1rem 0.5rem #9e9e9e33;
   margin: 3rem auto;
   border-radius: 8px;
   padding: 0.5rem 0.5rem 1.5rem;
   text-align: center;
   width: calc(100% - 3rem);
+}
+
+.services-item a {
+  display: grid;
+  grid-template-columns: auto;
 }
 
 .services-item__title {
@@ -18,6 +21,8 @@
   border-bottom: solid 0.2rem #fade42;
   padding: 0.5rem 1rem;
   line-height: 1.5;
+  font-weight: normal;
+  display: inline;
 }
 
 .services-item__title:hover, .services-item__title:focus {
@@ -29,6 +34,74 @@
   margin: auto;
   border-bottom: solid 0.2rem #fade42;
   padding: 0.2rem 1rem;
+}
+
+.services-item__price {
+  font-family: 'Lato-Bold', sans-serif;
+}
+.services-item__price-prefix {
+  border-bottom: solid 0.2rem #fade42;
+  padding: 0.2rem 0;
+}
+.services-item__element {
+  padding: 1rem;
+}
+.services-item__element p {
+  padding: 0.5rem;
+  font-family: 'Lato-Thin', sans-serif;
+  font-size: 1.6rem;
+}
+
+.services-item__element--category {
+  padding: 0 1rem 2rem;
+}
+
+
+@media (min-width: 768px) {
+  .services-item {
+    margin: 0 auto;
+    box-shadow: none;
+    padding: 0;
+    width: 100%;
+  }
+  .services-item a {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+  .services-item a:hover {
+    background: #9e9e9e1a;
+    box-shadow: inset 0.1rem 0.2rem 1rem 0.5rem #9e9e9e14;
+  }
+  .services-item:not(:last-of-type) {
+    border-bottom: solid 1px #ccc;
+    border-radius: 0;
+  }
+  .services-item__element, .services-item__element--category {
+    padding-top: 4.2rem;
+    padding-bottom: 1.3rem;
+  }
+  .services-item__element:not(:last-of-type) {
+    border-right: solid 1px #ccc;
+  }
+  .services-item__element p {
+    font-size: 2rem;
+  }
+  .services-item__span,
+  .services-item__price-prefix,
+  .services-item__title {
+    border: none;
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .services-item__element p {
+    font-size: 1.5rem;
+  }
+  .services-item__span,
+  .services-item__price-prefix,
+  .services-item__title {
+    font-size: 2rem;
+  }
 }
 
 .services-item__price {
